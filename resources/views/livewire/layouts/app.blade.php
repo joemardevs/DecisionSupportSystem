@@ -16,7 +16,7 @@
     @livewireStyles
 </head>
 
-<body class="font-poppins">
+<body class="font-poppins relative">
     @yield('content')
     @yield('script')
     @livewireScripts

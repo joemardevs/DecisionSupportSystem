@@ -3,9 +3,9 @@
     Login
 @endsection
 @section('content')
-    <main class="bg-gray-100 h-screen w-screen grid place-items-center">
+    <main class="bg-gray-200 h-screen w-screen grid place-items-center">
         <div class="grid md:grid-cols-2 drop-shadow-lg z-10">
-            <form class="bg-white h-96 w-96 p-6 text-gray-800 flex flex-col justify-center gap-4">
+            <form class="bg-white h-[25rem] w-96 p-6 text-gray-800 flex flex-col justify-center gap-4">
                 <div>
                     <h1 class="text-2xl font-bold">Login</h1>
                     <small>Please log in your account.</small>
@@ -13,18 +13,20 @@
                 <div class="flex flex-col">
                     <label for="email">Email<span class="text-red-500">*</span></label>
                     <input type="email" name="email" id="email" placeholder="example@gmail.com"
-                        class="border-2 focus:outline-none focus:border-emerald-500 px-4 py-1 rounded" required>
+                        class="text-md border-2 border-x-0 border-t-0 focus:outline-none focus:border-emerald-500 px-4 py-1"
+                        required>
                 </div>
                 <div class="flex flex-col">
                     <label for="password">Password<span class="text-red-500">*</span></label>
                     <input type="password" name="password" id="password" placeholder="••••••••"
-                        class="border-2 focus:outline-none focus:border-emerald-500 px-4 py-1 rounded" required>
+                        class="text-md border-2 border-x-0 border-t-0 focus:outline-none focus:border-emerald-500 px-4 py-1"
+                        required>
                 </div>
                 <input type="submit" value="Login"
                     class="cursor-pointer bg-emerald-400 hover:bg-emerald-500 px-6 py-2 rounded">
             </form>
             <section class="bg-white hidden md:block">
-                <div class="bg-emerald-500 h-96 w-96 p-6 rounded-l-[40px]">
+                <div class="bg-emerald-500 h-[25rem] w-96 p-6 rounded-l-[40px]">
                 </div>
             </section>
         </div>
