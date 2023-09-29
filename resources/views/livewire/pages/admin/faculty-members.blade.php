@@ -1,6 +1,6 @@
 @extends('livewire.layouts.app')
 @section('title')
-    Dashboard
+    Faculty Members
 @endsection
 @section('content')
     <main class="flex min-h-screen">
@@ -13,13 +13,13 @@
                 <img src="{{ asset('logo/ISU.png') }}" alt="ISU LOGO" class="w-16">
             </div>
             <div class="flex flex-col mt-2" x-data="{ expanded: false }">
-                <a href="" class="flex items-center gap-2 my-2 cursor-pointer text-[#116736]">
+                <a href="" class="flex items-center gap-2 my-2 cursor-pointer text-[#3a4657] hover:text-[#116736]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                     </svg>
-                    <p class="text-[#116736] w-full">Dashboard</p>
+                    <p class="text-[#3a4657] hover:text-[#116736] w-full">Dashboard</p>
                 </a>
                 <a href="" class="flex items-center gap-2 my-2 cursor-pointer text-[#B1B6C0] hover:text-[#116736]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -29,13 +29,13 @@
                     </svg>
                     <p class="text-[#3a4657] hover:text-[#116736] w-full">Research</p>
                 </a>
-                <a href="" class="flex items-center gap-2 my-2 cursor-pointer text-[#B1B6C0] hover:text-[#116736]">
+                <a href="" class="flex items-center gap-2 my-2 cursor-pointer text-[#116736]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
                     </svg>
-                    <p class="text-[#3a4657] hover:text-[#116736] w-full">Faculty Members</p>
+                    <p class="text-[#116736] w-full">Faculty Members</p>
                 </a>
                 <div class="flex flex-col w-full">
                     <button type="button" class="py-2 text-left flex justify-between items-center p-2 rounded">
@@ -76,43 +76,40 @@
         <div class="w-full bg-gray-200">
             <section class="p-4">
                 <div class="flex flex-col md:flex-row gap-4">
-                    <div class="w-full h-fit md:w-96 p-4 bg-white rounded-lg drop-shadow-md">
-                        <div class="w-80 mx-auto">
-                            <canvas id="myChart" style="height:10px; width:10px"></canvas>
+                    <div class="w-full p-4">
+                        <header class="flex justify-between items-center mb-4">
+                            <h1>Faculty Members</h1>
+                            <button type="button"class="text-md text-white bg-[#116736] px-4 py-1 rounded">
+                                Add faculty member
+                            </button>
+                        </header>
+                        <div class="w-full p-4 bg-white rounded-lg drop-shadow-md">
+                            <table class="w-full text-sm">
+                                <thead class="font-semibold border-b-2">
+                                    <tr>
+                                        <td class="py-2">Name</td>
+                                        <td>Postion</td>
+                                        <td>Status</td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b">
+                                        <td class="py-2">Test Name</td>
+                                        <td class="text-gray-500">testemail@gmail.com</td>
+                                        <td class="text-gray-500">Professor I</td>
+                                        <td>
+                                            <a href="" class="text-blue-400">
+                                                Edit
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                    <div class="w-full h-[35rem] bg-white rounded-lg drop-shadow-md">
                     </div>
                 </div>
             </section>
         </div>
     </main>
-@endsection
-@section('script')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const data = {
-            labels: [
-                'Red',
-                'Blue',
-                'Yellow'
-            ],
-            datasets: [{
-                data: [100, 50, 70],
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)'
-                ],
-                hoverOffset: 4
-            }]
-        };
-
-        new Chart(
-            document.getElementById('myChart'), {
-                type: 'doughnut',
-                data: data,
-            }
-        );
-    </script>
 @endsection

@@ -11,5 +11,6 @@ export default defineConfig({
     server: {
         host: "dss.test",
         hmr: true,
+        refresh: true,
     },
 });

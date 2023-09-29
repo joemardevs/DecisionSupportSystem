@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -17,9 +18,22 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class);
+    }
     protected $fillable = [
+        'username',
         'name',
-        'email',
+        'department_id',
+        'role_id',
+        'position',
+        'status',
+        'sex',
+        'date_of_birth',
+        'date_of_original_appointment',
+        'highest_educational_attaintment',
+        'address',
         'password',
     ];
 
@@ -30,7 +44,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -39,7 +52,8 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'date_of_birth' => 'date:Y-m-d',
+        'date_of_original_appointment' => 'date:Y-m-d',
         'password' => 'hashed',
     ];
 }

@@ -18,21 +18,31 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'username' => fake()->firstName(),
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'department_id' => fake()->numberBetween($min = 1, $max = 7),
+            // 'role_id' => fake()->randomNumber($min = 0, $max = 1),
+            'position' => fake()->randomElement(['Professor I', 'Professor II', 'Professor III']),
+            'status' => fake()->name($status = 'single' | 'married'),
+            'sex' => fake()->name($gender = 'male' | 'female'),
+            'date_of_birth' => fake()->date($format = 'Y-m-d'),
+            'date_of_original_appointment' => fake()->date($format = 'Y-m-d'),
+            'highest_educational_attaintment' => fake()->randomElement(['High School', 'College']),
+            'address' => fake()->address(),
+
+
+            // 'email' => fake()->unique()->safeEmail(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
         ];
     }
 
     /**
      * Indicate that the model's email address should be unverified.
      */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
-    }
+    // public function unverified(): static
+    // {
+    //     return $this->state(fn (array $attributes) => [
+    //         'email_verified_at' => null,
+    //     ]);
+    // }
 }

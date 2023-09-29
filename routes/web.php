@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('livewire.pages.admin.dashboard');
 });
+Route::get('/faculty-members', function () {
+    return view('livewire.pages.admin.faculty-members');
+});
