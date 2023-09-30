@@ -1,25 +1,22 @@
-@extends('livewire.layouts.app')
 @section('title')
-    Dashboard
+    {{ $title }}
 @endsection
-@section('content')
-    <main class="flex min-h-screen">
-        <livewire:components.sidebar />
-        <div class="w-full bg-gray-200">
-            <section class="p-4">
-                <div class="flex flex-col md:flex-row gap-4">
-                    <div class="w-full h-fit md:w-96 p-4 bg-white rounded-lg drop-shadow-md">
-                        <div class="w-80 mx-auto">
-                            <canvas id="myChart" style="height:10px; width:10px"></canvas>
-                        </div>
-                    </div>
-                    <div class="w-full h-[35rem] bg-white rounded-lg drop-shadow-md">
+<main class="flex min-h-screen">
+    <livewire:components.sidebar />
+    <div class="w-full bg-gray-200">
+        <section class="p-4">
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="w-full h-fit md:w-96 p-4 bg-white rounded-lg drop-shadow-md">
+                    <div class="w-80 h-80 mx-auto">
+                        {{-- <canvas id="myChart" style="height:10px; width:10px"></canvas> --}}
                     </div>
                 </div>
-            </section>
-        </div>
-    </main>
-@endsection
+                <div class="w-full h-[35rem] bg-white rounded-lg drop-shadow-md">
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>

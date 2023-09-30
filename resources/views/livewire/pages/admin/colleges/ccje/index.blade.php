@@ -6,13 +6,10 @@
     <div class="w-full bg-gray-200">
         <section class="p-4">
             <div class="w-full p-4">
-                <div class="flex justify-between items-center p-4 bg-white mb-4 drop-shadow rounded">
+                <div class="flex items-center p-4 bg-white mb-4 drop-shadow rounded">
                     <h1>
                         {{ $title }}
                     </h1>
-                    <button type="button"class="text-sm text-white bg-[#116736] p-4 py-2 rounded">
-                        Create faculty member
-                    </button>
                 </div>
                 <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden">
                     <div class="flex items-center justify-between d p-4">
@@ -33,12 +30,14 @@
                         </div>
                         <div class="flex space-x-3">
                             <div class="flex space-x-3 items-center">
-                                <label class="w-48 text-sm font-medium text-gray-900">Position Type :</label>
+                                <label class="w-40 text-sm font-medium text-gray-900">Status Type :</label>
                                 <select
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                                     <option value="">All</option>
-                                    <option value="0">User</option>
-                                    <option value="1">Admin</option>
+                                    @foreach ($statuses as $status)
+                                        <option wire:key="{{ $status->id }}" value="{{ $status->id }}">
+                                            {{ $status->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -47,8 +46,8 @@
                         <table class="w-full text-sm text-left text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="px-4 py-3">Name</th>
-                                    <th scope="col" class="px-4 py-3">Position</th>
+                                    <th scope="col" class="px-4 py-3">Title</th>
+                                    <th scope="col" class="px-4 py-3">Author</th>
                                     <th scope="col" class="px-4 py-3">Status</th>
                                     <th scope="col" class="px-4 py-3">
                                         <span class="sr-only">Actions</span>
@@ -56,15 +55,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($facultyMembers as $facultyMember)
-                                    <tr wire:key="{{ $facultyMember->id }}" class="border-b">
+                                @forelse ($ccjeResearch as $research)
+                                    <tr wire:key="{{ $research->id }}" class="border-b">
                                         <th scope="row"
                                             class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
-                                            {{ $facultyMember->name }}
-                                        </th>
-                                        <td class="px-4 py-3">{{ $facultyMember->position }}</td>
+                                            {{ $research->title }}</th>
                                         <td class="px-4 py-3">
-                                            {{ $facultyMember->status }}
+                                            {{ $research->author->name }}
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            {{ $research->status->name }}
                                         </td>
                                         <td class="px-4 py-3 flex items-center justify-start">
                                             <button class="px-3 py-1 text-blue-400 rounded">
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div>
-                            {{ $facultyMembers->links() }}
+                            {{ $ccjeResearch->links() }}
                         </div>
                     </div>
                 </div>

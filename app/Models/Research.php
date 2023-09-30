@@ -22,4 +22,12 @@ class Research extends Model
     {
         return $this->belongsTo(Status::class);
     }
+    public function scopeSearch($query, $value)
+    {
+        $query
+            ->where('title', 'like', "%{$value}%")
+            ->orWhereHas('author', function ($q) use ($value) {
+                $q->where('name', 'like', "%{$value}%");
+            });
+    }
 }

@@ -22,6 +22,7 @@ class IsAdmin
             return $next($request);
         }
         Auth::logout();
-        return to_route('login');
+        return to_route('login')
+            ->with('error', 'You can\'t perform this action.');
     }
 }

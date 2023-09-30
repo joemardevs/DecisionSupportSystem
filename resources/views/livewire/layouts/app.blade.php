@@ -17,9 +17,9 @@
 </head>
 
 <body class="font-poppins relative">
-    @yield('content')
-    @yield('script')
     @livewireScripts
+    {{ $slot }}
+    @yield('script')
 </body>
 
 </html>
