@@ -12,6 +12,8 @@ use App\Livewire\Pages\Admin\Colleges\Ced\Index as Ced;
 use App\Livewire\Pages\Admin\Colleges\Iat\Index as Iat;
 use App\Livewire\Pages\Admin\Colleges\Ps\Index as Ps;
 use App\Livewire\Pages\Admin\Colleges\Sas\Index as Sas;
+use App\Livewire\Pages\Admin\Setting\Index as Settings;
+use App\Livewire\Pages\Admin\Setting\UpdatePassword;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,6 +69,12 @@ Route::middleware('auth', 'is.admin')->group(function () {
 
     Route::get('/sas', Sas::class)
         ->name('sas');
+
+    Route::get('/settings', Settings::class)
+        ->name('settings');
+
+    Route::get('/settings/update-password', UpdatePassword::class)
+        ->name('password');
 
     Route::get('/sign-out', Sidebar::class)
         ->name('sign-out');
