@@ -49,9 +49,6 @@
                                     <th scope="col" class="px-4 py-3">Title</th>
                                     <th scope="col" class="px-4 py-3">Author</th>
                                     <th scope="col" class="px-4 py-3">Status</th>
-                                    <th scope="col" class="px-4 py-3">
-                                        <span class="sr-only">Actions</span>
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,11 +62,6 @@
                                         </td>
                                         <td class="px-4 py-3">
                                             {{ $research->status->name }}
-                                        </td>
-                                        <td class="px-4 py-3 flex items-center justify-start">
-                                            <button class="px-3 py-1 text-blue-400 rounded">
-                                                Edit
-                                            </button>
                                         </td>
                                     </tr>
                                 @empty

@@ -14,6 +14,7 @@ use App\Livewire\Pages\Admin\Colleges\Ps\Index as Ps;
 use App\Livewire\Pages\Admin\Colleges\Sas\Index as Sas;
 use App\Livewire\Pages\Admin\Setting\Index as Settings;
 use App\Livewire\Pages\Admin\Setting\UpdatePassword;
+use App\Livewire\Pages\Admin\Research\Edit as ResearchEdit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,9 @@ Route::middleware('auth', 'is.admin')->group(function () {
 
     Route::get('/research', Research::class)
         ->name('research');
+
+    Route::get('/research/edit/{id}', ResearchEdit::class)
+        ->name('edit.research');
 
     Route::get('/faculty-members', FacultyMember::class)
         ->name('faculty-members');

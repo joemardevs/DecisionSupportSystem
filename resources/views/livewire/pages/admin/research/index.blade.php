@@ -52,9 +52,7 @@
                                     <th scope="col" class="px-4 py-3">Title</th>
                                     <th scope="col" class="px-4 py-3">Author</th>
                                     <th scope="col" class="px-4 py-3">Status</th>
-                                    <th scope="col" class="px-4 py-3">
-                                        <span class="sr-only">Actions</span>
-                                    </th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,9 +68,10 @@
                                             {{ $research->status->name }}
                                         </td>
                                         <td class="px-4 py-3 flex items-center justify-start">
-                                            <button class="px-3 py-1 text-blue-400 rounded">
+                                            <a href="{{ route('edit.research', ['id' => $research->id]) }}"
+                                                class="px-3 py-1 text-blue-400 rounded">
                                                 Edit
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty

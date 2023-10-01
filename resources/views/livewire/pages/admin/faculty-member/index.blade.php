@@ -51,9 +51,7 @@
                                     <th scope="col" class="px-4 py-3">Name</th>
                                     <th scope="col" class="px-4 py-3">Position</th>
                                     <th scope="col" class="px-4 py-3">Status</th>
-                                    <th scope="col" class="px-4 py-3">
-                                        <span class="sr-only">Actions</span>
-                                    </th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,11 +65,7 @@
                                         <td class="px-4 py-3">
                                             {{ $facultyMember->status }}
                                         </td>
-                                        <td class="px-4 py-3 flex items-center justify-start">
-                                            <button class="px-3 py-1 text-blue-400 rounded">
-                                                Edit
-                                            </button>
-                                        </td>
+
                                     </tr>
                                 @empty
                                     <tr>

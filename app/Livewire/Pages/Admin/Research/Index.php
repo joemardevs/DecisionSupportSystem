@@ -15,7 +15,6 @@ class Index extends Component
 
     public $search;
     public $status = '';
-
     public function render()
     {
         $title = 'Research';
