@@ -11,6 +11,7 @@ class Index extends Component
     public $perPage = 5;
 
     public $search;
+    public $position = '';
 
     public function render()
     {
@@ -18,6 +19,9 @@ class Index extends Component
 
         $facultyMembers = User::orderBy('id', 'asc')
             ->where('role_id', RoleEnum::USER->value)
+            ->when($this->position !== '', function ($query) {
+                $query->where('position', '=', $this->position);
+            })
             ->search($this->search)
             ->paginate($this->perPage);
 

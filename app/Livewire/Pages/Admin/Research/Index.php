@@ -14,11 +14,15 @@ class Index extends Component
     public $perPage = 5;
 
     public $search;
+    public $status = '';
 
     public function render()
     {
         $title = 'Research';
         $allResearch = Research::orderBy('id', 'asc')
+            ->when($this->status !== '', function ($query) {
+                $query->where('status_id', $this->status);
+            })
             ->search($this->search)
             ->paginate($this->perPage);
         $statuses = Status::all();

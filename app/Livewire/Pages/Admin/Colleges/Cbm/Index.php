@@ -15,12 +15,17 @@ class Index extends Component
     public $perPage = 5;
 
     public $search;
+    public $status = '';
+
 
     public function render()
     {
         $title = 'CBM';
         $cbmResearch = Research::orderBy('id', 'asc')
             ->where('department_id', '=', DepartmentEnum::CBM->value)
+            ->when($this->status !== '', function ($query) {
+                $query->where('status_id', $this->status);
+            })
             ->search($this->search)
             ->paginate($this->perPage);
         $statuses = Status::all();

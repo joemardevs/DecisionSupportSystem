@@ -19,7 +19,7 @@
             </span>
         </div>
     @endif
-    <form wire:submit.prevent="signin" class="h-[25rem] p-6 text-gray-800 flex flex-col justify-center gap-10">
+    <form wire:submit="signin" class="h-[25rem] p-6 text-gray-800 flex flex-col justify-center gap-10">
         @csrf
         <div>
             <img src="{{ asset('logo/ISU.png') }}" alt="ISU LOGO" class="w-24 mx-auto">
