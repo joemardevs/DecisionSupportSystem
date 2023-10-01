@@ -17,7 +17,8 @@ class Index extends Component
     {
         $title = 'Faculty Members';
 
-        $facultyMembers = User::orderBy('id', 'asc')
+        $facultyMembers = User::orderBy('updated_at', 'desc')
+            ->orderBy('id', 'desc')
             ->where('role_id', RoleEnum::USER->value)
             ->when($this->position !== '', function ($query) {
                 $query->where('position', '=', $this->position);

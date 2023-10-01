@@ -18,7 +18,8 @@ class Index extends Component
     public function render()
     {
         $title = 'Research';
-        $allResearch = Research::orderBy('id', 'asc')
+        $allResearch = Research::orderBy('updated_at', 'desc')
+            ->orderBy('id', 'asc')
             ->when($this->status !== '', function ($query) {
                 $query->where('status_id', $this->status);
             })

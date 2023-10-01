@@ -21,7 +21,8 @@ class Index extends Component
     public function render()
     {
         $title = 'CBM';
-        $cbmResearch = Research::orderBy('id', 'asc')
+        $cbmResearch = Research::orderBy('updated_at', 'desc')
+            ->orderBy('id', 'desc')
             ->where('department_id', '=', DepartmentEnum::CBM->value)
             ->when($this->status !== '', function ($query) {
                 $query->where('status_id', $this->status);

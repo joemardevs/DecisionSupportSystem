@@ -20,7 +20,8 @@ class Index extends Component
     public function render()
     {
         $title = 'PS';
-        $psResearch = Research::orderBy('id', 'asc')
+        $psResearch = Research::orderBy('updated_at', 'desc')
+            ->orderBy('id', 'desc')
             ->where('department_id', '=', DepartmentEnum::PS->value)
             ->when($this->status !== '', function ($query) {
                 $query->where('status_id', $this->status);

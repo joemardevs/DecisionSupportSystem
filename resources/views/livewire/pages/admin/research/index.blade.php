@@ -52,7 +52,7 @@
                                     <th scope="col" class="px-4 py-3">Title</th>
                                     <th scope="col" class="px-4 py-3">Author</th>
                                     <th scope="col" class="px-4 py-3">Status</th>
-
+                                    <th scope="col" class="px-4 py-3"></th>
                                 </tr>
                             </thead>
                             <tbody>
