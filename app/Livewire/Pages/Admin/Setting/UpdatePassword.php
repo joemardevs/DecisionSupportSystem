@@ -26,10 +26,6 @@ class UpdatePassword extends Component
 
 
         $user = Auth::user();
-        // if (Hash::check($this->current_password, $user->password)) {
-        //     // Save the updated user record only if changes were made
-        //     return back()->with('error', 'No changes were made');
-        // }
 
         // Check if the provided current password matches the user's actual password
         if (!Hash::check($this->current_password, $user->password)) {

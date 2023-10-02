@@ -14,9 +14,15 @@ use Livewire\Component;
 class Edit extends Component
 {
     public $research, $title, $author_id, $status_id, $department_id, $research_id;
-
+    protected $rules = [
+        'title' => 'required',
+        'author_id' => 'required',
+        'status_id' => 'required',
+        'department_id' => 'required',
+    ];
     public function updateResearch()
     {
+        $this->validate();
         // Find the research record based on the research_id
         $research = Research::find($this->research_id);
         // Check if the research record exists
@@ -46,7 +52,6 @@ class Edit extends Component
             return back()->with('error', 'No changes were made');
         }
         // Save the updated research record
-        // dd($this->title);
         $research->save();
 
         return back()->with('success', 'Update successful');
@@ -67,7 +72,6 @@ class Edit extends Component
         $statuses = Status::all();
         $departments = Department::where('id', '>=', DepartmentEnum::CBM->value)->get();
         $authors = User::where('role_id', RoleEnum::USER->value)->get();
-        // dd($authors);
         return view('livewire.pages.admin.research.edit', [
             'titlePage' => $titlePage,
             'authors' => $authors,
