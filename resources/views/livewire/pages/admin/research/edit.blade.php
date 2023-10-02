@@ -48,6 +48,7 @@
                         <h1 class="text-xl font-semibold">Update {{ $titlePage }}</h1>
                         <small class="text-gray-500">Manage the research information below.</small>
                         <form wire:submit="updateResearch" class="flex flex-col gap-4 mt-6 w-5/12">
+                            @csrf
                             <div class="flex flex-col gap-1">
                                 <label for="title">Title</label>
                                 <input wire:model="title" type="text" name="title" id="title"

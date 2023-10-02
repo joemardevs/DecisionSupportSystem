@@ -15,18 +15,26 @@ class Index extends Component
 
     public $search;
     public $status = '';
+    public $year;
     public function render()
     {
         $title = 'Research';
         $allResearch = Research::orderBy('updated_at', 'desc')
             ->orderBy('id', 'asc')
-            ->when($this->status !== '', function ($query) {
-                $query->where('status_id', $this->status);
+            ->when($this->status !== '' || $this->year !== '', function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->status !== '') {
+                        $subquery->where('status_id', $this->status);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                    }
+                });
             })
             ->search($this->search)
             ->paginate($this->perPage);
         $statuses = Status::all();
-
         return view('livewire.pages.admin.research.index', [
             'title' => $title,
             'statuses' => $statuses,

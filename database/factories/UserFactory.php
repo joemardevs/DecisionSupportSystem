@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'department_id' => fake()->numberBetween($min = 2, $max = 7),
             // 'role_id' => fake()->randomNumber($min = 0, $max = 1),
             'position' => fake()->randomElement(['Professor I', 'Professor II', 'Professor III']),
-            'status' => fake()->randomElement(['single', 'married']),
+            'status' => fake()->randomElement(['Permanent', 'Temporary']),
             'sex' => fake()->randomElement(['male', 'female']),
             'date_of_birth' => fake()->date($format = 'Y-m-d'),
             'date_of_original_appointment' => fake()->date($format = 'Y-m-d'),

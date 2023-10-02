@@ -51,7 +51,7 @@
                                     <th scope="col" class="px-4 py-3">Name</th>
                                     <th scope="col" class="px-4 py-3">Position</th>
                                     <th scope="col" class="px-4 py-3">Status</th>
-
+                                    <th scope="col" class="px-4 py-3"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,7 +65,12 @@
                                         <td class="px-4 py-3">
                                             {{ $facultyMember->status }}
                                         </td>
-
+                                        <td class="px-4 py-3 flex items-center justify-start">
+                                            <a href="{{ route('edit.faculty-members', ['id' => $facultyMember->id]) }}"
+                                                class="px-3 py-1 text-blue-400 rounded">
+                                                Edit
+                                            </a>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
