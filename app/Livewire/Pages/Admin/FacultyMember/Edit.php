@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Admin\FacultyMember;
 
 use App\Enums\DepartmentEnum;
+use App\Models\Author;
 use App\Models\Department;
 use App\Models\User;
 use Carbon\Carbon;
@@ -25,7 +26,7 @@ class Edit extends Component
     public function updateFacultyMember()
     {
         $this->validate();
-        $member = User::find($this->faculty_member_id);
+        $member = Author::find($this->faculty_member_id);
 
         if (!$member) {
             return back()->with('error', 'Faculty member not found');
@@ -63,7 +64,7 @@ class Edit extends Component
     }
     public function mount($id)
     {
-        $facultyMember = User::find($id);
+        $facultyMember = Author::find($id);
         $this->faculty_member = $facultyMember;
         $this->faculty_member_id = $facultyMember->id;
         $this->name = $facultyMember->name;

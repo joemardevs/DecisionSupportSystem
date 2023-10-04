@@ -2,12 +2,16 @@
 
 namespace App\Livewire\Pages\Admin\FacultyMember;
 
-use App\Enums\RoleEnum;
-use App\Models\User;
+use App\Models\Author;
 use Livewire\Component;
+use Livewire\WithPagination;
+
 
 class Index extends Component
 {
+    use WithPagination;
+
+
     public $perPage = 5;
 
     public $search;
@@ -17,9 +21,8 @@ class Index extends Component
     {
         $title = 'Faculty Members';
 
-        $facultyMembers = User::orderBy('updated_at', 'desc')
+        $facultyMembers = Author::orderBy('updated_at', 'desc')
             ->orderBy('id', 'desc')
-            ->where('role_id', RoleEnum::USER->value)
             ->when($this->position !== '', function ($query) {
                 $query->where('position', '=', $this->position);
             })

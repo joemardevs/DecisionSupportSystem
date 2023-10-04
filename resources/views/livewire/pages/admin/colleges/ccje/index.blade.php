@@ -59,7 +59,13 @@
                                             class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                                             {{ $research->title }}</th>
                                         <td class="px-4 py-3">
-                                            {{ $research->author->name }}
+                                            @foreach ($research->authors as $author)
+                                                {{ $author->name }}
+                                                @if (!$loop->last)
+                                                    {{-- Add a comma if it's not the last author --}}
+                                                    ,
+                                                @endif
+                                            @endforeach
                                         </td>
                                         <td class="px-4 py-3">
                                             {{ $research->status->name }}

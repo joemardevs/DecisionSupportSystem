@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Author;
 use App\Models\Research;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,6 +15,6 @@ class ResearchSeeder extends Seeder
     public function run(): void
     {
         //
-        Research::factory(20)->create();
+        Research::factory(50)->create();
     }
 }

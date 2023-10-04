@@ -14,7 +14,7 @@ class DepartmentFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $colleges = ['ADMIN', 'CBM', 'CCJE', 'CCSICT', 'CED', 'IAT', 'PS', 'SAS'];
+    protected $colleges = ['CBM', 'CCJE', 'CCSICT', 'CED', 'IAT', 'PS', 'SAS'];
     protected $collegesIndex = 0;
     public function definition(): array
     {

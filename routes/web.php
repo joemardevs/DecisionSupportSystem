@@ -16,6 +16,7 @@ use App\Livewire\Pages\Admin\Setting\Index as Settings;
 use App\Livewire\Pages\Admin\Setting\UpdatePassword;
 use App\Livewire\Pages\Admin\Research\Edit as ResearchEdit;
 use App\Livewire\Pages\Admin\FacultyMember\Edit as FacultyMemberEdit;
+use App\Livewire\Pages\Admin\Research\Create as CreateResearch;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +49,9 @@ Route::middleware('auth', 'is.admin')->group(function () {
 
     Route::get('/research', Research::class)
         ->name('research');
+
+    Route::get('/research/create/', CreateResearch::class)
+        ->name('create.research');
 
     Route::get('/research/edit/{id}', ResearchEdit::class)
         ->name('edit.research');

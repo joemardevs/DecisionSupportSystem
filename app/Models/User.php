@@ -18,10 +18,6 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    public function department(): BelongsTo
-    {
-        return $this->belongsTo(Department::class);
-    }
     protected $fillable = [
         'username',
         'name',
@@ -54,12 +50,5 @@ class User extends Authenticatable
     protected $casts = [
         'date_of_birth' => 'date:Y-m-d',
         'date_of_original_appointment' => 'date:Y-m-d',
-        'password' => 'hashed',
     ];
-
-    public function scopeSearch($query, $value)
-    {
-        $query
-            ->where('name', 'like', "%{$value}%");
-    }
 }

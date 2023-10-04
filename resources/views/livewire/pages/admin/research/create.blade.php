@@ -36,18 +36,19 @@
     @endif
     <livewire:components.sidebar />
     <div class="w-full bg-gray-200">
-        <section class="p-4">
+        <section>
             <div class="w-full p-4">
                 <div class="flex justify-between items-center p-4 bg-white mb-4 drop-shadow rounded">
                     <h1>
-                        Edit {{ $titlePage }}
+                        Create {{ $titlePage }}
                     </h1>
                 </div>
                 <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden">
                     <div class="w-full p-4 bg-white rounded-lg drop-shadow-md flex flex-col gap-4">
-                        <h1 class="text-xl font-semibold">Update {{ $titlePage }}</h1>
-                        <small class="text-gray-500">Manage the research information below.</small>
-                        <form wire:submit="updateResearch" class="flex gap-4">
+                        <h1 class="text-xl font-semibold">Create {{ $titlePage }}</h1>
+                        <small class="text-gray-500">Start by filling in the necessary details to initiate the research
+                            information.</small>
+                        <form wire:submit="createResearch" class="flex gap-4">
                             @csrf
                             <div class="flex flex-col gap-4 w-1/2">
                                 <div class="flex flex-col gap-1">
@@ -57,17 +58,13 @@
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                                 <div class="flex flex-col gap-1">
-                                    <label for="selectedAuthors">Author</label>
+                                    <label for="selectAuthors">Author</label>
                                     <div class="relative flex w-full">
-                                        <select wire:model="selectedAuthors" id="selectedAuthors" name="selectedAuthors"
+                                        <select wire:model="selectAuthors" id="selectAuthors" name="selectAuthors"
                                             multiple placeholder="Select author" autocomplete="off"
                                             class="select-author block w-full rounded-md cursor-pointer focus:outline-none"
                                             multiple>
                                             @foreach ($authors as $author)
-                                                <option value="{{ $author->id }}" selected>{{ $author->name }}
-                                                </option>
-                                            @endforeach
-                                            @foreach ($selectAuthors as $author)
                                                 <option value="{{ $author->id }}">{{ $author->name }}</option>
                                             @endforeach
                                         </select>
@@ -117,11 +114,7 @@
                                 <div class="flex gap-4">
                                     <button type="submit"
                                         class="cursor-pointer text-white bg-[#116736] py-2 rounded-md w-24">
-                                        Save
-                                    </button>
-                                    <button type="button" wire:click="goBack"
-                                        class="cursor-pointer text-white bg-gray-500 py-2 rounded-md w-24">
-                                        Back
+                                        Create
                                     </button>
                                 </div>
                             </div>

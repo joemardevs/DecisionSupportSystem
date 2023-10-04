@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Department;
+use App\Models\Author;
+use App\Models\Research;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DepartmentSeeder extends Seeder
+class AuthorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,6 @@ class DepartmentSeeder extends Seeder
     public function run(): void
     {
         //
-        Department::factory(7)->create();
+        Author::factory(30)->create();
     }
 }

@@ -15,21 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('username')->nullable();
             $table->string('name');
-            $table->unsignedBigInteger('department_id');
             $table->boolean('role_id')->default(false);
-            $table->string('position');
-            $table->string('status');
-            $table->string('sex');
-            $table->date('date_of_birth');
-            $table->date('date_of_original_appointment');
-            $table->string('highest_educational_attaintment');
-            $table->string('address');
             $table->string('password');
             $table->timestamps();
-
-            $table->foreign('department_id')
-                ->references('id')
-                ->on('departments');
         });
     }
 

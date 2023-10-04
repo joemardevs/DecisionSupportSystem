@@ -7,30 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Research extends Model
+class Author extends Model
 {
     use HasFactory;
     protected static $unguarded = true;
-    public function authors(): BelongsToMany
+    public function research(): BelongsToMany
     {
-        return $this->belongsToMany(Author::class, 'author_research');
+        return $this->belongsToMany(Research::class, 'author_research');
     }
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
     }
-    public function status(): BelongsTo
-    {
-        return $this->belongsTo(Status::class);
-    }
+
     protected $casts = [
-        'date_presented' => 'date:Y-m-d',
-        'date_complited' => 'date:Y-m-d',
-        'date_issued' => 'date:Y-m-d',
+        'date_of_birth' => 'date:Y-m-d',
+        'date_of_original_appointment' => 'date:Y-m-d',
     ];
     public function scopeSearch($query, $value)
     {
         $query
-            ->where('title', 'like', "%{$value}%");
+            ->where('name', 'like', "%{$value}%");
     }
 }

@@ -18,10 +18,10 @@ class ResearchFactory extends Factory
     {
         return [
             //
-            'author_id' => fake()->numberBetween($min = 1, $max = 10),
-            'department_id' => fake()->numberBetween($min = 2, $max = 7),
+            'department_id' => fake()->numberBetween($min = 1, $max = 7),
             'title' => fake()->word(),
-            'status_id' => fake()->numberBetween($min = 1, $max = 5),
+            'status_id' => fake()->numberBetween($min = 1, $max = 6),
+            'created_at' => fake()->dateTimeBetween($startDate = '-3 years', $endDate = 'now'),
         ];
     }
 }

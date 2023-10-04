@@ -13,15 +13,31 @@ return new class extends Migration
     {
         Schema::create('research', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('author_id');
             $table->unsignedBigInteger('department_id');
             $table->string('title');
             $table->unsignedBigInteger('status_id');
+            $table->string('venue')
+                ->nullable();
+            $table->date('date_presented')
+                ->nullable();
+            $table->string('organizer')
+                ->nullable();
+            $table->string('journal_name')
+                ->nullable();
+            $table->string('issn')
+                ->nullable();
+            $table->string('vol')
+                ->nullable();
+            $table->string('country')
+                ->nullable();
+            $table->date('date_completed')
+                ->nullable();
+            $table->date('date_issued')
+                ->nullable();
+            $table->string('reg_number')
+                ->nullable();
             $table->timestamps();
 
-            $table->foreign('author_id')
-                ->references('id')
-                ->on('users');
             $table->foreign('department_id')
                 ->references('id')
                 ->on('departments');
