@@ -40,19 +40,21 @@
             <div class="w-full p-4">
                 <div class="flex justify-between items-center p-4 bg-white mb-4 drop-shadow rounded">
                     <h1>
-                        Edit {{ $titlePage }}
+                        Create {{ $titlePage }}
                     </h1>
                 </div>
                 <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden">
                     <div class="w-full p-4 bg-white rounded-lg drop-shadow-md flex flex-col">
-                        <h1 class="text-xl font-semibold">Update {{ $titlePage }}</h1>
-                        <small class="text-gray-500">Manage the research information below.</small>
-                        <form wire:submit="updateFacultyMember" class="flex gap-4 mt-6 w-full">
+                        <h1 class="text-xl font-semibold">Create {{ $titlePage }}</h1>
+                        <small class="text-gray-500">Start by filling in the necessary details to faculty
+                            member.</small>
+                        <form wire:submit="createFacultyMember" class="flex gap-4 mt-6 w-full">
                             @csrf
                             <div class="flex flex-col gap-4 ">
                                 <div class="flex flex-col gap-1">
                                     <label for="name">Name</label>
                                     <input wire:model="name" type="text" name="name" id="name"
+                                        placeholder="Full name"
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                                 <div class="flex flex-col gap-1">
@@ -60,6 +62,7 @@
                                         class="w-40 text-sm font-medium text-gray-900">Department</label>
                                     <select wire:model="department_id" id="department_id"
                                         class="bg-white text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                                        <option value="">Select status</option>
                                         @foreach ($departments as $department)
                                             <option wire:key="{{ $department->id }}" value="{{ $department->id }}">
                                                 {{ $department->name }}
@@ -70,12 +73,17 @@
                                 <div class="flex flex-col gap-1">
                                     <label for="position">Position</label>
                                     <input wire:model="position" type="text" name="position" id="position"
+                                        placeholder="Ex. Professor I"
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label for="status">Status</label>
-                                    <input wire:model="status" type="text" name="status" id="status"
-                                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                                    <select wire:model="status" id="status"
+                                        class="bg-white text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                                        <option value="">Select status</option>
+                                        <option value="Permanent">Permanent</option>
+                                        <option value="Temporary">Temporary</option>
+                                    </select>
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label for="sex">Sex</label>
@@ -114,12 +122,14 @@
                                     <label for="highest_educational_attaintment">Highest educational
                                         attainment</label>
                                     <input wire:model="highest_educational_attaintment" type="text"
-                                        name="highest_educational_attaintment" id="highest_educational_attaintment"
+                                        placeholder="Ex. PhD" name="highest_educational_attaintment"
+                                        id="highest_educational_attaintment"
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label for="address">Address</label>
                                     <input wire:model="address" type="text" name="address" id="address"
+                                        placeholder="Cauayan City, Isabela"
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                             </div>

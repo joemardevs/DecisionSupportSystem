@@ -114,7 +114,6 @@ class Edit extends Component
         $this->authors = $research->authors;
         $this->department_id = $research->department_id;
         $this->status_id = $research->status_id;
-        //$venue, $date_presented, $organizer, $journal_name, $issn, $issn, $country, $date_completed, $date_issued, $reg_number;
         $this->venue = $research->venue;
         $this->date_presented = Carbon::parse($research->date_presented)->format('Y-m-d');
         $this->organizer = $research->organizer;

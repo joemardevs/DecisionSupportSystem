@@ -4,7 +4,7 @@
 <main class="flex min-h-screen">
     <livewire:components.sidebar />
     <div class="w-full bg-gray-200">
-        <section class="p-4">
+        <section>
             <div class="w-full p-4">
                 <div class="flex items-center p-4 bg-white mb-4 drop-shadow rounded">
                     <h1>
