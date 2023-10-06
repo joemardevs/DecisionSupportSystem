@@ -100,6 +100,14 @@ class Edit extends Component
             return back()->with('error', 'An error occurred while updating the research');
         }
     }
+    public function deleteResearch($id)
+    {
+        $research = Research::find($id);
+        $research->delete();
+        $this->render();
+        return to_route('research')
+            ->with('error', 'Deleted');
+    }
     public function goBack()
     {
         return to_route('research');

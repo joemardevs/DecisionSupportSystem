@@ -18,10 +18,12 @@ return new class extends Migration
 
             $table->foreign('author_id')
                 ->references('id')
-                ->on('authors');
+                ->on('authors')
+                ->onDelete('cascade');
             $table->foreign('research_id')
                 ->references('id')
-                ->on('research');
+                ->on('research')
+                ->onDelete('cascade');
         });
     }
 

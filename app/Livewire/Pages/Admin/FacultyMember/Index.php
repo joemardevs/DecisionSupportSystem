@@ -16,7 +16,13 @@ class Index extends Component
 
     public $search;
     public $position = '';
-
+    public function deleteFacultyMember($id)
+    {
+        $facultyMember = Author::find($id);
+        $facultyMember->delete();
+        return to_route('faculty-members')
+            ->with('error', 'Deleted');
+    }
     public function render()
     {
         $title = 'Faculty Members';

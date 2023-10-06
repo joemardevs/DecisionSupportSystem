@@ -77,6 +77,13 @@ class Edit extends Component
         $this->highest_educational_attaintment = $facultyMember->highest_educational_attaintment;
         $this->address = $facultyMember->address;
     }
+    public function deleteFacultyMember($id)
+    {
+        $facultyMember = Author::find($id);
+        $facultyMember->delete();
+        return to_route('faculty-members')
+            ->with('error', 'Deleted');
+    }
     public function render()
     {
         $titlePage = 'Faculty Member';

@@ -42,6 +42,10 @@
                     <h1>
                         Edit {{ $titlePage }}
                     </h1>
+                    <button wire:click="deleteResearch({{ $research_id }})" type="button"
+                        class="text-sm text-white bg-red-500 p-4 py-2 rounded">
+                        Delete research
+                    </button>
                 </div>
                 <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden">
                     <div class="w-full p-4 bg-white rounded-lg drop-shadow-md flex flex-col gap-4">

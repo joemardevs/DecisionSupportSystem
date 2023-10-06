@@ -16,6 +16,14 @@ class Index extends Component
     public $search;
     public $status = '';
     public $year;
+    public function deleteResearch($id)
+    {
+        $research = Research::find($id);
+        $research->delete();
+        $this->render();
+        return back()
+            ->with('error', 'Deleted');
+    }
     public function render()
     {
         $title = 'Research';
