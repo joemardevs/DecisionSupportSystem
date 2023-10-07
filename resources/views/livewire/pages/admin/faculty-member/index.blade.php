@@ -151,7 +151,7 @@
         x-show="openModal" x-on:open-modal.window="openModal = true" x-on:close-modal.window="openModal = false"
         x-cloak x-transition>
         <!-- A basic modal dialog with title, body and one button to close -->
-        <form wire:submit="deleteFacultyMember({{ $facultyMember->id }})"
+        <form wire:submit="deleteFacultyMember({{ $selectedAuthor->id ?? null }})"
             class="h-auto mx-2 text-left bg-white rounded shadow-xl md:max-w-xl md:p-6 lg:p-8 md:mx-0"
             @click.away="openModal = false">
             <div class="text-center">
@@ -159,7 +159,7 @@
                     Delele Confirmation
                 </h3>
                 <div class="mt-2">
-                    Are you sure you want to delete {{ $facultyMember->name ?? '' }}?
+                    Are you sure you want to delete {{ $selectedAuthor->name ?? '' }}?
                 </div>
             </div>
             <div class="mt-5 sm:mt-6">
