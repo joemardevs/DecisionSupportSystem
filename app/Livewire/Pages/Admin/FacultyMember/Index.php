@@ -16,10 +16,17 @@ class Index extends Component
 
     public $search;
     public $position = '';
+    public $selectedAuthor;
+    public function showDeleteConfirmationModal($id)
+    {
+        $this->selectedAuthor = Author::find($id);
+        $this->dispatch('open-modal');
+    }
     public function deleteFacultyMember($id)
     {
         $facultyMember = Author::find($id);
         $facultyMember->delete();
+        $this->dispatch('close-modal');
         return to_route('faculty-members')
             ->with('error', 'Deleted');
     }

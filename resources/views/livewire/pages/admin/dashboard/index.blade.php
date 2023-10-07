@@ -127,19 +127,19 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const CBM = @json($CBM);
-        const CCJE = @json($CCJE);
-        const CCSICT = @json($CCSICT);
-        const CED = @json($CED);
-        const IAT = @json($IAT);
-        const PS = @json($PS);
-        const SAS = @json($SAS);
+        let CBM = @json($CBM);
+        let CCJE = @json($CCJE);
+        let CCSICT = @json($CCSICT);
+        let CED = @json($CED);
+        let IAT = @json($IAT);
+        let PS = @json($PS);
+        let SAS = @json($SAS);
 
-        const twenty20 = @json($twenty20);
-        const twenty21 = @json($twenty21);
-        const twenty22 = @json($twenty22);
-        const twenty23 = @json($twenty23);
-        const twenty24 = @json($twenty24);
+        let twenty20 = @json($twenty20);
+        let twenty21 = @json($twenty21);
+        let twenty22 = @json($twenty22);
+        let twenty23 = @json($twenty23);
+        let twenty24 = @json($twenty24);
 
 
         const data = {

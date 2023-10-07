@@ -1,7 +1,7 @@
 @section('title')
     {{ $title }}
 @endsection
-<main class="flex min-h-screen">
+<main class="flex min-h-screen" x-data="{ openModal: false }">
     @if (Session::has('error'))
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded absolute w-96 mb-8 top-10 right-10 z-10"
             role="alert" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 1500)">
@@ -100,12 +100,16 @@
                                             {{ $facultyMember->status }}
                                         </td>
                                         <td class="px-4 py-3 flex items-center justify-start">
+                                            <a href="{{ route('view.author', ['id' => $facultyMember->id]) }}"
+                                                class="px-1 py-1 text-gray-500 hover:underline underline-offset-2 rounded">
+                                                View Rate
+                                            </a>
                                             <a href="{{ route('edit.faculty-members', ['id' => $facultyMember->id]) }}"
                                                 class="px-3 py-1 text-blue-400 hover:underline underline-offset-2 rounded">
                                                 Edit
                                             </a>
                                             <button type="button"
-                                                wire:click="deleteFacultyMember({{ $facultyMember->id }})"
+                                                wire:click="showDeleteConfirmationModal({{ $facultyMember->id }})"
                                                 class="px-3 py-1 text-red-500 hover:underline underline-offset-2 rounded">
                                                 Delele
                                             </button>
@@ -142,5 +146,34 @@
                 </div>
             </div>
         </section>
+    </div>
+    <div class="absolute top-0 left-0 flex items-center justify-center w-full h-full backdrop-blur-sm"
+        x-show="openModal" x-on:open-modal.window="openModal = true" x-on:close-modal.window="openModal = false"
+        x-cloak x-transition>
+        <!-- A basic modal dialog with title, body and one button to close -->
+        <form wire:submit="deleteFacultyMember({{ $facultyMember->id }})"
+            class="h-auto mx-2 text-left bg-white rounded shadow-xl md:max-w-xl md:p-6 lg:p-8 md:mx-0"
+            @click.away="openModal = false">
+            <div class="text-center">
+                <h3 class="text-lg font-medium leading-6 text-gray-900">
+                    Delele Confirmation
+                </h3>
+                <div class="mt-2">
+                    Are you sure you want to delete {{ $facultyMember->name ?? '' }}?
+                </div>
+            </div>
+            <div class="mt-5 sm:mt-6">
+                <span class="flex gap-4 w-full rounded-md shadow-sm">
+                    <button type="button" x-data x-on:click="$dispatch('close-modal')"
+                        class="inline-flex justify-center w-full px-4 py-2 text-white bg-gray-500 rounded">
+                        No
+                    </button>
+                    <button type="submit"
+                        class="inline-flex justify-center w-full px-4 py-2 text-white bg-[#116736] rounded">
+                        Yes
+                    </button>
+                </span>
+            </div>
+        </form>
     </div>
 </main>

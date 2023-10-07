@@ -112,6 +112,6 @@ class Index extends Component
             'twenty23' => $twenty23,
             'twenty24' => $twenty24,
             'authorsBelow60Percent' => $authorsBelow60PercentPaginated
-        ])->layout('livewire.layouts.guest');
+        ])->layout('livewire.layouts.app');
     }
 }

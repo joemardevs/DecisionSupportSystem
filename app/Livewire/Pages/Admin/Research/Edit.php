@@ -89,15 +89,15 @@ class Edit extends Component
                 $research->save();
                 // Commit the transaction if everything is successful
                 DB::commit();
-                return back()->with('success', 'Update successful');
+                return to_route('research')->with('success', 'Update successful');
             } else {
-                return back()->with('error', 'No changes were made');
+                return to_route('research')->with('error', 'No changes were made');
             }
         } catch (\Exception $e) {
             // Rollback the transaction if an exception occurs
 
             DB::rollback();
-            return back()->with('error', 'An error occurred while updating the research');
+            return to_route('research')->with('error', 'An error occurred while updating the research');
         }
     }
     public function deleteResearch($id)

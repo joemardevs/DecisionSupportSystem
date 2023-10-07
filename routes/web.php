@@ -18,6 +18,8 @@ use App\Livewire\Pages\Admin\Research\Create as CreateResearch;
 use App\Livewire\Pages\Admin\Research\Edit as ResearchEdit;
 use App\Livewire\Pages\Admin\FacultyMember\Edit as FacultyMemberEdit;
 use App\Livewire\Pages\Admin\FacultyMember\Create as CreateFacultyMember;
+use App\Livewire\Pages\Admin\FacultyMember\View as ViewFacultyMember;
+use App\Livewire\Pages\Admin\Research\View as ViewResearch;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,6 +56,9 @@ Route::middleware('auth', 'is.admin')->group(function () {
     Route::get('/research/create/', CreateResearch::class)
         ->name('create.research');
 
+    Route::get('/research/view/{id}', ViewResearch::class)
+        ->name('view.research');
+
     Route::get('/research/edit/{id}', ResearchEdit::class)
         ->name('edit.research');
 
@@ -62,6 +67,9 @@ Route::middleware('auth', 'is.admin')->group(function () {
 
     Route::get('/faculty-members/create/', CreateFacultyMember::class)
         ->name('create.faculty-members');
+
+    Route::get('/faculty-members/view/{id}', ViewFacultyMember::class)
+        ->name('view.author');
 
     Route::get('/faculty-members/edit/{id}', FacultyMemberEdit::class)
         ->name('edit.faculty-members');

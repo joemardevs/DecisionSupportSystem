@@ -16,12 +16,18 @@ class Index extends Component
     public $search;
     public $status = '';
     public $year;
+    public $selectedResearch;
+    public function showDeleteConfirmationModal($id)
+    {
+        $this->selectedResearch = Research::find($id);
+        $this->dispatch('open-modal');
+    }
     public function deleteResearch($id)
     {
         $research = Research::find($id);
         $research->delete();
-        $this->render();
-        return back()
+        $this->dispatch('close-modal');
+        return to_route('research')
             ->with('error', 'Deleted');
     }
     public function render()
