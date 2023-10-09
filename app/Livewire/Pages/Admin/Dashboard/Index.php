@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Admin\Dashboard;
 
 use App\Enums\DepartmentEnum;
+use App\Enums\ResearchStatusesEnum;
 use App\Models\Author;
 use App\Models\Research;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -11,7 +12,7 @@ use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $perPage = 2;
+    public $perPage = 5;
     public Author $selectedAuthor;
     public $note;
     use WithPagination;
@@ -34,36 +35,315 @@ class Index extends Component
     public function render()
     {
         $title = 'Dashboard';
-        //pie chart data
-        $CBM = Research::where('department_id', DepartmentEnum::CBM->value)
-            ->where('status_id', '>=', 2)
+        //all pie chart data
+        $allOnGoing = Research::where('status_id', '=', ResearchStatusesEnum::ON_GOING->value)
             ->count();
-        $CCJE = Research::where('department_id', DepartmentEnum::CCJE->value)
-            ->where('status_id', '>=', 2)
+        $allCompleted = Research::where('status_id', '=', ResearchStatusesEnum::COMPLETED->value)
             ->count();
-        $CCSICT = Research::where('department_id', DepartmentEnum::CCSICT->value)
-            ->where('status_id', '>=', 2)
-            ->count();;
-        $CED = Research::where('department_id', DepartmentEnum::CED->value)
-            ->where('status_id', '>=', 2)
-            ->count();;
-        $IAT = Research::where('department_id', DepartmentEnum::IAT->value)
-            ->where('status_id', '>=', 2)
-            ->count();;
-        $PS = Research::where('department_id', DepartmentEnum::PS->value)
-            ->where('status_id', '>=', 2)
-            ->count();;
-        $SAS = Research::where('department_id', DepartmentEnum::SAS->value)
-            ->where('status_id', '>=', 2)
-            ->count();;
-
-        //bar chart data
-        $twenty20 = Research::whereYear('created_at', '=', 2020)->count();
-        $twenty21 = Research::whereYear('created_at', '=', 2020 + 1)->count();
-        $twenty22 = Research::whereYear('created_at', '=', 2020 + 2)->count();
-        $twenty23 = Research::whereYear('created_at', '=', 2020 + 3)->count();
-        $twenty24 = Research::whereYear('created_at', '=', 2020 + 4)->count();
-
+        $allPresented = Research::where('status_id', '=', ResearchStatusesEnum::PRESENTED->value)
+            ->count();
+        $allPublished = Research::where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
+            ->count();
+        $allCopyrighted = Research::where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+            ->count();
+        $allArchieved = Research::where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->count();
+        //cbm pie chart data
+        $cbmOnGoing = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ON_GOING->value)
+            ->count();
+        $cbmCompleted = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COMPLETED->value)
+            ->count();
+        $cbmPresented = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PRESENTED->value)
+            ->count();
+        $cbmPublished = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
+            ->count();
+        $cbmCopyrighted = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+            ->count();
+        $cbmArchieved = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->count();
+        //ccje pie chart data
+        $ccjeOnGoing = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ON_GOING->value)
+            ->count();
+        $ccjeCompleted = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COMPLETED->value)
+            ->count();
+        $ccjePresented = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PRESENTED->value)
+            ->count();
+        $ccjePublished = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
+            ->count();
+        $ccjeCopyrighted = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+            ->count();
+        $ccjeArchieved = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->count();
+        //ccsict pie chart data
+        $ccsictOnGoing = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ON_GOING->value)
+            ->count();
+        $ccsictCompleted = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COMPLETED->value)
+            ->count();
+        $ccsictPresented = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PRESENTED->value)
+            ->count();
+        $ccsictPublished = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
+            ->count();
+        $ccsictCopyrighted = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+            ->count();
+        $ccsictArchieved = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->count();
+        //ced pie chart data
+        $cedOnGoing = Research::where('department_id', DepartmentEnum::CED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ON_GOING->value)
+            ->count();
+        $cedCompleted = Research::where('department_id', DepartmentEnum::CED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COMPLETED->value)
+            ->count();
+        $cedPresented = Research::where('department_id', DepartmentEnum::CED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PRESENTED->value)
+            ->count();
+        $cedPublished = Research::where('department_id', DepartmentEnum::CED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
+            ->count();
+        $cedCopyrighted = Research::where('department_id', DepartmentEnum::CED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+            ->count();
+        $cedArchieved = Research::where('department_id', DepartmentEnum::CED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->count();
+        //iat pie chart data
+        $iatOnGoing = Research::where('department_id', DepartmentEnum::IAT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ON_GOING->value)
+            ->count();
+        $iatCompleted = Research::where('department_id', DepartmentEnum::IAT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COMPLETED->value)
+            ->count();
+        $iatPresented = Research::where('department_id', DepartmentEnum::IAT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PRESENTED->value)
+            ->count();
+        $iatPublished = Research::where('department_id', DepartmentEnum::IAT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
+            ->count();
+        $iatCopyrighted = Research::where('department_id', DepartmentEnum::IAT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+            ->count();
+        $iatArchieved = Research::where('department_id', DepartmentEnum::IAT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->count();
+        //ps pie chart data
+        $psOnGoing = Research::where('department_id', DepartmentEnum::PS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ON_GOING->value)
+            ->count();
+        $psCompleted = Research::where('department_id', DepartmentEnum::PS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COMPLETED->value)
+            ->count();
+        $psPresented = Research::where('department_id', DepartmentEnum::PS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PRESENTED->value)
+            ->count();
+        $psPublished = Research::where('department_id', DepartmentEnum::PS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
+            ->count();
+        $psCopyrighted = Research::where('department_id', DepartmentEnum::PS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+            ->count();
+        $psArchieved = Research::where('department_id', DepartmentEnum::PS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->count();
+        //sas pie chart data
+        $sasOnGoing = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ON_GOING->value)
+            ->count();
+        $sasCompleted = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COMPLETED->value)
+            ->count();
+        $sasPresented = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PRESENTED->value)
+            ->count();
+        $sasPublished = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
+            ->count();
+        $sasCopyrighted = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+            ->count();
+        $sasArchieved = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->count();
+        //all research line chart data
+        $twenty20Totwenty21 = Research::whereYear('created_at', '=', 2020)
+            ->orWhereYear('created_at', '=', 2021)
+            ->count();
+        $twenty21Totwenty22 = Research::whereYear('created_at', '=', 2021)
+            ->orWhereYear('created_at', '=', 2022)
+            ->count();
+        $twenty22Totwenty23 = Research::whereYear('created_at', '=', 2022)
+            ->orWhereYear('created_at', '=', 2023)
+            ->count();
+        $twenty23Totwenty24 = Research::whereYear('created_at', '=', 2023)
+            ->orWhereYear('created_at', '=', 2024)
+            ->count();
+        $twenty24Totwenty25 = Research::whereYear('created_at', '=', 2024)
+            ->orWhereYear('created_at', '=', 2025)
+            ->count();
+        //cbm research line chart data
+        $cbmTwenty20Totwenty21 = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->whereYear('created_at', '=', 2020)
+            ->orWhereYear('created_at', '=', 2021)
+            ->count();
+        $cbmTwenty21Totwenty22 = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->whereYear('created_at', '=', 2021)
+            ->orWhereYear('created_at', '=', 2022)
+            ->count();
+        $cbmTwenty22Totwenty23 = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->whereYear('created_at', '=', 2022)
+            ->orWhereYear('created_at', '=', 2023)
+            ->count();
+        $cbmTwenty23Totwenty24 = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->whereYear('created_at', '=', 2023)
+            ->orWhereYear('created_at', '=', 2024)
+            ->count();
+        $cbmTwenty24Totwenty25 = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->whereYear('created_at', '=', 2024)
+            ->orWhereYear('created_at', '=', 2025)
+            ->count();
+        //ccje research line chart data
+        $ccjeTwenty20Totwenty21 = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->whereYear('created_at', '=', 2020)
+            ->orWhereYear('created_at', '=', 2021)
+            ->count();
+        $ccjeTwenty21Totwenty22 = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->whereYear('created_at', '=', 2021)
+            ->orWhereYear('created_at', '=', 2022)
+            ->count();
+        $ccjeTwenty22Totwenty23 = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->whereYear('created_at', '=', 2022)
+            ->orWhereYear('created_at', '=', 2023)
+            ->count();
+        $ccjeTwenty23Totwenty24 = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->whereYear('created_at', '=', 2023)
+            ->orWhereYear('created_at', '=', 2024)
+            ->count();
+        $ccjeTwenty24Totwenty25 = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->whereYear('created_at', '=', 2024)
+            ->orWhereYear('created_at', '=', 2025)
+            ->count();
+        //ccsict research line chart data
+        $ccsictTwenty20Totwenty21 = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->whereYear('created_at', '=', 2020)
+            ->orWhereYear('created_at', '=', 2021)
+            ->count();
+        $ccsictTwenty21Totwenty22 = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->whereYear('created_at', '=', 2021)
+            ->orWhereYear('created_at', '=', 2022)
+            ->count();
+        $ccsictTwenty22Totwenty23 = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->whereYear('created_at', '=', 2022)
+            ->orWhereYear('created_at', '=', 2023)
+            ->count();
+        $ccsictTwenty23Totwenty24 = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->whereYear('created_at', '=', 2023)
+            ->orWhereYear('created_at', '=', 2024)
+            ->count();
+        $ccsictTwenty24Totwenty25 = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->whereYear('created_at', '=', 2024)
+            ->orWhereYear('created_at', '=', 2025)
+            ->count();
+        //ced research line chart data
+        $cedTwenty20Totwenty21 = Research::where('department_id', DepartmentEnum::CED->value)
+            ->whereYear('created_at', '=', 2020)
+            ->orWhereYear('created_at', '=', 2021)
+            ->count();
+        $cedTwenty21Totwenty22 = Research::where('department_id', DepartmentEnum::CED->value)
+            ->whereYear('created_at', '=', 2021)
+            ->orWhereYear('created_at', '=', 2022)
+            ->count();
+        $cedTwenty22Totwenty23 = Research::where('department_id', DepartmentEnum::CED->value)
+            ->whereYear('created_at', '=', 2022)
+            ->orWhereYear('created_at', '=', 2023)
+            ->count();
+        $cedTwenty23Totwenty24 = Research::where('department_id', DepartmentEnum::CED->value)
+            ->whereYear('created_at', '=', 2023)
+            ->orWhereYear('created_at', '=', 2024)
+            ->count();
+        $cedTwenty24Totwenty25 = Research::where('department_id', DepartmentEnum::CED->value)
+            ->whereYear('created_at', '=', 2024)
+            ->orWhereYear('created_at', '=', 2025)
+            ->count();
+        //iat research line chart data
+        $iatTwenty20Totwenty21 = Research::where('department_id', DepartmentEnum::IAT->value)
+            ->whereYear('created_at', '=', 2020)
+            ->orWhereYear('created_at', '=', 2021)
+            ->count();
+        $iatTwenty21Totwenty22 = Research::where('department_id', DepartmentEnum::IAT->value)
+            ->whereYear('created_at', '=', 2021)
+            ->orWhereYear('created_at', '=', 2022)
+            ->count();
+        $iatTwenty22Totwenty23 = Research::where('department_id', DepartmentEnum::IAT->value)
+            ->whereYear('created_at', '=', 2022)
+            ->orWhereYear('created_at', '=', 2023)
+            ->count();
+        $iatTwenty23Totwenty24 = Research::where('department_id', DepartmentEnum::IAT->value)
+            ->whereYear('created_at', '=', 2023)
+            ->orWhereYear('created_at', '=', 2024)
+            ->count();
+        $iatTwenty24Totwenty25 = Research::where('department_id', DepartmentEnum::PS->value)
+            ->whereYear('created_at', '=', 2024)
+            ->orWhereYear('created_at', '=', 2025)
+            ->count();
+        //ps research line chart data
+        $psTwenty20Totwenty21 = Research::where('department_id', DepartmentEnum::PS->value)
+            ->whereYear('created_at', '=', 2020)
+            ->orWhereYear('created_at', '=', 2021)
+            ->count();
+        $psTwenty21Totwenty22 = Research::where('department_id', DepartmentEnum::PS->value)
+            ->whereYear('created_at', '=', 2021)
+            ->orWhereYear('created_at', '=', 2022)
+            ->count();
+        $psTwenty22Totwenty23 = Research::where('department_id', DepartmentEnum::PS->value)
+            ->whereYear('created_at', '=', 2022)
+            ->orWhereYear('created_at', '=', 2023)
+            ->count();
+        $psTwenty23Totwenty24 = Research::where('department_id', DepartmentEnum::PS->value)
+            ->whereYear('created_at', '=', 2023)
+            ->orWhereYear('created_at', '=', 2024)
+            ->count();
+        $psTwenty24Totwenty25 = Research::where('department_id', DepartmentEnum::PS->value)
+            ->whereYear('created_at', '=', 2024)
+            ->orWhereYear('created_at', '=', 2025)
+            ->count();
+        //sas research line chart data
+        $sasTwenty20Totwenty21 = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->whereYear('created_at', '=', 2020)
+            ->orWhereYear('created_at', '=', 2021)
+            ->count();
+        $sasTwenty21Totwenty22 = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->whereYear('created_at', '=', 2021)
+            ->orWhereYear('created_at', '=', 2022)
+            ->count();
+        $sasTwenty22Totwenty23 = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->whereYear('created_at', '=', 2022)
+            ->orWhereYear('created_at', '=', 2023)
+            ->count();
+        $sasTwenty23Totwenty24 = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->whereYear('created_at', '=', 2023)
+            ->orWhereYear('created_at', '=', 2024)
+            ->count();
+        $sasTwenty24Totwenty25 = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->whereYear('created_at', '=', 2024)
+            ->orWhereYear('created_at', '=', 2025)
+            ->count();
         // Table data
         $authors = Author::all();
 
@@ -96,21 +376,112 @@ class Index extends Component
             $currentPage,
             ['path' => LengthAwarePaginator::resolveCurrentPath()]
         );
-
         return view('livewire.pages.admin.dashboard.index', [
             'title' => $title,
-            'CBM' => $CBM,
-            'CCJE' => $CCJE,
-            'CCSICT' => $CCSICT,
-            'CED' => $CED,
-            'IAT' => $IAT,
-            'PS' => $PS,
-            'SAS' => $SAS,
-            'twenty20' => $twenty20,
-            'twenty21' => $twenty21,
-            'twenty22' => $twenty22,
-            'twenty23' => $twenty23,
-            'twenty24' => $twenty24,
+            //all pie chart
+            'allOnGoing' => $allOnGoing,
+            'allCompleted' => $allCompleted,
+            'allPresented' => $allPresented,
+            'allPublished' => $allPublished,
+            'allCopyrighted' => $allCopyrighted,
+            'allArchieved' => $allArchieved,
+            //cbm pie chart
+            'cbmOnGoing' => $cbmOnGoing,
+            'cbmCompleted' => $cbmCompleted,
+            'cbmPresented' => $cbmPresented,
+            'cbmPublished' => $cbmPublished,
+            'cbmCopyrighted' => $cbmCopyrighted,
+            'cbmArchieved' => $cbmArchieved,
+            //ccje pie chart
+            'ccjeOnGoing' => $ccjeOnGoing,
+            'ccjeCompleted' => $ccjeCompleted,
+            'ccjePresented' => $ccjePresented,
+            'ccjePublished' => $ccjePublished,
+            'ccjeCopyrighted' => $ccjeCopyrighted,
+            'ccjeArchieved' => $ccjeArchieved,
+            //ccsict pie chart
+            'ccsictOnGoing' => $ccsictOnGoing,
+            'ccsictCompleted' => $ccsictCompleted,
+            'ccsictPresented' => $ccsictPresented,
+            'ccsictPublished' => $ccsictPublished,
+            'ccsictCopyrighted' => $ccsictCopyrighted,
+            'ccsictArchieved' => $ccsictArchieved,
+            //ccsict pie chart
+            'cedOnGoing' => $cedOnGoing,
+            'cedCompleted' => $cedCompleted,
+            'cedPresented' => $cedPresented,
+            'cedPublished' => $cedPublished,
+            'cedCopyrighted' => $cedCopyrighted,
+            'cedArchieved' => $cedArchieved,
+            //iat pie chart
+            'iatOnGoing' => $iatOnGoing,
+            'iatCompleted' => $iatCompleted,
+            'iatPresented' => $iatPresented,
+            'iatPublished' => $iatPublished,
+            'iatCopyrighted' => $iatCopyrighted,
+            'iatArchieved' => $iatArchieved,
+            //ps pie chart
+            'psOnGoing' => $psOnGoing,
+            'psCompleted' => $psCompleted,
+            'psPresented' => $psPresented,
+            'psPublished' => $psPublished,
+            'psCopyrighted' => $psCopyrighted,
+            'psArchieved' => $psArchieved,
+            //sas pie chart
+            'sasOnGoing' => $sasOnGoing,
+            'sasCompleted' => $sasCompleted,
+            'sasPresented' => $sasPresented,
+            'sasPublished' => $sasPublished,
+            'sasCopyrighted' => $sasCopyrighted,
+            'sasArchieved' => $sasArchieved,
+            // all research line chart
+            'twenty20Totwenty21' => $twenty20Totwenty21,
+            'twenty21Totwenty22' => $twenty21Totwenty22,
+            'twenty22Totwenty23' => $twenty22Totwenty23,
+            'twenty23Totwenty24' => $twenty23Totwenty24,
+            'twenty24Totwenty25' => $twenty24Totwenty25,
+            // cbm research line chart
+            'cbmTwenty20Totwenty21' => $cbmTwenty20Totwenty21,
+            'cbmTwenty21Totwenty22' => $cbmTwenty21Totwenty22,
+            'cbmTwenty22Totwenty23' => $cbmTwenty22Totwenty23,
+            'cbmTwenty23Totwenty24' => $cbmTwenty23Totwenty24,
+            'cbmTwenty24Totwenty25' => $cbmTwenty24Totwenty25,
+            // ccje research line chart
+            'ccjeTwenty20Totwenty21' => $ccjeTwenty20Totwenty21,
+            'ccjeTwenty21Totwenty22' => $ccjeTwenty21Totwenty22,
+            'ccjeTwenty22Totwenty23' => $ccjeTwenty22Totwenty23,
+            'ccjeTwenty23Totwenty24' => $ccjeTwenty23Totwenty24,
+            'ccjeTwenty24Totwenty25' => $ccjeTwenty24Totwenty25,
+            // ccsict research line chart
+            'ccsictTwenty20Totwenty21' => $ccsictTwenty20Totwenty21,
+            'ccsictTwenty21Totwenty22' => $ccsictTwenty21Totwenty22,
+            'ccsictTwenty22Totwenty23' => $ccsictTwenty22Totwenty23,
+            'ccsictTwenty23Totwenty24' => $ccsictTwenty23Totwenty24,
+            'ccsictTwenty24Totwenty25' => $ccsictTwenty24Totwenty25,
+            // ced research line chart
+            'cedTwenty20Totwenty21' => $cedTwenty20Totwenty21,
+            'cedTwenty21Totwenty22' => $cedTwenty21Totwenty22,
+            'cedTwenty22Totwenty23' => $cedTwenty22Totwenty23,
+            'cedTwenty23Totwenty24' => $cedTwenty23Totwenty24,
+            'cedTwenty24Totwenty25' => $cedTwenty24Totwenty25,
+            // iat research line chart
+            'iatTwenty20Totwenty21' => $iatTwenty20Totwenty21,
+            'iatTwenty21Totwenty22' => $iatTwenty21Totwenty22,
+            'iatTwenty22Totwenty23' => $iatTwenty22Totwenty23,
+            'iatTwenty23Totwenty24' => $iatTwenty23Totwenty24,
+            'iatTwenty24Totwenty25' => $iatTwenty24Totwenty25,
+            // ps research line chart
+            'psTwenty20Totwenty21' => $psTwenty20Totwenty21,
+            'psTwenty21Totwenty22' => $psTwenty21Totwenty22,
+            'psTwenty22Totwenty23' => $psTwenty22Totwenty23,
+            'psTwenty23Totwenty24' => $psTwenty23Totwenty24,
+            'psTwenty24Totwenty25' => $psTwenty24Totwenty25,
+            // sas research line chart
+            'sasTwenty20Totwenty21' => $sasTwenty20Totwenty21,
+            'sasTwenty21Totwenty22' => $sasTwenty21Totwenty22,
+            'sasTwenty22Totwenty23' => $sasTwenty22Totwenty23,
+            'sasTwenty23Totwenty24' => $sasTwenty23Totwenty24,
+            'sasTwenty24Totwenty25' => $sasTwenty24Totwenty25,
             'authorsBelow60Percent' => $authorsBelow60PercentPaginated
         ])->layout('livewire.layouts.app');
     }

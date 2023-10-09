@@ -2,6 +2,7 @@
     {{ $title }}
 @endsection
 <main class="flex min-h-screen" x-data="{ openModal: false }">
+
     @if (Session::has('error'))
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded absolute w-96 mb-8 top-10 right-10 z-10"
             role="alert" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 1500)">

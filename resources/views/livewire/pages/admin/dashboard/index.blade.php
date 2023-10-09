@@ -21,79 +21,172 @@
     <livewire:components.sidebar />
     <div class="w-full bg-gray-200">
         <section class="flex flex-col gap-4 p-4">
-            <div class="w-full flex flex-col md:flex-row gap-4">
-                <div class="w-96 h-fit p-4 bg-white rounded-lg drop-shadow-md">
+            <div class="w-full flex flex-col flex-wrap md:flex-row gap-4">
+                {{-- Pie Chart --}}
+                <div class="w-44 h-fit p-4 bg-white rounded-lg drop-shadow-md">
                     <div class="mx-auto">
-                        <h1 class="text-center">Research Completed</h1>
-                        <canvas id="researchCompleted" style="height:5px; width:5px"></canvas>
+                        <h1 class="text-center text-sm">All Research</h1>
+                        <canvas id="allResearch" style="height:5px; width:5px"></canvas>
                     </div>
                 </div>
-                <div class="p-4 w-8/12 bg-white rounded-lg drop-shadow-md">
-                    <h1 class="text-center">All Research Per Year</h1>
-                    <canvas id="researchCompletedPerYear" style="width:5px"></canvas>
+                <div class="w-44 h-fit p-4 bg-white rounded-lg drop-shadow-md">
+                    <div class="mx-auto">
+                        <h1 class="text-center text-sm">CBM Research</h1>
+                        <canvas id="cbmResearch" style="height:5px; width:5px"></canvas>
+                    </div>
+                </div>
+                <div class="w-44 h-fit p-4 bg-white rounded-lg drop-shadow-md">
+                    <div class="mx-auto">
+                        <h1 class="text-center text-sm">CCJE Research</h1>
+                        <canvas id="ccjeResearch" style="height:5px; width:5px"></canvas>
+                    </div>
+                </div>
+                <div class="w-44 h-fit p-4 bg-white rounded-lg drop-shadow-md">
+                    <div class="mx-auto">
+                        <h1 class="text-center text-sm">CCSICT Research</h1>
+                        <canvas id="ccsictResearch" style="height:5px; width:5px"></canvas>
+                    </div>
+                </div>
+                <div class="w-44 h-fit p-4 bg-white rounded-lg drop-shadow-md">
+                    <div class="mx-auto">
+                        <h1 class="text-center text-sm">CED Research</h1>
+                        <canvas id="cedResearch" style="height:5px; width:5px"></canvas>
+                    </div>
+                </div>
+                <div class="w-44 h-fit p-4 bg-white rounded-lg drop-shadow-md">
+                    <div class="mx-auto">
+                        <h1 class="text-center text-sm">IAT Research</h1>
+                        <canvas id="iatResearch" style="height:5px; width:5px"></canvas>
+                    </div>
+                </div>
+                <div class="w-44 h-fit p-4 bg-white rounded-lg drop-shadow-md">
+                    <div class="mx-auto">
+                        <h1 class="text-center text-sm">PS Research</h1>
+                        <canvas id="psResearch" style="height:5px; width:5px"></canvas>
+                    </div>
+                </div>
+                <div class="w-44 h-fit p-4 bg-white rounded-lg drop-shadow-md">
+                    <div class="mx-auto">
+                        <h1 class="text-center text-sm">SAS Research</h1>
+                        <canvas id="sasResearch" style="height:5px; width:5px"></canvas>
+                    </div>
+                </div>
+                {{-- Line Chart --}}
+                <div class="p-2 w-96 bg-white rounded-lg drop-shadow-md">
+                    <h1 class="text-center text-sm">All Research Per School Year</h1>
+                    <canvas id="researchPerSchoolYear" style="width:5px"></canvas>
+                </div>
+                <div class="p-2 w-96 bg-white rounded-lg drop-shadow-md">
+                    <h1 class="text-center text-sm">CBM Research Per School Year</h1>
+                    <canvas id="cbmResearchPerSchoolYear" style="width:5px"></canvas>
+                </div>
+                <div class="p-2 w-96 bg-white rounded-lg drop-shadow-md">
+                    <h1 class="text-center text-sm">CCJE Research Per School Year</h1>
+                    <canvas id="ccjeResearchPerSchoolYear" style="width:5px"></canvas>
+                </div>
+                <div class="p-2 w-96 bg-white rounded-lg drop-shadow-md">
+                    <h1 class="text-center text-sm">CCSICT Research Per School Year</h1>
+                    <canvas id="ccsictResearchPerSchoolYear" style="width:5px"></canvas>
+                </div>
+                <div class="p-2 w-96 bg-white rounded-lg drop-shadow-md">
+                    <h1 class="text-center text-sm">CED Research Per School Year</h1>
+                    <canvas id="cedResearchPerSchoolYear" style="width:5px"></canvas>
+                </div>
+                <div class="p-2 w-96 bg-white rounded-lg drop-shadow-md">
+                    <h1 class="text-center text-sm">IAT Research Per School Year</h1>
+                    <canvas id="iatResearchPerSchoolYear" style="width:5px"></canvas>
+                </div>
+                <div class="p-2 w-96 bg-white rounded-lg drop-shadow-md">
+                    <h1 class="text-center text-sm">PS Research Per School Year</h1>
+                    <canvas id="psResearchPerSchoolYear" style="width:5px"></canvas>
+                </div>
+                <div class="p-2 w-96 bg-white rounded-lg drop-shadow-md">
+                    <h1 class="text-center text-sm">SAS Research Per School Year</h1>
+                    <canvas id="sasResearchPerSchoolYear" style="width:5px"></canvas>
                 </div>
             </div>
-            <div class="overflow-x-auto rounded-lg drop-shadow bg-white">
-                <table class="w-full text-sm text-left text-gray-500">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-4 py-3">Name</th>
-                            <th scope="col" class="px-4 py-3">Note</th>
-                            <th scope="col" class="px-4 py-3">Status</th>
-                            <th scope="col" class="px-4 py-3"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($authorsBelow60Percent as $author)
-                            <tr wire:key="{{ $author->id }}" class="border-b">
-                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
-                                    {{ $author->name }}
-                                </th>
-                                <td class="px-4 py-3">{{ $author->note ?? 'N/A' }}</td>
-                                <td class="px-4 py-3">
-                                    {{ $author->status }}
-                                </td>
-                                <td class="px-4 py-3 flex items-center justify-start">
-                                    <button wire:na wire:click="showAddNoteModal({{ $author }})" type="button"
-                                        class="px-3 py-1 text-[#116736] hover:underline underline-offset-2 rounded">
-                                        Add Note
-                                    </button>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="px-4 py-3 text-center text-gray-600">
-                                    No found
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-                <div class="py-4 px-3">
-                    <div class="flex justify-between">
-                        <h1>Author with below success rate</h1>
-                        <div class="flex space-x-4 items-center mb-3">
-                            <label class="w-32 text-sm font-medium text-gray-900">Per Page</label>
-                            <select wire:model.live="perPage"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-[#116736] block w-full p-2.5 ">
-                                <option value="2">2</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="50">50</option>
+            <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden">
+                <div class="flex items-center justify-between d p-4">
+                    <div class="flex">
+                        <h1>Authors</h1>
+                    </div>
+                    <div class="flex space-x-3">
+                        <div class="flex space-x-3 items-center">
+                            <label class="w-48 text-sm font-medium text-gray-900">Position Type :</label>
+                            <select wire:model.live="position"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="">All</option>
+                                <option value="Professor I">Professor I</option>
+                                <option value="Professor II">Professor II</option>
+                                <option value="Professor III">Professor III</option>
                             </select>
                         </div>
                     </div>
-                    <div>
-                        {{ $authorsBelow60Percent->links() }}
+                </div>
+                <div class="overflow-x-auto rounded-lg drop-shadow bg-white">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-4 py-3">Name</th>
+                                <th scope="col" class="px-4 py-3">Position</th>
+                                <th scope="col" class="px-4 py-3">Note</th>
+                                <th scope="col" class="px-4 py-3">Status</th>
+                                <th scope="col" class="px-4 py-3"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($authorsBelow60Percent as $author)
+                                <tr wire:key="{{ $author->id }}" class="border-b">
+                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
+                                        {{ $author->name }}
+                                    </th>
+                                    <td class="px-4 py-3">{{ $author->position }}</td>
+                                    <td class="px-4 py-3">{{ $author->note ?? 'N/A' }}</td>
+                                    <td class="px-4 py-3">
+                                        {{ $author->status }}
+                                    </td>
+                                    <td class="px-4 py-3 flex items-center justify-start">
+                                        <button wire:na wire:click="showAddNoteModal({{ $author }})"
+                                            type="button"
+                                            class="px-3 py-1 text-[#116736] hover:underline underline-offset-2 rounded">
+                                            Add Note
+                                        </button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="px-4 py-3 text-center text-gray-600">
+                                        No found
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                    <div class="py-4 px-3">
+                        <div class="flex justify-between">
+                            <div class="flex space-x-4 items-center mb-3">
+                                <label class="w-32 text-sm font-medium text-gray-900">Per Page</label>
+                                <select wire:model.live="perPage"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-[#116736] block w-full p-2.5 ">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            {{ $authorsBelow60Percent->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
+
         </section>
     </div>
     <div class="absolute top-0 left-0 flex items-center justify-center w-full h-full backdrop-blur-sm"
-        x-show="openModal" x-on:open-modal.window="openModal = true" x-on:close-modal.window="openModal = false" x-cloak
-        x-transition>
+        x-show="openModal" x-on:open-modal.window="openModal = true" x-on:close-modal.window="openModal = false"
+        x-cloak x-transition>
         <!-- A basic modal dialog with title, body and one button to close -->
         <form wire:submit="addNote({{ $selectedAuthor }})"
             class="h-auto mx-2 text-left bg-white rounded shadow-xl md:max-w-xl md:p-6 lg:p-8 md:mx-0"
@@ -104,8 +197,8 @@
                 </h3>
                 <div class="mt-2">
                     <p class="text-sm leading-5 text-gray-500">
-                        <textarea placeholder="Add note here..." wire:model="note" name="note" id="note" cols="30" rows="10"
-                            class="border border-[#116736] w-full p-2"></textarea>
+                        <textarea placeholder="Add note here..." wire:model="note" name="note" id="note" cols="30"
+                            rows="10" class="border border-[#116736] w-full p-2"></textarea>
                     </p>
                 </div>
             </div>
@@ -127,33 +220,25 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        let CBM = @json($CBM);
-        let CCJE = @json($CCJE);
-        let CCSICT = @json($CCSICT);
-        let CED = @json($CED);
-        let IAT = @json($IAT);
-        let PS = @json($PS);
-        let SAS = @json($SAS);
+        //all piechart
+        let allOnGoing = @json($allOnGoing);
+        let allCompleted = @json($allCompleted);
+        let allPresented = @json($allPresented);
+        let allPublished = @json($allPublished);
+        let allCopyrighted = @json($allCopyrighted);
+        let allArchieved = @json($allArchieved);
 
-        let twenty20 = @json($twenty20);
-        let twenty21 = @json($twenty21);
-        let twenty22 = @json($twenty22);
-        let twenty23 = @json($twenty23);
-        let twenty24 = @json($twenty24);
-
-
-        const data = {
+        const allData = {
             labels: [
-                'CBM',
-                'CCJE',
-                'CCSICT',
-                'CED',
-                'IAT',
-                'PS',
-                'SAS'
+                'On going',
+                'Completed',
+                'Presented',
+                'Published',
+                'Copyrighted',
+                'Archieved',
             ],
             datasets: [{
-                data: [CBM, CCJE, CCSICT, CED, IAT, PS, SAS],
+                data: [allOnGoing, allCompleted, allPresented, allPublished, allCopyrighted, allArchieved, ],
                 backgroundColor: [
                     'rgba(255, 99, 132)',
                     'rgba(255, 159, 64)',
@@ -161,22 +246,627 @@
                     'rgba(75, 192, 192)',
                     'rgba(54, 162, 235)',
                     'rgba(153, 102, 255)',
-                    'rgba(201, 203, 207)'
                 ],
                 hoverOffset: 4
             }]
         };
-        const researchPerYearData = {
+        new Chart(
+            document.getElementById('allResearch'), {
+                type: 'pie',
+                data: allData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            }
+        );
+        //cbm piechart
+        let cbmOnGoing = @json($cbmOnGoing);
+        let cbmCompleted = @json($cbmCompleted);
+        let cbmPresented = @json($cbmPresented);
+        let cbmPublished = @json($cbmPublished);
+        let cbmCopyrighted = @json($cbmCopyrighted);
+        let cbmArchieved = @json($cbmArchieved);
+
+        const cbmData = {
             labels: [
-                '2020',
-                '2021',
-                '2022',
-                '2023',
-                '2024',
+                'On going',
+                'Completed',
+                'Presented',
+                'Published',
+                'Copyrighted',
+                'Archieved',
             ],
             datasets: [{
-                label: 'Research Completed Per Year',
-                data: [twenty20, twenty21, twenty22, twenty23, twenty24],
+                data: [cbmOnGoing, cbmCompleted, cbmPresented, cbmPublished, cbmCopyrighted, cbmArchieved, ],
+                backgroundColor: [
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 159, 64)',
+                    'rgba(255, 205, 86)',
+                    'rgba(75, 192, 192)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(
+            document.getElementById('cbmResearch'), {
+                type: 'pie',
+                data: cbmData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            }
+        );
+
+        //ccje piechart
+        let ccjeOnGoing = @json($ccjeOnGoing);
+        let ccjeCompleted = @json($ccjeCompleted);
+        let ccjePresented = @json($ccjePresented);
+        let ccjePublished = @json($ccjePublished);
+        let ccjeCopyrighted = @json($ccjeCopyrighted);
+        let ccjeArchieved = @json($ccjeArchieved);
+
+        const ccjeData = {
+            labels: [
+                'On going',
+                'Completed',
+                'Presented',
+                'Published',
+                'Copyrighted',
+                'Archieved',
+            ],
+            datasets: [{
+                data: [ccjeOnGoing, ccjeCompleted, ccjePresented, ccjePublished, ccjeCopyrighted,
+                    ccjeArchieved,
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 159, 64)',
+                    'rgba(255, 205, 86)',
+                    'rgba(75, 192, 192)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(
+            document.getElementById('ccjeResearch'), {
+                type: 'pie',
+                data: ccjeData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            }
+        );
+        //ccsict piechart
+        let ccsictOnGoing = @json($ccsictOnGoing);
+        let ccsictCompleted = @json($ccsictCompleted);
+        let ccsictPresented = @json($ccsictPresented);
+        let ccsictPublished = @json($ccsictPublished);
+        let ccsictCopyrighted = @json($ccsictCopyrighted);
+        let ccsictArchieved = @json($ccsictArchieved);
+
+        const ccsictData = {
+            labels: [
+                'On going',
+                'Completed',
+                'Presented',
+                'Published',
+                'Copyrighted',
+                'Archieved',
+            ],
+            datasets: [{
+                data: [ccsictOnGoing, ccsictCompleted, ccsictPresented, ccsictPublished, ccsictCopyrighted,
+                    ccsictArchieved,
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 159, 64)',
+                    'rgba(255, 205, 86)',
+                    'rgba(75, 192, 192)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(
+            document.getElementById('ccsictResearch'), {
+                type: 'pie',
+                data: ccsictData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            }
+        );
+        //ced piechart
+        let cedOnGoing = @json($cedOnGoing);
+        let cedCompleted = @json($cedCompleted);
+        let cedPresented = @json($cedPresented);
+        let cedPublished = @json($cedPublished);
+        let cedCopyrighted = @json($cedCopyrighted);
+        let cedArchieved = @json($cedArchieved);
+
+        const cedData = {
+            labels: [
+                'On going',
+                'Completed',
+                'Presented',
+                'Published',
+                'Copyrighted',
+                'Archieved',
+            ],
+            datasets: [{
+                data: [cedOnGoing, cedCompleted, cedPresented, cedPublished, cedCopyrighted,
+                    cedArchieved,
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 159, 64)',
+                    'rgba(255, 205, 86)',
+                    'rgba(75, 192, 192)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(
+            document.getElementById('cedResearch'), {
+                type: 'pie',
+                data: cedData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            }
+        );
+
+        //iat piechart
+        let iatOnGoing = @json($iatOnGoing);
+        let iatCompleted = @json($iatCompleted);
+        let iatPresented = @json($iatPresented);
+        let iatPublished = @json($iatPublished);
+        let iatCopyrighted = @json($iatCopyrighted);
+        let iatArchieved = @json($iatArchieved);
+
+        const iatData = {
+            labels: [
+                'On going',
+                'Completed',
+                'Presented',
+                'Published',
+                'Copyrighted',
+                'Archieved',
+            ],
+            datasets: [{
+                data: [iatOnGoing, iatCompleted, iatPresented, iatPublished, iatCopyrighted,
+                    iatArchieved,
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 159, 64)',
+                    'rgba(255, 205, 86)',
+                    'rgba(75, 192, 192)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(
+            document.getElementById('iatResearch'), {
+                type: 'pie',
+                data: iatData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            }
+        );
+        //ps piechart
+        let psOnGoing = @json($psOnGoing);
+        let psCompleted = @json($psCompleted);
+        let psPresented = @json($psPresented);
+        let psPublished = @json($psPublished);
+        let psCopyrighted = @json($psCopyrighted);
+        let psArchieved = @json($psArchieved);
+
+        const psData = {
+            labels: [
+                'On going',
+                'Completed',
+                'Presented',
+                'Published',
+                'Copyrighted',
+                'Archieved',
+            ],
+            datasets: [{
+                data: [psOnGoing, psCompleted, psPresented, psPublished, psCopyrighted,
+                    psArchieved,
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 159, 64)',
+                    'rgba(255, 205, 86)',
+                    'rgba(75, 192, 192)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(
+            document.getElementById('psResearch'), {
+                type: 'pie',
+                data: psData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            }
+        );
+        //sas piechart
+        let sasOnGoing = @json($sasOnGoing);
+        let sasCompleted = @json($sasCompleted);
+        let sasPresented = @json($sasPresented);
+        let sasPublished = @json($sasPublished);
+        let sasCopyrighted = @json($sasCopyrighted);
+        let sasArchieved = @json($sasArchieved);
+
+        const sasData = {
+            labels: [
+                'On going',
+                'Completed',
+                'Presented',
+                'Published',
+                'Copyrighted',
+                'Archieved',
+            ],
+            datasets: [{
+                data: [sasOnGoing, sasCompleted, sasPresented, sasPublished, sasCopyrighted,
+                    sasArchieved,
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 159, 64)',
+                    'rgba(255, 205, 86)',
+                    'rgba(75, 192, 192)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(
+            document.getElementById('sasResearch'), {
+                type: 'pie',
+                data: sasData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            }
+        );
+        //all research line chart
+        let twenty20Totwenty21 = @json($twenty20Totwenty21);
+        let twenty21Totwenty22 = @json($twenty21Totwenty22);
+        let twenty22Totwenty23 = @json($twenty22Totwenty23);
+        let twenty23Totwenty24 = @json($twenty23Totwenty24);
+        let twenty24Totwenty25 = @json($twenty24Totwenty25);
+        const allResearchPerYearData = {
+            labels: [
+                '2020-2021',
+                '2021-2022',
+                '2022-2023',
+                '2023-2024',
+                '2024-2025',
+            ],
+            datasets: [{
+                label: 'All Research Per School Year',
+                data: [twenty20Totwenty21, twenty21Totwenty22, twenty22Totwenty23, twenty23Totwenty24,
+                    twenty24Totwenty25
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
+        new Chart(
+            document.getElementById('researchPerSchoolYear'), {
+                type: 'line',
+                data: allResearchPerYearData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            },
+        );
+        //cbm research line chart
+        let cbmTwenty20Totwenty21 = @json($cbmTwenty20Totwenty21);
+        let cbmTwenty21Totwenty22 = @json($cbmTwenty21Totwenty22);
+        let cbmTwenty22Totwenty23 = @json($cbmTwenty22Totwenty23);
+        let cbmTwenty23Totwenty24 = @json($cbmTwenty23Totwenty24);
+        let cbmTwenty24Totwenty25 = @json($cbmTwenty24Totwenty25);
+        const cbmResearchPerYearData = {
+            labels: [
+                '2020-2021',
+                '2021-2022',
+                '2022-2023',
+                '2023-2024',
+                '2024-2025',
+            ],
+            datasets: [{
+                label: 'CBM Research Per School Year',
+                data: [cbmTwenty20Totwenty21, cbmTwenty21Totwenty22, cbmTwenty22Totwenty23,
+                    cbmTwenty23Totwenty24,
+                    cbmTwenty24Totwenty25
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
+        new Chart(
+            document.getElementById('cbmResearchPerSchoolYear'), {
+                type: 'line',
+                data: cbmResearchPerYearData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            },
+        );
+        //ccje research line chart
+        let ccjeTwenty20Totwenty21 = @json($ccjeTwenty20Totwenty21);
+        let ccjeTwenty21Totwenty22 = @json($ccjeTwenty21Totwenty22);
+        let ccjeTwenty22Totwenty23 = @json($ccjeTwenty22Totwenty23);
+        let ccjeTwenty23Totwenty24 = @json($ccjeTwenty23Totwenty24);
+        let ccjeTwenty24Totwenty25 = @json($ccjeTwenty24Totwenty25);
+        const ccjeResearchPerYearData = {
+            labels: [
+                '2020-2021',
+                '2021-2022',
+                '2022-2023',
+                '2023-2024',
+                '2024-2025',
+            ],
+            datasets: [{
+                label: 'CCJE Research Per School Year',
+                data: [ccjeTwenty20Totwenty21, ccjeTwenty21Totwenty22, ccjeTwenty22Totwenty23,
+                    ccjeTwenty23Totwenty24,
+                    ccjeTwenty24Totwenty25
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
+        new Chart(
+            document.getElementById('ccjeResearchPerSchoolYear'), {
+                type: 'line',
+                data: ccjeResearchPerYearData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            },
+        );
+        //ccsict research line chart
+        let ccsictTwenty20Totwenty21 = @json($ccsictTwenty20Totwenty21);
+        let ccsictTwenty21Totwenty22 = @json($ccsictTwenty21Totwenty22);
+        let ccsictTwenty22Totwenty23 = @json($ccsictTwenty22Totwenty23);
+        let ccsictTwenty23Totwenty24 = @json($ccsictTwenty23Totwenty24);
+        let ccsictTwenty24Totwenty25 = @json($ccsictTwenty24Totwenty25);
+        const ccsictResearchPerYearData = {
+            labels: [
+                '2020-2021',
+                '2021-2022',
+                '2022-2023',
+                '2023-2024',
+                '2024-2025',
+            ],
+            datasets: [{
+                label: 'CCSICT Research Per School Year',
+                data: [ccsictTwenty20Totwenty21, ccsictTwenty21Totwenty22, ccsictTwenty22Totwenty23,
+                    ccsictTwenty23Totwenty24,
+                    ccsictTwenty24Totwenty25
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
+        new Chart(
+            document.getElementById('ccsictResearchPerSchoolYear'), {
+                type: 'line',
+                data: ccsictResearchPerYearData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            },
+        );
+        //ced research line chart
+        let cedTwenty20Totwenty21 = @json($cedTwenty20Totwenty21);
+        let cedTwenty21Totwenty22 = @json($cedTwenty21Totwenty22);
+        let cedTwenty22Totwenty23 = @json($cedTwenty22Totwenty23);
+        let cedTwenty23Totwenty24 = @json($cedTwenty23Totwenty24);
+        let cedTwenty24Totwenty25 = @json($cedTwenty24Totwenty25);
+        const cedResearchPerYearData = {
+            labels: [
+                '2020-2021',
+                '2021-2022',
+                '2022-2023',
+                '2023-2024',
+                '2024-2025',
+            ],
+            datasets: [{
+                label: 'CED Research Per School Year',
+                data: [cedTwenty20Totwenty21, cedTwenty21Totwenty22, cedTwenty22Totwenty23,
+                    cedTwenty23Totwenty24,
+                    cedTwenty24Totwenty25
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
+        new Chart(
+            document.getElementById('cedResearchPerSchoolYear'), {
+                type: 'line',
+                data: cedResearchPerYearData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            },
+        );
+        //iat research line chart
+        let iatTwenty20Totwenty21 = @json($iatTwenty20Totwenty21);
+        let iatTwenty21Totwenty22 = @json($iatTwenty21Totwenty22);
+        let iatTwenty22Totwenty23 = @json($iatTwenty22Totwenty23);
+        let iatTwenty23Totwenty24 = @json($iatTwenty23Totwenty24);
+        let iatTwenty24Totwenty25 = @json($iatTwenty24Totwenty25);
+        const iatResearchPerYearData = {
+            labels: [
+                '2020-2021',
+                '2021-2022',
+                '2022-2023',
+                '2023-2024',
+                '2024-2025',
+            ],
+            datasets: [{
+                label: 'IAT Research Per School Year',
+                data: [iatTwenty20Totwenty21, iatTwenty21Totwenty22, iatTwenty22Totwenty23,
+                    iatTwenty23Totwenty24,
+                    iatTwenty24Totwenty25
+                ],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(255, 159, 64, 0.2)',
@@ -200,17 +890,120 @@
         };
 
         new Chart(
-            document.getElementById('researchCompleted'), {
-                type: 'doughnut',
-                data: data,
-            }
-        );
-        new Chart(
-            document.getElementById('researchCompletedPerYear'), {
-                type: 'bar',
-                data: researchPerYearData,
+            document.getElementById('iatResearchPerSchoolYear'), {
+                type: 'line',
+                data: iatResearchPerYearData,
                 options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            },
+        );
+        //ps research line chart
+        let psTwenty20Totwenty21 = @json($psTwenty20Totwenty21);
+        let psTwenty21Totwenty22 = @json($psTwenty21Totwenty22);
+        let psTwenty22Totwenty23 = @json($psTwenty22Totwenty23);
+        let psTwenty23Totwenty24 = @json($psTwenty23Totwenty24);
+        let psTwenty24Totwenty25 = @json($psTwenty24Totwenty25);
+        const psResearchPerYearData = {
+            labels: [
+                '2020-2021',
+                '2021-2022',
+                '2022-2023',
+                '2023-2024',
+                '2024-2025',
+            ],
+            datasets: [{
+                label: 'PS Research Per School Year',
+                data: [psTwenty20Totwenty21, psTwenty21Totwenty22, psTwenty22Totwenty23,
+                    psTwenty23Totwenty24,
+                    psTwenty24Totwenty25
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
 
+        new Chart(
+            document.getElementById('psResearchPerSchoolYear'), {
+                type: 'line',
+                data: psResearchPerYearData,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            },
+        );
+        //sas research line chart
+        let sasTwenty20Totwenty21 = @json($sasTwenty20Totwenty21);
+        let sasTwenty21Totwenty22 = @json($sasTwenty21Totwenty22);
+        let sasTwenty22Totwenty23 = @json($sasTwenty22Totwenty23);
+        let sasTwenty23Totwenty24 = @json($sasTwenty23Totwenty24);
+        let sasTwenty24Totwenty25 = @json($sasTwenty24Totwenty25);
+        const sasResearchPerYearData = {
+            labels: [
+                '2020-2021',
+                '2021-2022',
+                '2022-2023',
+                '2023-2024',
+                '2024-2025',
+            ],
+            datasets: [{
+                label: 'SAS Research Per School Year',
+                data: [sasTwenty20Totwenty21, sasTwenty21Totwenty22, sasTwenty22Totwenty23,
+                    sasTwenty23Totwenty24,
+                    sasTwenty24Totwenty25
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(
+            document.getElementById('sasResearchPerSchoolYear'), {
+                type: 'line',
+                data: sasResearchPerYearData,
+                options: {
                     plugins: {
                         legend: {
                             display: false

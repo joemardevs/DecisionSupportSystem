@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Admin\FacultyMember;
 
+use App\Enums\ResearchStatusesEnum;
 use App\Models\Author;
 use Livewire\Component;
 
@@ -26,14 +27,21 @@ class View extends Component
 
         $member = $this->facultyMember;
         $memberAllResearch = $member->research()->count();
-        $memberCountCompletedResearch = $member->research()->where('status_id', '>=', 2)->count();
+        $memberCountCompletedResearch = $member->research()->where('status_id', '>=', ResearchStatusesEnum::COMPLETED->value)->count();
 
         $memberCountNotCompletedResearch = $memberAllResearch - $memberCountCompletedResearch;
-
+        if ($memberCountCompletedResearch != 0) {
+            $memberNotif = ($memberAllResearch / $memberCountCompletedResearch) * 100;
+        } else {
+            // Handle the division by zero error here, or set $memberNotif to a default value.
+            // For example, you can set it to zero or display an error message.
+            $memberNotif = 0; // or handle the error as needed
+        }
         return view('livewire.pages.admin.faculty-member.view', [
             'titlePage' => $titlePage,
             'memberAllResearch' => $memberAllResearch,
             'memberCountNotCompletedResearch' => $memberCountNotCompletedResearch,
+            'memberNotif' => $memberNotif,
         ])->layout('livewire.layouts.app');
     }
 }
