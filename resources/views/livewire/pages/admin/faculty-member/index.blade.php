@@ -76,10 +76,10 @@
                                     <option value="Professor II">Professor II</option>
                                     <option value="Professor III">Professor III</option>
                                 </select>
-                                {{-- <button type="button" wire:click="export"
+                                <button type="button" wire:click="export"
                                     class="text-sm text-white bg-gray-500 p-4 py-2 rounded">
                                     XLSX
-                                </button> --}}
+                                </button>
                             </div>
                         </div>
                     </div>

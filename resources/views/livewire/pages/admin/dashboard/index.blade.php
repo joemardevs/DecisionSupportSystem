@@ -224,7 +224,7 @@
         let allCompleted = @json($allCompleted);
         let allPresented = @json($allPresented);
         let allPublished = @json($allPublished);
-        let allCopyrighted = @json($allCopyrighted);
+        let allIntellectualProperties = @json($allIntellectualProperties);
         let allArchieved = @json($allArchieved);
 
         const allData = {
@@ -233,11 +233,11 @@
                 'Completed',
                 'Presented',
                 'Published',
-                'Copyrighted',
+                'Intellectual Properties',
                 'Archieved',
             ],
             datasets: [{
-                data: [allOnGoing, allCompleted, allPresented, allPublished, allCopyrighted, allArchieved, ],
+                data: [allOnGoing, allCompleted, allPresented, allPublished, allIntellectualProperties, allArchieved, ],
                 backgroundColor: [
                     'rgba(255, 99, 132)',
                     'rgba(255, 159, 64)',
@@ -267,7 +267,7 @@
         let cbmCompleted = @json($cbmCompleted);
         let cbmPresented = @json($cbmPresented);
         let cbmPublished = @json($cbmPublished);
-        let cbmCopyrighted = @json($cbmCopyrighted);
+        let cbmIntellectualProperties = @json($cbmIntellectualProperties);
         let cbmArchieved = @json($cbmArchieved);
 
         const cbmData = {
@@ -276,11 +276,11 @@
                 'Completed',
                 'Presented',
                 'Published',
-                'Copyrighted',
+                'Intellectual Properties',
                 'Archieved',
             ],
             datasets: [{
-                data: [cbmOnGoing, cbmCompleted, cbmPresented, cbmPublished, cbmCopyrighted, cbmArchieved, ],
+                data: [cbmOnGoing, cbmCompleted, cbmPresented, cbmPublished, cbmIntellectualProperties, cbmArchieved, ],
                 backgroundColor: [
                     'rgba(255, 99, 132)',
                     'rgba(255, 159, 64)',
@@ -311,7 +311,7 @@
         let ccjeCompleted = @json($ccjeCompleted);
         let ccjePresented = @json($ccjePresented);
         let ccjePublished = @json($ccjePublished);
-        let ccjeCopyrighted = @json($ccjeCopyrighted);
+        let ccjeIntellectualProperties = @json($ccjeIntellectualProperties);
         let ccjeArchieved = @json($ccjeArchieved);
 
         const ccjeData = {
@@ -320,11 +320,11 @@
                 'Completed',
                 'Presented',
                 'Published',
-                'Copyrighted',
+                'Intellectual Properties',
                 'Archieved',
             ],
             datasets: [{
-                data: [ccjeOnGoing, ccjeCompleted, ccjePresented, ccjePublished, ccjeCopyrighted,
+                data: [ccjeOnGoing, ccjeCompleted, ccjePresented, ccjePublished, ccjeIntellectualProperties,
                     ccjeArchieved,
                 ],
                 backgroundColor: [
@@ -356,7 +356,7 @@
         let ccsictCompleted = @json($ccsictCompleted);
         let ccsictPresented = @json($ccsictPresented);
         let ccsictPublished = @json($ccsictPublished);
-        let ccsictCopyrighted = @json($ccsictCopyrighted);
+        let ccsictIntellectualProperties = @json($ccsictIntellectualProperties);
         let ccsictArchieved = @json($ccsictArchieved);
 
         const ccsictData = {
@@ -365,11 +365,11 @@
                 'Completed',
                 'Presented',
                 'Published',
-                'Copyrighted',
+                'Intellectual Properties',
                 'Archieved',
             ],
             datasets: [{
-                data: [ccsictOnGoing, ccsictCompleted, ccsictPresented, ccsictPublished, ccsictCopyrighted,
+                data: [ccsictOnGoing, ccsictCompleted, ccsictPresented, ccsictPublished, ccsictIntellectualProperties,
                     ccsictArchieved,
                 ],
                 backgroundColor: [
@@ -401,7 +401,7 @@
         let cedCompleted = @json($cedCompleted);
         let cedPresented = @json($cedPresented);
         let cedPublished = @json($cedPublished);
-        let cedCopyrighted = @json($cedCopyrighted);
+        let cedIntellectualProperties = @json($cedIntellectualProperties);
         let cedArchieved = @json($cedArchieved);
 
         const cedData = {
@@ -410,11 +410,11 @@
                 'Completed',
                 'Presented',
                 'Published',
-                'Copyrighted',
+                'Intellectual Properties',
                 'Archieved',
             ],
             datasets: [{
-                data: [cedOnGoing, cedCompleted, cedPresented, cedPublished, cedCopyrighted,
+                data: [cedOnGoing, cedCompleted, cedPresented, cedPublished, cedIntellectualProperties,
                     cedArchieved,
                 ],
                 backgroundColor: [
@@ -447,7 +447,7 @@
         let iatCompleted = @json($iatCompleted);
         let iatPresented = @json($iatPresented);
         let iatPublished = @json($iatPublished);
-        let iatCopyrighted = @json($iatCopyrighted);
+        let iatIntellectualProperties = @json($iatIntellectualProperties);
         let iatArchieved = @json($iatArchieved);
 
         const iatData = {
@@ -456,11 +456,11 @@
                 'Completed',
                 'Presented',
                 'Published',
-                'Copyrighted',
+                'Intellectual Properties',
                 'Archieved',
             ],
             datasets: [{
-                data: [iatOnGoing, iatCompleted, iatPresented, iatPublished, iatCopyrighted,
+                data: [iatOnGoing, iatCompleted, iatPresented, iatPublished, iatIntellectualProperties,
                     iatArchieved,
                 ],
                 backgroundColor: [
@@ -492,7 +492,7 @@
         let psCompleted = @json($psCompleted);
         let psPresented = @json($psPresented);
         let psPublished = @json($psPublished);
-        let psCopyrighted = @json($psCopyrighted);
+        let psIntellectualProperties = @json($psIntellectualProperties);
         let psArchieved = @json($psArchieved);
 
         const psData = {
@@ -501,11 +501,11 @@
                 'Completed',
                 'Presented',
                 'Published',
-                'Copyrighted',
+                'Intellectual Properties',
                 'Archieved',
             ],
             datasets: [{
-                data: [psOnGoing, psCompleted, psPresented, psPublished, psCopyrighted,
+                data: [psOnGoing, psCompleted, psPresented, psPublished, psIntellectualProperties,
                     psArchieved,
                 ],
                 backgroundColor: [
@@ -537,7 +537,7 @@
         let sasCompleted = @json($sasCompleted);
         let sasPresented = @json($sasPresented);
         let sasPublished = @json($sasPublished);
-        let sasCopyrighted = @json($sasCopyrighted);
+        let sasIntellectualProperties = @json($sasIntellectualProperties);
         let sasArchieved = @json($sasArchieved);
 
         const sasData = {
@@ -546,11 +546,11 @@
                 'Completed',
                 'Presented',
                 'Published',
-                'Copyrighted',
+                'Intellectual Properties',
                 'Archieved',
             ],
             datasets: [{
-                data: [sasOnGoing, sasCompleted, sasPresented, sasPublished, sasCopyrighted,
+                data: [sasOnGoing, sasCompleted, sasPresented, sasPublished, sasIntellectualProperties,
                     sasArchieved,
                 ],
                 backgroundColor: [

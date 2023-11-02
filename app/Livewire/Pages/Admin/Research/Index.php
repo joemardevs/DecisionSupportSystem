@@ -32,17 +32,25 @@ class Index extends Component
     }
     public function render()
     {
+
         $title = 'Research';
         $allResearch = Research::orderBy('updated_at', 'desc')
             ->orderBy('id', 'asc')
-            ->when($this->status !== '' || $this->year !== '', function ($query) {
+            ->when($this->status  || $this->year, function ($query) {
                 $query->where(function ($subquery) {
                     if ($this->status !== '') {
                         $subquery->where('status_id', $this->status);
                     }
                     if ($this->year !== '') {
                         $yearAsString = strval($this->year);
-                        $subquery->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
                     }
                 });
             })

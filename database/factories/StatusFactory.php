@@ -14,7 +14,7 @@ class StatusFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $statuses = ['On going', 'Completed', 'Presented', 'Published', 'Copyrighted', 'Archived'];
+    protected $statuses = ['On going', 'Completed', 'Presented', 'Published', 'Intellectual Properties', 'Archived'];
     protected $statusesIndex = 0;
     public function definition(): array
     {

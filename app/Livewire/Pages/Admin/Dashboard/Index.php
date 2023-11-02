@@ -45,7 +45,7 @@ class Index extends Component
             ->count();
         $allPublished = Research::where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
             ->count();
-        $allCopyrighted = Research::where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+        $allIntellectualProperties = Research::where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $allArchieved = Research::where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
             ->count();
@@ -62,8 +62,8 @@ class Index extends Component
         $cbmPublished = Research::where('department_id', DepartmentEnum::CBM->value)
             ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
             ->count();
-        $cbmCopyrighted = Research::where('department_id', DepartmentEnum::CBM->value)
-            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+        $cbmIntellectualProperties = Research::where('department_id', DepartmentEnum::CBM->value)
+            ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $cbmArchieved = Research::where('department_id', DepartmentEnum::CBM->value)
             ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
@@ -81,8 +81,8 @@ class Index extends Component
         $ccjePublished = Research::where('department_id', DepartmentEnum::CCJE->value)
             ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
             ->count();
-        $ccjeCopyrighted = Research::where('department_id', DepartmentEnum::CCJE->value)
-            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+        $ccjeIntellectualProperties = Research::where('department_id', DepartmentEnum::CCJE->value)
+            ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $ccjeArchieved = Research::where('department_id', DepartmentEnum::CCJE->value)
             ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
@@ -100,8 +100,8 @@ class Index extends Component
         $ccsictPublished = Research::where('department_id', DepartmentEnum::CCSICT->value)
             ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
             ->count();
-        $ccsictCopyrighted = Research::where('department_id', DepartmentEnum::CCSICT->value)
-            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+        $ccsictIntellectualProperties = Research::where('department_id', DepartmentEnum::CCSICT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $ccsictArchieved = Research::where('department_id', DepartmentEnum::CCSICT->value)
             ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
@@ -119,8 +119,8 @@ class Index extends Component
         $cedPublished = Research::where('department_id', DepartmentEnum::CED->value)
             ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
             ->count();
-        $cedCopyrighted = Research::where('department_id', DepartmentEnum::CED->value)
-            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+        $cedIntellectualProperties = Research::where('department_id', DepartmentEnum::CED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $cedArchieved = Research::where('department_id', DepartmentEnum::CED->value)
             ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
@@ -138,8 +138,8 @@ class Index extends Component
         $iatPublished = Research::where('department_id', DepartmentEnum::IAT->value)
             ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
             ->count();
-        $iatCopyrighted = Research::where('department_id', DepartmentEnum::IAT->value)
-            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+        $iatIntellectualProperties = Research::where('department_id', DepartmentEnum::IAT->value)
+            ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $iatArchieved = Research::where('department_id', DepartmentEnum::IAT->value)
             ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
@@ -157,8 +157,8 @@ class Index extends Component
         $psPublished = Research::where('department_id', DepartmentEnum::PS->value)
             ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
             ->count();
-        $psCopyrighted = Research::where('department_id', DepartmentEnum::PS->value)
-            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+        $psIntellectualProperties = Research::where('department_id', DepartmentEnum::PS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $psArchieved = Research::where('department_id', DepartmentEnum::PS->value)
             ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
@@ -176,8 +176,8 @@ class Index extends Component
         $sasPublished = Research::where('department_id', DepartmentEnum::SAS->value)
             ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
             ->count();
-        $sasCopyrighted = Research::where('department_id', DepartmentEnum::SAS->value)
-            ->where('status_id', '=', ResearchStatusesEnum::COPYRIGHTED->value)
+        $sasIntellectualProperties = Research::where('department_id', DepartmentEnum::SAS->value)
+            ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $sasArchieved = Research::where('department_id', DepartmentEnum::SAS->value)
             ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
@@ -384,56 +384,56 @@ class Index extends Component
             'allCompleted' => $allCompleted,
             'allPresented' => $allPresented,
             'allPublished' => $allPublished,
-            'allCopyrighted' => $allCopyrighted,
+            'allIntellectualProperties' => $allIntellectualProperties,
             'allArchieved' => $allArchieved,
             //cbm pie chart
             'cbmOnGoing' => $cbmOnGoing,
             'cbmCompleted' => $cbmCompleted,
             'cbmPresented' => $cbmPresented,
             'cbmPublished' => $cbmPublished,
-            'cbmCopyrighted' => $cbmCopyrighted,
+            'cbmIntellectualProperties' => $cbmIntellectualProperties,
             'cbmArchieved' => $cbmArchieved,
             //ccje pie chart
             'ccjeOnGoing' => $ccjeOnGoing,
             'ccjeCompleted' => $ccjeCompleted,
             'ccjePresented' => $ccjePresented,
             'ccjePublished' => $ccjePublished,
-            'ccjeCopyrighted' => $ccjeCopyrighted,
+            'ccjeIntellectualProperties' => $ccjeIntellectualProperties,
             'ccjeArchieved' => $ccjeArchieved,
             //ccsict pie chart
             'ccsictOnGoing' => $ccsictOnGoing,
             'ccsictCompleted' => $ccsictCompleted,
             'ccsictPresented' => $ccsictPresented,
             'ccsictPublished' => $ccsictPublished,
-            'ccsictCopyrighted' => $ccsictCopyrighted,
+            'ccsictIntellectualProperties' => $ccsictIntellectualProperties,
             'ccsictArchieved' => $ccsictArchieved,
             //ccsict pie chart
             'cedOnGoing' => $cedOnGoing,
             'cedCompleted' => $cedCompleted,
             'cedPresented' => $cedPresented,
             'cedPublished' => $cedPublished,
-            'cedCopyrighted' => $cedCopyrighted,
+            'cedIntellectualProperties' => $cedIntellectualProperties,
             'cedArchieved' => $cedArchieved,
             //iat pie chart
             'iatOnGoing' => $iatOnGoing,
             'iatCompleted' => $iatCompleted,
             'iatPresented' => $iatPresented,
             'iatPublished' => $iatPublished,
-            'iatCopyrighted' => $iatCopyrighted,
+            'iatIntellectualProperties' => $iatIntellectualProperties,
             'iatArchieved' => $iatArchieved,
             //ps pie chart
             'psOnGoing' => $psOnGoing,
             'psCompleted' => $psCompleted,
             'psPresented' => $psPresented,
             'psPublished' => $psPublished,
-            'psCopyrighted' => $psCopyrighted,
+            'psIntellectualProperties' => $psIntellectualProperties,
             'psArchieved' => $psArchieved,
             //sas pie chart
             'sasOnGoing' => $sasOnGoing,
             'sasCompleted' => $sasCompleted,
             'sasPresented' => $sasPresented,
             'sasPublished' => $sasPublished,
-            'sasCopyrighted' => $sasCopyrighted,
+            'sasIntellectualProperties' => $sasIntellectualProperties,
             'sasArchieved' => $sasArchieved,
             // all research line chart
             'twenty20Totwenty21' => $twenty20Totwenty21,

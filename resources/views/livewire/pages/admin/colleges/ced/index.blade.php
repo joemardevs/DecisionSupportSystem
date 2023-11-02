@@ -40,6 +40,15 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="flex space-x-3 items-center">
+                                <label class="w-10 text-sm font-medium text-gray-900">Year :</label>
+                                <input type="number" wire:model.live.debounce.300ms="year"
+                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-[#116736] block p-2 w-28">
+                            </div>
+                            <button type="button" wire:click="export"
+                                    class="text-sm text-white bg-gray-500 p-4 py-2 rounded">
+                                XLSX
+                            </button>
                         </div>
                     </div>
                     <div class="overflow-x-auto">
