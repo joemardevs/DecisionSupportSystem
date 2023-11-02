@@ -111,6 +111,11 @@
                                     <input wire:model="organizer" type="text" name="organizer" id="organizer"
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
+                                <div class="flex flex-col gap-1">
+                                    <label for="citations">Citations</label>
+                                    <input wire:model="citations" type="text" name="citations" id="citations"
+                                           class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                                </div>
                                 <div class="flex gap-4">
                                     <button type="submit"
                                         class="cursor-pointer text-white bg-[#116736] py-2 rounded-md w-24">
@@ -157,7 +162,11 @@
                                     <input wire:model="reg_number" type="text" name="reg_number" id="reg_number"
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
-                            </div>
+                                <div class="flex flex-col gap-1">
+                                    <label for="awards">Awards</label>
+                                    <input wire:model="awards" type="text" name="awards" id="awards"
+                                           class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                                </div>
                         </form>
                     </div>
                 </div>

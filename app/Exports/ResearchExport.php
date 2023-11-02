@@ -51,6 +51,8 @@ class ResearchExport implements FromCollection, WithHeadings, WithMapping
             $dateCompleted,
             $dateIssued,
             $researchCollection->reg_number ?? 'N/A',
+            $researchCollection->citations ?? 'N/A',
+            $researchCollection->awards ?? 'N/A',
         ];
     }
 
@@ -72,6 +74,8 @@ class ResearchExport implements FromCollection, WithHeadings, WithMapping
             'Date Completed',
             'Date Issued',
             'Reg Number',
+            'Citations',
+            'Awards',
         ];
     }
 }

@@ -36,6 +36,10 @@ return new class extends Migration
                 ->nullable();
             $table->string('reg_number')
                 ->nullable();
+            $table->string('citations')
+                ->nullable();
+            $table->string('awards')
+                ->nullable();
             $table->timestamps();
 
             $table->foreign('department_id')

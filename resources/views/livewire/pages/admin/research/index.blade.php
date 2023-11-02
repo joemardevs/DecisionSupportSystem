@@ -113,12 +113,17 @@
                                             {{ $research->status->name }}
                                         </td>
                                         <td x-data="{ expanded: false }" class="px-4 py-3 flex items-center justify-start">
+{{--                                            TODO: REMOVE THIS VIEW RATE--}}
                                             @if ($research->status->id == 1)
                                                 <a href="{{ route('view.research', ['id' => $research->id]) }}"
                                                     class="px-1 py-1 text-gray-500 hover:underline underline-offset-2 rounded">
                                                     View Rate
                                                 </a>
                                             @endif
+{{--                                            <a href=""--}}
+{{--                                               class="px-1 py-1 text-gray-500 hover:underline underline-offset-2 rounded">--}}
+{{--                                                Show--}}
+{{--                                            </a>--}}
                                             <a href="{{ route('edit.research', ['id' => $research->id]) }}"
                                                 class="px-1 py-1 text-blue-500 hover:underline underline-offset-2 rounded">
                                                 Edit
