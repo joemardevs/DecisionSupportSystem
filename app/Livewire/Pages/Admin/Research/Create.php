@@ -10,13 +10,14 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $title, $status_id, $department_id, $venue, $date_presented, $organizer, $journal_name, $issn, $vol, $country, $date_completed, $date_issued, $reg_number, $citations, $awards;
+    public $title, $status_id, $department_id, $venue, $date_presented, $organizer, $journal_name, $issn, $vol, $country, $date_completed, $date_issued, $reg_number, $citations, $awards, $created_at;
     public $selectAuthors;
     protected $rules = [
         'title' => 'required|unique:research',
         'selectAuthors' => 'required',
         'status_id' => 'required',
         'department_id' => 'required',
+        'created_at' => 'required',
     ];
     public function createResearch()
     {
@@ -38,6 +39,7 @@ class Create extends Component
             'reg_number' => $this->reg_number,
             'citations' => $this->citations,
             'awards' => $this->awards,
+            'created_at' => $this->created_at,
         ]);
 
         // Attach selected authors to the research using the pivot table 'author_research'

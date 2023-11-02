@@ -107,7 +107,7 @@
                                         <td class="px-4 py-3 flex items-center justify-start">
                                             <a href="{{ route('view.author', ['id' => $facultyMember->id]) }}"
                                                 class="px-1 py-1 text-gray-500 hover:underline underline-offset-2 rounded">
-                                                View Rate
+                                                Success Rate
                                             </a>
                                             <a href="{{ route('edit.faculty-members', ['id' => $facultyMember->id]) }}"
                                                 class="px-3 py-1 text-blue-400 hover:underline underline-offset-2 rounded">
