@@ -68,7 +68,7 @@
                         </div>
                         <div class="flex space-x-3">
                             <div class="flex space-x-3 items-center">
-                                <label class="w-48 text-sm font-medium text-gray-900">Position Type :</label>
+                                <label class="w-52 text-sm font-medium text-gray-900">Position Type :</label>
                                 <select wire:model.live="position"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                                     <option value="">All</option>
@@ -76,6 +76,10 @@
                                     <option value="Professor II">Professor II</option>
                                     <option value="Professor III">Professor III</option>
                                 </select>
+                                {{-- <button type="button" wire:click="export"
+                                    class="text-sm text-white bg-gray-500 p-4 py-2 rounded">
+                                    XLSX
+                                </button> --}}
                             </div>
                         </div>
                     </div>
@@ -149,8 +153,8 @@
         </section>
     </div>
     <div class="absolute top-0 left-0 flex items-center justify-center w-full h-full backdrop-blur-sm"
-        x-show="openModal" x-on:open-modal.window="openModal = true" x-on:close-modal.window="openModal = false"
-        x-cloak x-transition>
+        x-show="openModal" x-on:open-modal.window="openModal = true" x-on:close-modal.window="openModal = false" x-cloak
+        x-transition>
         <!-- A basic modal dialog with title, body and one button to close -->
         <form wire:submit="deleteFacultyMember({{ $selectedAuthor->id ?? null }})"
             class="h-auto mx-2 text-left bg-white rounded shadow-xl md:max-w-xl md:p-6 lg:p-8 md:mx-0"

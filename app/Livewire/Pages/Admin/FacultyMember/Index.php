@@ -2,15 +2,15 @@
 
 namespace App\Livewire\Pages\Admin\FacultyMember;
 
+use App\Exports\AuthorExport;
 use App\Models\Author;
 use Livewire\Component;
 use Livewire\WithPagination;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
     use WithPagination;
-
 
     public $perPage = 5;
 
@@ -29,6 +29,10 @@ class Index extends Component
         $this->dispatch('close-modal');
         return to_route('faculty-members')
             ->with('error', 'Deleted');
+    }
+    public function export(Author $author)
+    {
+        return Excel::download(new AuthorExport($author), 'Faculty-Member.xlsx');
     }
     public function render()
     {

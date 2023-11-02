@@ -105,7 +105,7 @@
                     <canvas id="sasResearchPerSchoolYear" style="width:5px"></canvas>
                 </div>
             </div>
-            <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden">
+            {{-- <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden">
                 <div class="flex items-center justify-between d p-4">
                     <div class="flex">
                         <h1>Authors</h1>
@@ -180,13 +180,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
+            </div> --}}
         </section>
     </div>
     <div class="absolute top-0 left-0 flex items-center justify-center w-full h-full backdrop-blur-sm"
-        x-show="openModal" x-on:open-modal.window="openModal = true" x-on:close-modal.window="openModal = false"
-        x-cloak x-transition>
+        x-show="openModal" x-on:open-modal.window="openModal = true" x-on:close-modal.window="openModal = false" x-cloak
+        x-transition>
         <!-- A basic modal dialog with title, body and one button to close -->
         <form wire:submit="addNote({{ $selectedAuthor }})"
             class="h-auto mx-2 text-left bg-white rounded shadow-xl md:max-w-xl md:p-6 lg:p-8 md:mx-0"

@@ -13,6 +13,7 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     public $perPage = 5;
+    public $position = '';
     public Author $selectedAuthor;
     public $note;
     use WithPagination;

@@ -39,7 +39,7 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     // Route::get('/', [AuthController::class, 'index'])->name('login');
     Route::get('/login', Login::class)->name('login');
-    Route::post('/login', Login::class)->name('login');
+    // Route::post('/login', Login::class)->name('login');
     // Route::post('/', [AuthController::class, 'signIn'])->name('sign-in');
 });
 
