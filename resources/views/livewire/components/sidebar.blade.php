@@ -8,7 +8,7 @@
             <img src="{{ asset('logo/ISU.png') }}" alt="ISU LOGO" class="w-16">
         </div>
         <div class="flex flex-col mt-2" x-data="{ expanded: false }">
-            <a href="{{ route('dashboard') }}" wire:navigate
+            <a href="{{ route('dashboard') }}"
                 class="flex items-center gap-2 my-2 cursor-pointer {{ request()->is('dashboard') ? 'text-[#116736]' : 'text-[#B1B6C0] hover:text-[#116736]' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
