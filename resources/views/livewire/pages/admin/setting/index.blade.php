@@ -45,11 +45,11 @@
             <div class="flex flex-col md:flex-row gap-4">
                 <div class="h-fit w-64 p-4 bg-white rounded-lg drop-shadow-md">
                     <div class="w-full h-80 flex flex-col gap-2">
-                        <a href="{{ route('settings') }}"
+                        <a href="{{ route('settings') }}" wire:navigate
                             class="{{ request()->is('settings') ? 'text-[#116736] underline underline-offset-2' : 'text-[#3a4657] hover:text-[#116736]' }}">
                             Update Information
                         </a>
-                        <a href="{{ route('password') }}"
+                        <a href="{{ route('password') }}" wire:navigate
                             class="{{ request()->route()->uri == 'settings/update-password' ? 'text-[#116736] underline underline-offset-2' : 'text-[#3a4657] hover:text-[#116736]' }}">
                             Update Password
                         </a>

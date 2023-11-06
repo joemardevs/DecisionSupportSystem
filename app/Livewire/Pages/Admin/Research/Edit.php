@@ -17,7 +17,7 @@ use Livewire\Component;
 class Edit extends Component
 {
     public $research, $title, $status_id, $department_id, $research_id;
-    public $venue, $date_presented, $organizer, $journal_name, $issn, $vol, $country, $date_completed, $date_issued, $reg_number;
+    public $venue, $date_presented, $organizer, $journal_name, $issn, $vol, $country, $date_completed, $date_issued, $reg_number, $citations, $awards, $created_at;
     public $selectedAuthors  = [];
     public $authors = [];
     protected $rules = [
@@ -25,6 +25,7 @@ class Edit extends Component
         // 'selectedAuthors' => 'required',
         'status_id' => 'required',
         'department_id' => 'required',
+        'created_at' => 'required',
     ];
     public function updateResearch()
     {
@@ -45,11 +46,12 @@ class Edit extends Component
         try {
             $attributes = [
                 'venue',
-                'organizer', 'journal_name', 'issn', 'vol', 'country',  'reg_number'
+                'organizer', 'journal_name', 'issn', 'vol', 'country',  'reg_number',  'citations',   'awards'
             ];
             $dateAttributes = [
                 'date_presented',
-                'date_completed', 'date_issued'
+                'date_completed', 'date_issued',
+                'created_at'
             ];
 
             $hasChanges = false;
@@ -132,6 +134,9 @@ class Edit extends Component
         $this->date_completed = Carbon::parse($research->date_completed)->format('Y-m-d');
         $this->date_issued = Carbon::parse($research->date_issued)->format('Y-m-d');
         $this->reg_number = $research->reg_number;
+        $this->citations = $research->citations;
+        $this->awards = $research->awards;
+        $this->created_at = Carbon::parse($research->created_at)->format('Y-m-d');
     }
     public function render()
     {

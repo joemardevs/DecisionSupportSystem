@@ -42,15 +42,23 @@
                     <h1>
                         Edit {{ $titlePage }}
                     </h1>
-                    <button wire:click="deleteResearch({{ $research_id }})" type="button"
-                        class="text-sm text-white bg-red-500 p-4 py-2 rounded">
-                        Delete research
-                    </button>
+                    <div class="flex gap-2">
+                        <a wire:navigate href="{{ route('view.research', ['id' => $research->id]) }}"
+                            class="text-sm text-white bg-gray-500 p-4 py-2 rounded w-16">
+                            View
+                        </a>
+                        <button wire:click="deleteResearch({{ $research->id }})" type="button"
+                            class="text-sm text-white bg-red-500 p-4 py-2 rounded">
+                            Delete research
+                        </button>
+                    </div>
                 </div>
                 <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden">
                     <div class="w-full p-4 bg-white rounded-lg drop-shadow-md flex flex-col gap-4">
-                        <h1 class="text-xl font-semibold">Update {{ $titlePage }}</h1>
-                        <small class="text-gray-500">Manage the research information below.</small>
+                        <div>
+                            <h1 class="text-xl font-semibold">Edit {{ $titlePage }}</h1>
+                            <small class="text-gray-500">Manage the research information below.</small>
+                        </div>
                         <form wire:submit="updateResearch" class="flex gap-4">
                             @csrf
                             <div class="flex flex-col gap-4 w-1/2">
@@ -118,6 +126,16 @@
                                     <input wire:model="organizer" type="text" name="organizer" id="organizer"
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
+                                <div class="flex flex-col gap-1">
+                                    <label for="citations">Citations</label>
+                                    <input wire:model="citations" type="text" name="citations" id="citations"
+                                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label for="created_at">Date Started</label>
+                                    <input wire:model="created_at" type="date" name="created_at" id="created_at"
+                                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                                </div>
                                 <div class="flex gap-4">
                                     <button type="submit"
                                         class="cursor-pointer text-white bg-[#116736] py-2 rounded-md w-24">
@@ -166,6 +184,11 @@
                                 <div class="flex flex-col gap-1">
                                     <label for="reg_number">Reg. Number</label>
                                     <input wire:model="reg_number" type="text" name="reg_number" id="reg_number"
+                                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label for="awards">Awards</label>
+                                    <input wire:model="awards" type="text" name="awards" id="awards"
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                             </div>

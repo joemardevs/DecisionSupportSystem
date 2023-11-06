@@ -88,42 +88,36 @@
                         <table class="w-full text-sm text-left text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="px-4 py-3 w-3/12">Title</th>
-                                    <th scope="col" class="px-4 py-3 w-3/12">Authors</th>
-                                    <th scope="col" class="px-4 py-3 w-3/12">Status</th>
+                                    <th scope="col" class="px-4 py-3">Title</th>
+                                    <th scope="col" class="px-4 py-3">Status</th>
+                                    <th scope="col" class="px-4 py-3">Lead Author</th>
+                                    <th scope="col" class="px-4 py-3">Date Started/Completed</th>
                                     <th scope="col" class="px-4 py-3 w-3/12"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($allResearch as $research)
                                     <tr wire:key="{{ $research->id }}" class="border-b">
-                                        <th scope="row"
-                                            class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
-                                            {{ $research->title }}</th>
-                                        <td class="px-4 py-3">
-                                            @foreach ($research->authors as $author)
-                                                {{ $author->name }}
-                                                @if (!$loop->last)
-                                                    {{-- Add a comma if it's not the last author --}}
-                                                    ,
-                                                @endif
-                                            @endforeach
-                                        </td>
+                                        <th class="px-4 py-3 font-medium text-gray-900">
+                                            {{ chunk_split($research->title, 20) }}
+                                        </th>
                                         <td class="px-4 py-3">
                                             {{ $research->status->name }}
                                         </td>
-                                        <td x-data="{ expanded: false }" class="px-4 py-3 flex items-center justify-start">
-{{--                                            TODO: REMOVE THIS VIEW RATE--}}
-                                            @if ($research->status->id == 1)
-                                                <a href="{{ route('view.research', ['id' => $research->id]) }}"
-                                                    class="px-1 py-1 text-gray-500 hover:underline underline-offset-2 rounded">
-                                                    View Rate
-                                                </a>
+                                        <td class="px-4 py-3">
+                                            @if (count($research->authors) > 0)
+                                                {{ $research->authors[0]->name }}
                                             @endif
-{{--                                            <a href=""--}}
-{{--                                               class="px-1 py-1 text-gray-500 hover:underline underline-offset-2 rounded">--}}
-{{--                                                Show--}}
-{{--                                            </a>--}}
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            {{ $research->date_completed ? date('d-m-Y', strtotime($research->date_completed)) : $research->created_at->format('m-d-Y') }}
+                                        </td>
+                                        <td x-data="{ expanded: false }" class="px-4 py-3">
+                                            <a wire:navigate
+                                                href="{{ route('view.research', ['id' => $research->id]) }}"
+                                                class="px-1 py-1 text-gray-500 hover:underline underline-offset-2 rounded">
+                                                View
+                                            </a>
                                             <a href="{{ route('edit.research', ['id' => $research->id]) }}"
                                                 class="px-1 py-1 text-blue-500 hover:underline underline-offset-2 rounded">
                                                 Edit

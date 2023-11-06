@@ -20,9 +20,8 @@
     @endif
     <livewire:components.sidebar />
     <div class="w-full bg-gray-200">
-        <section class="flex flex-col gap-4 p-4">
-            <div class="w-full flex flex-col flex-wrap md:flex-row gap-4">
-                {{-- Pie Chart --}}
+        <section class="flex flex-col p-4 gap-4">
+            <div class="grid grid-rows-2 grid-cols-4 gap-2">
                 <div class="w-44 h-fit p-4 bg-white rounded-lg drop-shadow-md">
                     <div class="mx-auto">
                         <h1 class="text-center text-sm">All Research</h1>
@@ -71,7 +70,8 @@
                         <canvas id="sasResearch" style="height:5px; width:5px"></canvas>
                     </div>
                 </div>
-                {{-- Line Chart --}}
+            </div>
+            <div class="grid grid-rows-4 grid-cols-2 gap-2">
                 <div class="p-2 w-96 bg-white rounded-lg drop-shadow-md">
                     <h1 class="text-center text-sm">All Research Per School Year</h1>
                     <canvas id="researchPerSchoolYear" style="width:5px"></canvas>
@@ -237,7 +237,9 @@
                 'Archieved',
             ],
             datasets: [{
-                data: [allOnGoing, allCompleted, allPresented, allPublished, allIntellectualProperties, allArchieved, ],
+                data: [allOnGoing, allCompleted, allPresented, allPublished, allIntellectualProperties,
+                    allArchieved,
+                ],
                 backgroundColor: [
                     'rgba(255, 99, 132)',
                     'rgba(255, 159, 64)',
@@ -280,7 +282,9 @@
                 'Archieved',
             ],
             datasets: [{
-                data: [cbmOnGoing, cbmCompleted, cbmPresented, cbmPublished, cbmIntellectualProperties, cbmArchieved, ],
+                data: [cbmOnGoing, cbmCompleted, cbmPresented, cbmPublished, cbmIntellectualProperties,
+                    cbmArchieved,
+                ],
                 backgroundColor: [
                     'rgba(255, 99, 132)',
                     'rgba(255, 159, 64)',
@@ -369,7 +373,8 @@
                 'Archieved',
             ],
             datasets: [{
-                data: [ccsictOnGoing, ccsictCompleted, ccsictPresented, ccsictPublished, ccsictIntellectualProperties,
+                data: [ccsictOnGoing, ccsictCompleted, ccsictPresented, ccsictPublished,
+                    ccsictIntellectualProperties,
                     ccsictArchieved,
                 ],
                 backgroundColor: [
