@@ -20,20 +20,20 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartmentSeeder::class);
         // $this->call(UserSeeder::class);
         $this->call(StatusSeeder::class);
-        $this->call(ResearchSeeder::class);
-        $this->call(AuthorSeeder::class);
+        // $this->call(ResearchSeeder::class);
+        // $this->call(AuthorSeeder::class);
 
-        // seed pivot table author_research
-        // Define the number of records you want to insert
-        $recordsCount = 50;
+        // // seed pivot table author_research
+        // // Define the number of records you want to insert
+        // $recordsCount = 50;
 
-        // Insert records into the pivot table
-        for ($i = 1; $i <= $recordsCount; $i++) {
-            DB::table('author_research')->insert([
-                'author_id' => rand(1, 30), // Replace with your actual author IDs
-                'research_id' => rand(1, 50), // Replace with your actual research IDs
-            ]);
-        }
+        // // Insert records into the pivot table
+        // for ($i = 1; $i <= $recordsCount; $i++) {
+        //     DB::table('author_research')->insert([
+        //         'author_id' => rand(1, 30), // Replace with your actual author IDs
+        //         'research_id' => rand(1, 50), // Replace with your actual research IDs
+        //     ]);
+        // }
 
         User::factory()->create([
             'username' => 'admin',

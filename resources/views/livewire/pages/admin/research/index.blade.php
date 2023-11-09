@@ -105,9 +105,11 @@
                                             {{ $research->status->name }}
                                         </td>
                                         <td class="px-4 py-3">
-                                            @if (count($research->authors) > 0)
-                                                {{ $research->authors[0]->name }}
-                                            @endif
+                                            @foreach ($research->authors as $author)
+                                                @if ($author->pivot->lead_author)
+                                                    {{ $author->name }}
+                                                @endif
+                                            @endforeach
                                         </td>
                                         <td class="px-4 py-3">
                                             {{ $research->date_completed ? date('d-m-Y', strtotime($research->date_completed)) : $research->created_at->format('m-d-Y') }}

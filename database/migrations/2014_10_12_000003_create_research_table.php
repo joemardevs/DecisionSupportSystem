@@ -16,6 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('department_id');
             $table->string('title');
             $table->unsignedBigInteger('status_id');
+            $table->string('allocated_budget')
+                ->nullable();
+            $table->string('duration')
+                ->nullable();
             $table->string('venue')
                 ->nullable();
             $table->date('date_presented')
@@ -28,6 +32,8 @@ return new class extends Migration
                 ->nullable();
             $table->string('vol')
                 ->nullable();
+            $table->string('remarks')
+                ->nullable();
             $table->string('country')
                 ->nullable();
             $table->date('date_completed')
@@ -36,9 +42,17 @@ return new class extends Migration
                 ->nullable();
             $table->string('reg_number')
                 ->nullable();
+            $table->string('type_of_model')
+                ->nullable();
             $table->string('citations')
                 ->nullable();
             $table->string('awards')
+                ->nullable();
+            $table->string('conferred_to')
+                ->nullable();
+            $table->string('conferred_by')
+                ->nullable();
+            $table->date('expected_date_of_completion')
                 ->nullable();
             $table->timestamps();
 

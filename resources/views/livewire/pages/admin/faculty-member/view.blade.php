@@ -2,7 +2,7 @@
     {{ $titlePage }}
 @endsection
 <main class="flex min-h-screen">
-    @if ($memberNotif < 60)
+    {{-- @if ($memberNotif < 60)
         <div class="bg-gray-100 border border-gray-400 text-gray-700 px-4 py-3 rounded absolute w-96 mb-8 top-10 right-10 z-10"
             role="alert" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)">
             <span class="block sm:inline">
@@ -17,7 +17,7 @@
                 </svg>
             </span>
         </div>
-    @endif
+    @endif --}}
     @if (Session::has('error'))
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded absolute w-96 mb-8 top-10 right-10 z-10"
             role="alert" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)">
@@ -80,7 +80,7 @@
 </main>
 <script script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    let memberAllResearch = @json($memberAllResearch);
+    let memberCountOngoingResearch = @json($memberCountOngoingResearch);
     let memberCountNotCompletedResearch = @json($memberCountNotCompletedResearch);
     const data = {
         labels: [
@@ -88,7 +88,7 @@
             'On Going'
         ],
         datasets: [{
-            data: [memberAllResearch, memberCountNotCompletedResearch, ],
+            data: [memberCountOngoingResearch, memberCountNotCompletedResearch, ],
             backgroundColor: [
                 'green',
                 'gray',

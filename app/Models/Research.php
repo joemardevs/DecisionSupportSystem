@@ -13,7 +13,7 @@ class Research extends Model
     protected static $unguarded = true;
     public function authors(): BelongsToMany
     {
-        return $this->belongsToMany(Author::class, 'author_research');
+        return $this->belongsToMany(Author::class, 'author_research')->withPivot('lead_author');
     }
     public function department(): BelongsTo
     {

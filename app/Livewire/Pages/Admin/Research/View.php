@@ -13,6 +13,7 @@ class View extends Component
 {
     public $research, $title, $status_id, $department_id, $research_id;
     public $venue, $date_presented, $organizer, $journal_name, $issn, $vol, $country, $date_completed, $date_issued, $reg_number, $citations, $awards, $created_at;
+    public $lead_author, $allocated_budget, $duration, $remarks, $type_of_model, $conferred_to, $conferred_by, $expected_date_of_completion;
     public $selectedAuthors  = [];
     public $authors = [];
 
@@ -48,6 +49,20 @@ class View extends Component
         $this->citations = $research->citations;
         $this->awards = $research->awards;
         $this->created_at = Carbon::parse($research->created_at)->format('Y-m-d');
+        //
+        foreach ($research->authors as $author) {
+            if ($author->pivot->lead_author) {
+                $author->name;
+                $this->lead_author = $author->name;
+            }
+        }
+        $this->conferred_to = $research->conferred_to;
+        $this->conferred_by = $research->conferred_by;
+        $this->allocated_budget = $research->allocated_budget;
+        $this->duration = $research->duration;
+        $this->remarks = $research->remarks;
+        $this->type_of_model = $research->type_of_model;
+        $this->expected_date_of_completion = $research->expected_date_of_completion;
     }
     public function render()
     {

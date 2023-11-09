@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('author_research', function (Blueprint $table) {
             $table->unsignedBigInteger('author_id');
             $table->unsignedBigInteger('research_id');
+            $table->boolean('lead_author');
             // $table->timestamps();
 
             $table->foreign('author_id')
