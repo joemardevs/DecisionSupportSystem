@@ -18,7 +18,6 @@ class ResearchFactory extends Factory
     {
         return [
             //
-            'lead_researcher_id' => fake()->numberBetween($min = 1, $max = 10),
             'department_id' => fake()->numberBetween($min = 1, $max = 7),
             'title' => fake()->word(),
             'status_id' => fake()->numberBetween($min = 1, $max = 6),

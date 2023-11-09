@@ -58,12 +58,12 @@
                                             placeholder="Put a title here"
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                     </div>
-                                    {{-- <div class="flex flex-col gap-1">
+                                    <div class="flex flex-col gap-1">
                                         <label for="allocated_budget">Allocated Budget</label>
                                         <input wire:model="allocated_budget" type="text" name="allocated_budget"
                                             id="allocated_budget"
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
-                                    </div> --}}
+                                    </div>
                                     <div class="flex flex-col gap-1">
                                         <label for="lead_author">Lead Researcher</label>
                                         <select wire:model="lead_author" name="lead_author" id="lead_author"
@@ -152,7 +152,7 @@
                                     <input wire:model="" type="text" name="level" id="level"
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div> --}}
-                                <h1 class="text-gray-400">Coference/Fora</h1>
+                                <h1 class="text-gray-400 col-span-2">Coference/Fora</h1>
                                 <div class="col-span-2 grid grid-cols-2 gap-4">
                                     <div class="flex flex-col gap-1" id="date_presented">
                                         <label for="date_presented">Date Presented</label>

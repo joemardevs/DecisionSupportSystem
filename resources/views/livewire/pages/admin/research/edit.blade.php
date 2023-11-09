@@ -168,7 +168,7 @@
                                     <input wire:model="" type="text" name="level" id="level"
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div> --}}
-                                <h1 class="text-gray-400">Coference/Fora</h1>
+                                <h1 class="text-gray-400 col-span-2">Coference/Fora</h1>
                                 <div class="col-span-2 grid grid-cols-2 gap-4">
                                     <div class="flex flex-col gap-1" id="date_presented">
                                         <label for="date_presented">Date Presented</label>

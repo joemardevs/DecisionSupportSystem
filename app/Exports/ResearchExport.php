@@ -12,8 +12,8 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class ResearchExport implements FromCollection, WithHeadings, WithMapping
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     use Exportable;
     protected $researchCollection;
     public function __construct($researchCollection)
@@ -35,6 +35,7 @@ class ResearchExport implements FromCollection, WithHeadings, WithMapping
         $dateCompleted = $researchCollection->date_completed ? Carbon::parse($researchCollection->date_completed)->format('M-d-Y') : 'N/A';
         $dateIssued = $researchCollection->date_issued ? Carbon::parse($researchCollection->date_issued)->format('M-d-Y') : 'N/A';
         $createdAt = $researchCollection->created_at ? Carbon::parse($researchCollection->created_at)->format('M-d-Y') : 'N/A';
+        $expected_date_of_completion = $researchCollection->expected_date_of_completion ? Carbon::parse($researchCollection->expected_date_of_completion)->format('M-d-Y') : 'N/A';
 
         return [
             $researchCollection->id,
@@ -53,6 +54,14 @@ class ResearchExport implements FromCollection, WithHeadings, WithMapping
             $researchCollection->reg_number ?? 'N/A',
             $researchCollection->citations ?? 'N/A',
             $researchCollection->awards ?? 'N/A',
+            // new
+            $researchCollection->conferred_to ?? 'N/A',
+            $researchCollection->conferred_by ?? 'N/A',
+            $researchCollection->allocated_budget ?? 'N/A',
+            $researchCollection->duration ?? 'N/A',
+            $researchCollection->remarks ?? 'N/A',
+            $researchCollection->type_of_model ?? 'N/A',
+            $expected_date_of_completion
         ];
     }
 
@@ -76,6 +85,13 @@ class ResearchExport implements FromCollection, WithHeadings, WithMapping
             'Reg Number',
             'Citations',
             'Awards',
+            'Conferred to',
+            'Conferred by',
+            'Allocated Budget',
+            'Duration',
+            'Remarks',
+            'Type of Model',
+            'Expected Date of Completion',
         ];
     }
 }
