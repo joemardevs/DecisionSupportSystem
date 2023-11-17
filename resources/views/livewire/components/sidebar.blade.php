@@ -49,42 +49,42 @@
                 </button>
                 <a href="{{ route('cbm') }}" wire:navigate
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('cbm') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
-                    <img src="{{ asset('logo/CBM.png') }}" alt="ISU LOGO" class="w-10 ml-6">
+                    <img src="{{ asset('logo/CBM.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     CBM
                 </a>
                 <a href="{{ route('ccje') }}" wire:navigate
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('ccje') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
-                    <img src="{{ asset('logo/CCJE.png') }}" alt="ISU LOGO" class="w-10 ml-6">
+                    <img src="{{ asset('logo/CCJE.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     CCJE
                 </a>
                 <a href="{{ route('ccsict') }}" wire:navigate
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('ccsict') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
-                    <img src="{{ asset('logo/CCSICT.png') }}" alt="ISU LOGO" class="w-10 ml-6">
+                    <img src="{{ asset('logo/CCSICT.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     CCSICT
                 </a>
                 <a href="{{ route('ced') }}" wire:navigate
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('ced') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
-                    <img src="{{ asset('logo/CED.png') }}" alt="ISU LOGO" class="w-10 ml-6">
+                    <img src="{{ asset('logo/CED.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     CED
                 </a>
                 <a href="{{ route('iat') }}" wire:navigate
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('iat') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
-                    <img src="{{ asset('logo/IAT.png') }}" alt="ISU LOGO" class="w-10 ml-6">
+                    <img src="{{ asset('logo/IAT.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     IAT
                 </a>
                 <a href="{{ route('ps') }}" wire:navigate
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('ps') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
-                    <img src="{{ asset('logo/PS.png') }}" alt="ISU LOGO" class="w-10 ml-6">
+                    <img src="{{ asset('logo/PS.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     PS
                 </a>
                 <a href="{{ route('sas') }}" wire:navigate
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('sas') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
-                    <img src="{{ asset('logo/SAS.png') }}" alt="ISU LOGO" class="w-10 ml-6">
+                    <img src="{{ asset('logo/SAS.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     SAS
                 </a>
             </div>
         </div>
-        <div class="flex items-center justify-between w-44 absolute bottom-4 gap-2 my-2">
+        <div class="flex items-center justify-between w-44 gap-2 my-2">
             {{-- Settings --}}
             <a href="{{ route('settings') }}" wire:navigate
                 class="flex items-center gap-2 cursor-pointer {{ request()->is('settings') || request()->route()->uri == 'settings/update-password' ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">

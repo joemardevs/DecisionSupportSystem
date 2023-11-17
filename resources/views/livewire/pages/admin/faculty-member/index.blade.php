@@ -72,9 +72,9 @@
                                 <select wire:model.live="position"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                                     <option value="">All</option>
-                                    <option value="Professor I">Professor I</option>
-                                    <option value="Professor II">Professor II</option>
-                                    <option value="Professor III">Professor III</option>
+                                    @foreach ($uniquePositions as $positions)
+                                        <option value="{{ $positions }}">{{ $positions }}</option>
+                                    @endforeach
                                 </select>
                                 <button type="button" wire:click="export"
                                     class="text-sm text-white bg-gray-500 p-4 py-2 rounded">

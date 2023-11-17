@@ -37,6 +37,7 @@ class Index extends Component
     public function render()
     {
         $title = 'Faculty Members';
+        $uniquePositions = Author::pluck('position')->unique()->toArray();
 
         $facultyMembers = Author::orderBy('updated_at', 'desc')
             ->orderBy('id', 'desc')
@@ -49,6 +50,7 @@ class Index extends Component
         return view('livewire.pages.admin.faculty-member.index', [
             'title' => $title,
             'facultyMembers' => $facultyMembers,
+            'uniquePositions' => $uniquePositions,
         ])->layout('livewire.layouts.app');
     }
 }

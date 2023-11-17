@@ -122,7 +122,7 @@
                                     <div>
                                         <div class="flex flex-col gap-1">
                                             <label for="expected_date_of_completion">Expected Date of Completion</label>
-                                            <input wire:model="expected_date_of_completion" type="date"
+                                            <input wire:model="expected_date_of_completion" type="date" readonly
                                                 name="expected_date_of_completion" id="expected_date_of_completion"
                                                 class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                         </div>
@@ -131,12 +131,14 @@
                                         <div class="flex flex-col gap-1">
                                             <label for="duration">Duration</label>
                                             <input wire:model="duration" type="text" name="duration" id="duration"
+                                                readonly
                                                 class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                         </div>
                                     </div>
                                     <div class="flex flex-col gap-1" id="date_completed">
                                         <label for="date_completed">Date Completed</label>
                                         <input wire:model="date_completed" type="date" name="date_completed"
+                                            readonly
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                     </div>
                                 </div>
@@ -145,7 +147,7 @@
                                 <h1 class="font-bold text-gray-400">For Researches presented</h1>
                                 {{-- <div class="flex flex-col gap-1 col-span-2">
                                     <label for="level">Level</label>
-                                    <input wire:model="" type="text" name="level" id="level"
+                                    <input wire:model="" type="text" name="level" id="level" readonly
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div> --}}
                                 <h1 class="text-gray-400 col-span-2">Coference/Fora</h1>
@@ -153,21 +155,22 @@
                                     <div class="flex flex-col gap-1" id="date_presented">
                                         <label for="date_presented">Date Presented</label>
                                         <input wire:model="date_presented" type="date" name="date_presented"
+                                            readonly
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                     </div>
                                     <div class="flex flex-col gap-1" id="organizer">
                                         <label for="organizer">Organizer</label>
-                                        <input wire:model="organizer" type="text" name="organizer"
+                                        <input wire:model="organizer" type="text" name="organizer" readonly
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                     </div>
                                     <div class="flex flex-col gap-1" id="venue">
                                         <label for="venue">Venue</label>
-                                        <input wire:model="venue" type="text" name="venue"
+                                        <input wire:model="venue" type="text" name="venue" readonly
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                     </div>
                                     <div class="flex flex-col gap-1" id="country">
                                         <label for="country">Country</label>
-                                        <input wire:model="country" type="text" name="country"
+                                        <input wire:model="country" type="text" name="country" readonly
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                     </div>
                                 </div>
@@ -176,24 +179,24 @@
                                 <h1 class="font-bold text-gray-400">For Researches published</h1>
                                 <div class="flex flex-col gap-1 col-span-3" id="journal_name">
                                     <label for="journal_name">Journal Name</label>
-                                    <input wire:model="journal_name" type="text" name="journal_name"
+                                    <input wire:model="journal_name" type="text" name="journal_name" readonly
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                                 <div class="col-span-3 grid grid-cols-2 gap-4">
                                     <div class="flex flex-col gap-1 col-span-1" id="issn">
                                         <label for="issn">ISSN</label>
-                                        <input wire:model="issn" type="text" name="issn"
+                                        <input wire:model="issn" type="text" name="issn" readonly
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                     </div>
                                     <div class="flex flex-col gap-1 col-span-1" id="vol">
                                         <label for="vol">Vol</label>
-                                        <input wire:model="vol" type="text" name="vol"
+                                        <input wire:model="vol" type="text" name="vol" readonly
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                     </div>
                                 </div>
                                 <div class="flex flex-col gap-1 col-span-3" id="issn">
                                     <label for="remarks">Remarks</label>
-                                    <input wire:model="remarks" type="text" name="remarks"
+                                    <input wire:model="remarks" type="text" name="remarks" readonly
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                             </div>
@@ -201,18 +204,18 @@
                                 <h1 class="font-bold text-gray-400 col-span-3">Intellectual Properties</h1>
                                 <div class="flex flex-col gap-1 col-span-1" id="issn">
                                     <label for="type_of_model">Type of Model</label>
-                                    <input wire:model="type_of_model" type="text" name="type_of_model"
+                                    <input wire:model="type_of_model" type="text" name="type_of_model" readonly
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                                 <div class="flex flex-col gap-1" id="reg_number">
                                     <label for="reg_number">Reg. Number</label>
-                                    <input wire:model="reg_number" type="text" name="reg_number"
+                                    <input wire:model="reg_number" type="text" name="reg_number" readonly
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
 
                                 <div class="flex flex-col gap-1 col-span-1" id="date_issued">
                                     <label for="date_issued">Date Issued</label>
-                                    <input wire:model="date_issued" type="date" name="date_issued"
+                                    <input wire:model="date_issued" type="date" name="date_issued" readonly
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                             </div>
@@ -221,34 +224,25 @@
                                 <div class="flex flex-col gap-1">
                                     <label for="citations">Citations</label>
                                     <input wire:model="citations" type="text" name="citations" id="citations"
+                                        readonly
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label for="awards">Awards</label>
-                                    <input wire:model="awards" type="text" name="awards" id="awards"
+                                    <input wire:model="awards" type="text" name="awards" id="awards" readonly
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label for="conferred_to">Conferred to</label>
                                     <input wire:model="conferred_to" type="text" name="conferred_to"
-                                        id="conferred_to"
+                                        id="conferred_to" readonly
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label for="conferred_by">Conferred by</label>
                                     <input wire:model="conferred_by" type="text" name="conferred_by"
-                                        id="conferred_by"
+                                        id="conferred_by" readonly
                                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
-                                </div>
-                                <div class="flex gap-4">
-                                    <button type="submit"
-                                        class="cursor-pointer text-white bg-[#116736] py-2 rounded-md w-24">
-                                        Save
-                                    </button>
-                                    <button type="button" wire:click="goBack"
-                                        class="cursor-pointer text-white bg-gray-500 py-2 rounded-md w-24">
-                                        Back
-                                    </button>
                                 </div>
                             </div>
                             <input type="hidden" id="researchStatusId" value="{{ $research->status_id }}">
