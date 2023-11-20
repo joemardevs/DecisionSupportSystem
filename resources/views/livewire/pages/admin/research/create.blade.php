@@ -134,7 +134,8 @@
                                     <div>
                                         <div class="flex flex-col gap-1">
                                             <label for="duration">Duration</label>
-                                            <input wire:model="duration" type="text" name="duration" id="duration"
+                                            <input wire:model="duration" type="text" name="duration"
+                                                id="duration"
                                                 class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                         </div>
                                     </div>

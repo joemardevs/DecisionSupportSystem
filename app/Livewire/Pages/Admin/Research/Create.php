@@ -57,6 +57,10 @@ class Create extends Component
         return to_route('research')
             ->with('success', 'Research created successful');
     }
+    public function goBack()
+    {
+        return to_route('research');
+    }
     public function render()
     {
         $titlePage = 'Research';
