@@ -6,7 +6,11 @@ use App\Models\Author;
 use App\Models\Department;
 use App\Models\Research;
 use App\Models\Status;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
+
+use function Laravel\Prompts\error;
 
 class Create extends Component
 {
@@ -20,35 +24,40 @@ class Create extends Component
         'department_id' => 'required',
         'created_at' => 'required',
     ];
-    public function createResearch()
+    public function createResearch(Request $request)
     {
-        $this->validate();
-
-        $research = Research::create([
-            'title' => $this->title,
-            'status_id' => $this->status_id,
-            'department_id' => $this->department_id,
-            'venue' => $this->venue,
-            'date_presented' => $this->date_presented,
-            'organizer' => $this->organizer,
-            'journal_name' => $this->journal_name,
-            'issn' => $this->issn,
-            'vol' => $this->vol,
-            'country' => $this->country,
-            'date_completed' => $this->date_completed,
-            'date_issued' => $this->date_issued,
-            'reg_number' => $this->reg_number,
-            'citations' => $this->citations,
-            'awards' => $this->awards,
-            'created_at' => $this->created_at,
-            'conferred_to' => $this->conferred_to,
-            'conferred_by' => $this->conferred_by,
-            'allocated_budget' => $this->allocated_budget,
-            'duration' => $this->duration,
-            'remarks' => $this->remarks,
-            'type_of_model' => $this->type_of_model,
-            'expected_date_of_completion' => $this->expected_date_of_completion,
-        ]);
+        try {
+            $this->validate();
+            $research = Research::create([
+                'title' => $this->title,
+                'status_id' => $this->status_id,
+                'department_id' => $this->department_id,
+                'venue' => $this->venue,
+                'date_presented' => $this->date_presented,
+                'organizer' => $this->organizer,
+                'journal_name' => $this->journal_name,
+                'issn' => $this->issn,
+                'vol' => $this->vol,
+                'country' => $this->country,
+                'date_completed' => $this->date_completed,
+                'date_issued' => $this->date_issued,
+                'reg_number' => $this->reg_number,
+                'citations' => $this->citations,
+                'awards' => $this->awards,
+                'created_at' => $this->created_at,
+                'conferred_to' => $this->conferred_to,
+                'conferred_by' => $this->conferred_by,
+                'allocated_budget' => $this->allocated_budget,
+                'duration' => $this->duration,
+                'remarks' => $this->remarks,
+                'type_of_model' => $this->type_of_model,
+                'expected_date_of_completion' => $this->expected_date_of_completion,
+            ]);
+        } catch (ValidationException $e) {
+            // Handle validation errors and redirect to another route
+            return redirect()->route('research')
+                ->with('error', 'Input must have value.');
+        }
 
         // Attach selected authors to the research using the pivot table 'author_research'
         $research->authors()->attach($this->selectAuthors, ['lead_author' => false]);

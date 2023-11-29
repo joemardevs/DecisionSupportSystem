@@ -1,7 +1,7 @@
 @section('title')
     {{ $title }}
 @endsection
-<main class="flex min-h-screen" x-data="{ openModal: false }">
+<main class="flex min-h-screen w-full" x-data="{ openModal: false }">
     @if (Session::has('success'))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded absolute w-96 mb-8 top-10 right-10 z-10"
             role="alert" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)">
@@ -20,6 +20,127 @@
     @endif
     <livewire:components.sidebar />
     <div class="w-full bg-gray-200">
+        <div class="p-4 pb-0 w-full grid-rows-1">
+            <div class="flex justify-end space-x-3 items-center">
+                {{-- <label class="w-10 text-sm font-medium text-gray-900">Year :</label> --}}
+                <input type="number" wire:model.live.debounce.1000ms="year" placeholder="Year"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-[#116736] block p-2 w-56">
+                <button type="submit" class="bg-[#116736] px-4 py-2 text-white rounded-lg">Filter</button>
+            </div>
+        </div>
+        <div class="p-4 grid grid-cols-12 gap-2 border">
+            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg">Total <br class="xl:hidden "> Research</p>
+                <p class="text-3xl p-4">{{ number_format($allResearches) }}</p>
+            </div>
+            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg">On Going Research</p>
+                <p class="text-3xl p-4">{{ number_format($allOnGoing) }}</p>
+            </div>
+            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg">Completed Research</p>
+                <p class="text-3xl p-4">{{ number_format($allCompleted) }}</p>
+            </div>
+            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg">Presented Research</p>
+                <p class="text-3xl p-4">{{ number_format($allPresented) }}</p>
+            </div>
+            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg">Published Research</p>
+                <p class="text-3xl p-4">{{ number_format($allPublished) }}</p>
+            </div>
+            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg">Intellectual Properties</p>
+                <p class="text-3xl p-4">{{ number_format($allIntellectualProperties) }}</p>
+            </div>
+        </div>
+        <div class="p-4 pt-0 grid grid-cols-12 gap-2">
+            <div class="w-full col-span-6 bg-white rounded-lg drop-shadow-md flex flex-col justify-center items-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg w-full text-center">All Research</p>
+                <div class="w-72">
+                    <canvas id="allResearch" style="height:1px; width:1px" class="p-4"></canvas>
+                </div>
+            </div>
+            <div class="w-full col-span-6 bg-white rounded-lg drop-shadow-md flex flex-col justify-center items-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg w-full text-center">Male and Female Comparison</p>
+                <div class="w-72 flex justify-center">
+                    <canvas id="male_and_female" style="height:1px; width:1px" class="p-4"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 pt-0 grid grid-cols-12 gap-2">
+            <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden w-full col-span-12">
+                <div class="flex items-center justify-between d p-4">
+                    <div class="flex">
+                        <h1>Faculty Members with lowest success rate</h1>
+                    </div>
+                    <div class="flex space-x-3">
+                        <div class="flex space-x-3 items-center">
+                            <label class="w-48 text-sm font-medium text-gray-900">Position Type :</label>
+                            <select wire:model.live="position"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="">All</option>
+                                <option value="Professor I">Professor I</option>
+                                <option value="Professor II">Professor II</option>
+                                <option value="Professor III">Professor III</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto rounded-lg drop-shadow bg-white">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-4 py-3">Name</th>
+                                <th scope="col" class="px-4 py-3">Position</th>
+                                <th scope="col" class="px-4 py-3">Status</th>
+                                <th scope="col" class="px-4 py-3"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($authorsBelow60PercentPaginated as $author)
+                                <tr wire:key="{{ $author->id }}" class="border-b">
+                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
+                                        {{ $author->name }}
+                                    </th>
+                                    <td class="px-4 py-3">{{ $author->position }}</td>
+                                    <td class="px-4 py-3">
+                                        {{ $author->status }}
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="px-4 py-3 text-center text-gray-600">
+                                        No found
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                <div class="py-4 px-3">
+                    <div class="flex">
+                        <div class="flex space-x-4 items-center mb-3">
+                            <label class="w-32 text-sm font-medium text-gray-900">Per Page</label>
+                            <select wire:model.live="perPage"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-[#116736] block w-full p-2.5 ">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        {{ $authorsBelow60PercentPaginated->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- <div class="w-full bg-gray-200">
         <section class="flex flex-col p-4 gap-4">
             <div class="grid grid-rows-2 grid-cols-4 gap-2">
                 <div class="w-44 h-fit p-4 bg-white rounded-lg drop-shadow-md">
@@ -105,7 +226,10 @@
                     <canvas id="sasResearchPerSchoolYear" style="width:5px"></canvas>
                 </div>
             </div>
-            {{-- <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden">
+
+        </section>
+    </div> --}}
+    {{-- <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden">
                 <div class="flex items-center justify-between d p-4">
                     <div class="flex">
                         <h1>Authors</h1>
@@ -181,11 +305,9 @@
                     </div>
                 </div>
             </div> --}}
-        </section>
-    </div>
     <div class="absolute top-0 left-0 flex items-center justify-center w-full h-full backdrop-blur-sm"
-        x-show="openModal" x-on:open-modal.window="openModal = true" x-on:close-modal.window="openModal = false" x-cloak
-        x-transition>
+        x-show="openModal" x-on:open-modal.window="openModal = true" x-on:close-modal.window="openModal = false"
+        x-cloak x-transition>
         <!-- A basic modal dialog with title, body and one button to close -->
         <form wire:submit="addNote({{ $selectedAuthor }})"
             class="h-auto mx-2 text-left bg-white rounded shadow-xl md:max-w-xl md:p-6 lg:p-8 md:mx-0"
@@ -219,6 +341,36 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        //male and female comparison
+        let male = @json($male);
+        let female = @json($female);
+        const maleAndFemaleComparision = {
+            labels: [
+                'Male',
+                'Female',
+            ],
+            datasets: [{
+                data: [male, female],
+                backgroundColor: [
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 159, 64)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(
+            document.getElementById('male_and_female'), {
+                type: 'bar',
+                data: maleAndFemaleComparision,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            }
+        );
         //all piechart
         let allOnGoing = @json($allOnGoing);
         let allCompleted = @json($allCompleted);

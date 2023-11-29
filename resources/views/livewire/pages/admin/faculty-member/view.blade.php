@@ -80,15 +80,15 @@
 </main>
 <script script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    let memberCountOngoingResearch = @json($memberCountOngoingResearch);
-    let memberCountNotCompletedResearch = @json($memberCountNotCompletedResearch);
+    let memberCountArchivedResearch = @json($memberCountArchivedResearch);
+    let memberCountCompletedResearch = @json($memberCountCompletedResearch);
     const data = {
         labels: [
-            'Above Completed',
-            'On Going'
+            'Completed',
+            'Archived'
         ],
         datasets: [{
-            data: [memberCountOngoingResearch, memberCountNotCompletedResearch, ],
+            data: [memberCountArchivedResearch, memberCountCompletedResearch, ],
             backgroundColor: [
                 'green',
                 'gray',

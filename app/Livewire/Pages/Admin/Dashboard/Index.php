@@ -6,7 +6,9 @@ use App\Enums\DepartmentEnum;
 use App\Enums\ResearchStatusesEnum;
 use App\Models\Author;
 use App\Models\Research;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,6 +18,7 @@ class Index extends Component
     public $position = '';
     public Author $selectedAuthor;
     public $note;
+    public $year;
     use WithPagination;
     public function showAddNoteModal(Author $author)
     {
@@ -33,9 +36,32 @@ class Index extends Component
                 ->with('success', 'Note added to the author.');
         }
     }
+    public function updatedYear()
+    {
+        $this->dispatch('filter-year');
+    }
+    // #[On('filter-year')]
+    // public function filter()
+    // {
+    // }
     public function render()
     {
         $title = 'Dashboard';
+        $researches = Research::when($this->year, function ($query) {
+            $query->where(function ($subquery) {
+                if ($this->year !== '') {
+                    $yearAsString = strval($this->year);
+                    $subquery->where(function ($query) use ($yearAsString) {
+                        $query->whereNotNull('date_presented')
+                            ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                            ->orWhere(function ($query) use ($yearAsString) {
+                                $query->whereNull('date_presented')
+                                    ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                            });
+                    });
+                }
+            });
+        })->count();
         //all pie chart data
         $allOnGoing = Research::where('status_id', '=', ResearchStatusesEnum::ON_GOING->value)
             ->count();
@@ -47,7 +73,7 @@ class Index extends Component
             ->count();
         $allIntellectualProperties = Research::where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
-        $allArchieved = Research::where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+        $allArchieved = Research::where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)
             ->count();
         //cbm pie chart data
         $cbmOnGoing = Research::where('department_id', DepartmentEnum::CBM->value)
@@ -66,7 +92,7 @@ class Index extends Component
             ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $cbmArchieved = Research::where('department_id', DepartmentEnum::CBM->value)
-            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)
             ->count();
         //ccje pie chart data
         $ccjeOnGoing = Research::where('department_id', DepartmentEnum::CCJE->value)
@@ -85,7 +111,7 @@ class Index extends Component
             ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $ccjeArchieved = Research::where('department_id', DepartmentEnum::CCJE->value)
-            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)
             ->count();
         //ccsict pie chart data
         $ccsictOnGoing = Research::where('department_id', DepartmentEnum::CCSICT->value)
@@ -104,7 +130,7 @@ class Index extends Component
             ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $ccsictArchieved = Research::where('department_id', DepartmentEnum::CCSICT->value)
-            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)
             ->count();
         //ced pie chart data
         $cedOnGoing = Research::where('department_id', DepartmentEnum::CED->value)
@@ -123,7 +149,7 @@ class Index extends Component
             ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $cedArchieved = Research::where('department_id', DepartmentEnum::CED->value)
-            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)
             ->count();
         //iat pie chart data
         $iatOnGoing = Research::where('department_id', DepartmentEnum::IAT->value)
@@ -142,7 +168,7 @@ class Index extends Component
             ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $iatArchieved = Research::where('department_id', DepartmentEnum::IAT->value)
-            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)
             ->count();
         //ps pie chart data
         $psOnGoing = Research::where('department_id', DepartmentEnum::PS->value)
@@ -161,7 +187,7 @@ class Index extends Component
             ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $psArchieved = Research::where('department_id', DepartmentEnum::PS->value)
-            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)
             ->count();
         //sas pie chart data
         $sasOnGoing = Research::where('department_id', DepartmentEnum::SAS->value)
@@ -180,7 +206,7 @@ class Index extends Component
             ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $sasArchieved = Research::where('department_id', DepartmentEnum::SAS->value)
-            ->where('status_id', '=', ResearchStatusesEnum::ARCHIEVED->value)
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)
             ->count();
         //all research line chart data
         $twenty20Totwenty21 = Research::whereYear('created_at', '=', 2020)
@@ -352,7 +378,10 @@ class Index extends Component
 
         foreach ($authors as $author) {
             $authorAllResearch = $author->research()->count();
-            $authorAboveCompletedResearch = $author->research()->where('status_id', '>=', 2)->count();
+            $authorAboveCompletedResearch = $author->research()
+                ->where('status_id', '>=', ResearchStatusesEnum::COMPLETED)
+                ->where('status_id', '<=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES)
+                ->count();
 
             // Check if $authorAllResearch is zero to avoid division by zero
             if ($authorAllResearch > 0) {
@@ -377,6 +406,12 @@ class Index extends Component
             $currentPage,
             ['path' => LengthAwarePaginator::resolveCurrentPath()]
         );
+        $authorsBelow60PercentPaginated = $authorsBelow60PercentPaginated->onEachSide(1); // Set the desired number of links on each side
+
+
+        // male vs female
+        $male = Author::where('sex', 'male')->count();
+        $female = Author::where('sex', 'female')->count();
         return view('livewire.pages.admin.dashboard.index', [
             'title' => $title,
             //all pie chart
@@ -483,7 +518,10 @@ class Index extends Component
             'sasTwenty22Totwenty23' => $sasTwenty22Totwenty23,
             'sasTwenty23Totwenty24' => $sasTwenty23Totwenty24,
             'sasTwenty24Totwenty25' => $sasTwenty24Totwenty25,
-            'authorsBelow60Percent' => $authorsBelow60PercentPaginated
+            'authorsBelow60PercentPaginated' => $authorsBelow60PercentPaginated,
+            'male' => $male,
+            'female' => $female,
+            'allResearches' => $researches
         ])->layout('livewire.layouts.app');
     }
 }

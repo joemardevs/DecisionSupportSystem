@@ -4,8 +4,9 @@
         x-transition:enter-start="opacity-0 translate-x-[-1%]" x-transition:enter-end="translate-x-0"
         x-transition:leave="transition ease-in duration-200 transform"
         x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 translate-x-[-1%]">
-        <div class="w-full h-20 flex items-center justify-start">
+        <div class="w-full h-20 flex justify-between items-center">
             <img src="{{ asset('logo/ISU.png') }}" alt="ISU LOGO" class="w-16">
+            <p class="text-center">Decision Support System</p>
         </div>
         <div class="flex flex-col mt-2" x-data="{ expanded: false }">
             <a href="{{ route('dashboard') }}"
@@ -19,7 +20,7 @@
                     class="{{ request()->is('dashboard') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }} w-full">
                     Dashboard</p>
             </a>
-            <a href="{{ route('faculty-members') }}" wire:navigate
+            <a href="{{ route('faculty-members') }}"
                 class="flex items-center gap-2 my-2 cursor-pointer {{ request()->is('faculty-members') ? 'text-[#116736]' : 'text-[#B1B6C0] hover:text-[#116736]' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
@@ -30,7 +31,7 @@
                     class="{{ request()->is('faculty-members') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }} w-full">
                     Faculty Members</p>
             </a>
-            <a href="{{ route('research') }}" wire:navigate
+            <a href="{{ route('research') }}"
                 class="flex items-center gap-2 my-2 cursor-pointer {{ request()->is('research') ? 'text-[#116736]' : 'text-[#B1B6C0] hover:text-[#116736]' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
@@ -47,37 +48,37 @@
                         <small class="mr-10 font-semibold text-[#B1B6C0]">Colleges</small>
                     </div>
                 </button>
-                <a href="{{ route('cbm') }}" wire:navigate
+                <a href="{{ route('cbm') }}"
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('cbm') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
                     <img src="{{ asset('logo/CBM.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     CBM
                 </a>
-                <a href="{{ route('ccje') }}" wire:navigate
+                <a href="{{ route('ccje') }}"
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('ccje') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
                     <img src="{{ asset('logo/CCJE.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     CCJE
                 </a>
-                <a href="{{ route('ccsict') }}" wire:navigate
+                <a href="{{ route('ccsict') }}"
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('ccsict') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
                     <img src="{{ asset('logo/CCSICT.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     CCSICT
                 </a>
-                <a href="{{ route('ced') }}" wire:navigate
+                <a href="{{ route('ced') }}"
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('ced') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
                     <img src="{{ asset('logo/CED.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     CED
                 </a>
-                <a href="{{ route('iat') }}" wire:navigate
+                <a href="{{ route('iat') }}"
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('iat') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
                     <img src="{{ asset('logo/IAT.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     IAT
                 </a>
-                <a href="{{ route('ps') }}" wire:navigate
+                <a href="{{ route('ps') }}"
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('ps') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
                     <img src="{{ asset('logo/PS.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     PS
                 </a>
-                <a href="{{ route('sas') }}" wire:navigate
+                <a href="{{ route('sas') }}"
                     class="py-2 px-2 flex gap-2 items-center {{ request()->is('sas') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
                     <img src="{{ asset('logo/SAS.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     SAS
@@ -86,7 +87,7 @@
         </div>
         <div class="flex items-center justify-between w-44 gap-2 my-2">
             {{-- Settings --}}
-            <a href="{{ route('settings') }}" wire:navigate
+            <a href="{{ route('settings') }}"
                 class="flex items-center gap-2 cursor-pointer {{ request()->is('settings') || request()->route()->uri == 'settings/update-password' ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">

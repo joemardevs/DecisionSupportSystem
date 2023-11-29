@@ -10,5 +10,5 @@ enum ResearchStatusesEnum: int
     case PRESENTED = 3;
     case PUBLISHED = 4;
     case INTELLECTUAL_PROPERTIES = 5;
-    case ARCHIEVED = 6;
+    case ARCHIVED = 6;
 }

@@ -49,6 +49,8 @@ Route::middleware('auth', 'is.admin')->group(function () {
 
     Route::get('/dashboard', Dashboard::class)
         ->name('dashboard');
+    Route::get('/dashboard/filter', [Dashboard::class, 'filter'])
+        ->name('dashboard.filter');
 
     Route::get('/research', Research::class)
         ->name('research');

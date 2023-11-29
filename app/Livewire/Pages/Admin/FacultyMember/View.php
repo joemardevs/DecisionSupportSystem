@@ -27,10 +27,14 @@ class View extends Component
 
         $member = $this->facultyMember;
         $memberAllResearch = $member->research()->count();
-        $memberCountCompletedResearch = $member->research()->where('status_id', '>=', ResearchStatusesEnum::COMPLETED->value)->count();
-        $memberCountOngoingResearch = $member->research()->where('status_id', '<=', ResearchStatusesEnum::ON_GOING->value)->count();
+        $memberCountCompletedResearch = $member->research()
+            ->where('status_id', '>=', ResearchStatusesEnum::COMPLETED)
+            ->where('status_id', '<=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES)
+            ->count();
+        $memberCountArchivedResearch = $member->research()->where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)->count();
 
-        $memberCountNotCompletedResearch = $memberAllResearch - $memberCountCompletedResearch;
+        $memberCountNotCompletedResearch = $memberCountArchivedResearch - $memberCountCompletedResearch;
+        // dd($memberCountNotCompletedResearch);
         if ($memberCountCompletedResearch != 0) {
             $memberNotif = ($memberAllResearch / $memberCountCompletedResearch) * 100;
         } else {
@@ -40,8 +44,8 @@ class View extends Component
         }
         return view('livewire.pages.admin.faculty-member.view', [
             'titlePage' => $titlePage,
-            'memberCountOngoingResearch' => $memberCountOngoingResearch,
-            'memberCountNotCompletedResearch' => $memberCountNotCompletedResearch,
+            'memberCountArchivedResearch' => $memberCountArchivedResearch,
+            'memberCountCompletedResearch' => $memberCountCompletedResearch,
             'memberNotif' => $memberNotif,
         ])->layout('livewire.layouts.app');
     }
