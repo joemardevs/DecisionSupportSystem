@@ -487,20 +487,22 @@ class Index extends Component
             ->whereYear('created_at', '=', 2024)
             ->orWhereYear('created_at', '=', 2025)
             ->count();
+
         // Table data
-        $authors = Author::when($this->colleges || $this->year, function ($query) {
-            $query->where(function ($subquery) {
-                if ($this->colleges !== '' && $this->colleges !== 0) {
-                    $subquery->where('department_id', $this->colleges);
-                }
-                if ($this->year !== '') {
-                    $yearAsString = strval($this->year);
-                    $subquery->where(function ($query) use ($yearAsString) {
-                        $query->whereYear('date_of_birth', 'LIKE', '%' . $yearAsString . '%');
-                    });
-                }
-            });
-        })->get();
+        $authors = Author::all();
+        // $authors = Author::when($this->colleges || $this->year, function ($query) {
+        //     $query->where(function ($subquery) {
+        //         if ($this->colleges !== '' && $this->colleges !== 0) {
+        //             $subquery->where('department_id', $this->colleges);
+        //         }
+        //         if ($this->year !== '') {
+        //             $yearAsString = strval($this->year);
+        //             $subquery->where(function ($query) use ($yearAsString) {
+        //                 $query->whereYear('date_of_birth', 'LIKE', '%' . $yearAsString . '%');
+        //             });
+        //         }
+        //     });
+        // })->get();
 
         $authorsBelow60Percent = [];
 

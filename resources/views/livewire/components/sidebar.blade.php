@@ -8,7 +8,7 @@
             <img src="{{ asset('logo/ISU.png') }}" alt="ISU LOGO" class="w-16">
             <p class="text-center">Decision Support System</p>
         </div>
-        <div class="flex flex-col mt-2" x-data="{ expanded: false }">
+        <div class="flex flex-col h-screen mt-2" x-data="{ expanded: false }">
             <a href="{{ route('dashboard') }}"
                 class="flex items-center gap-2 my-2 cursor-pointer {{ request()->is('dashboard') ? 'text-[#116736]' : 'text-[#B1B6C0] hover:text-[#116736]' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -42,7 +42,7 @@
                     class="{{ request()->is('research') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }} w-full">
                     Research</p>
             </a>
-            <div class="flex flex-col w-full">
+            {{-- <div class="flex flex-col w-full">
                 <button type="button" class="py-2 text-left flex justify-between items-center p-2 rounded">
                     <div class="flex items-center gap-2">
                         <small class="mr-10 font-semibold text-[#B1B6C0]">Colleges</small>
@@ -83,7 +83,7 @@
                     <img src="{{ asset('logo/SAS.png') }}" alt="ISU LOGO" class="w-8 ml-6">
                     SAS
                 </a>
-            </div>
+            </div> --}}
         </div>
         <div class="flex items-center justify-between w-44 gap-2 my-2">
             {{-- Settings --}}

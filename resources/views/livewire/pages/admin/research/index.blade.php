@@ -161,6 +161,58 @@
                 </div>
             </div>
         </section>
+        <div class="grid grid-cols-7 gap-2 p-4 pt-0">
+            <div class="w-full bg-white drop-shadow rounded flex items-center justify-center p-4">
+                <a href="{{ route('cbm') }}"
+                    class="flex flex-col gap-2 items-center {{ request()->is('cbm') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
+                    <img src="{{ asset('logo/CBM.png') }}" alt="ISU LOGO" class="w-24">
+                    CBM
+                </a>
+            </div>
+            <div class="w-full bg-white drop-shadow rounded flex items-center justify-center p-4">
+                <a href="{{ route('ccje') }}"
+                    class="flex flex-col gap-2 items-center {{ request()->is('cbm') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
+                    <img src="{{ asset('logo/CCJE.png') }}" alt="ISU LOGO" class="w-18">
+                    CCJE
+                </a>
+            </div>
+            <div class="w-full bg-white drop-shadow rounded flex items-center justify-center p-4">
+                <a href="{{ route('ccsict') }}"
+                    class="flex flex-col gap-2 items-center {{ request()->is('cbm') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
+                    <img src="{{ asset('logo/CCSICT.png') }}" alt="ISU LOGO" class="w-24">
+                    CCSICT
+                </a>
+            </div>
+            <div class="w-full bg-white drop-shadow rounded flex items-center justify-center p-4">
+                <a href="{{ route('ced') }}"
+                    class="flex flex-col gap-2 items-center {{ request()->is('cbm') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
+                    <img src="{{ asset('logo/CED.png') }}" alt="ISU LOGO" class="w-24">
+                    CED
+                </a>
+            </div>
+            <div class="w-full bg-white drop-shadow rounded flex items-center justify-center p-4">
+                <a href="{{ route('iat') }}"
+                    class="flex flex-col gap-2 items-center {{ request()->is('cbm') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
+                    <img src="{{ asset('logo/IAT.png') }}" alt="ISU LOGO" class="w-24">
+                    IAT
+                </a>
+            </div>
+            <div class="w-full bg-white drop-shadow rounded flex items-center justify-center p-4">
+                <a href="{{ route('ps') }}"
+                    class="flex flex-col gap-2 items-center {{ request()->is('cbm') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
+                    <img src="{{ asset('logo/PS.png') }}" alt="ISU LOGO" class="w-24">
+                    PS
+                </a>
+            </div>
+            <div class="w-full bg-white drop-shadow rounded flex items-center justify-center p-4">
+                <a href="{{ route('sas') }}"
+                    class="flex flex-col gap-2 items-center {{ request()->is('cbm') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
+                    <img src="{{ asset('logo/SAS.png') }}" alt="ISU LOGO" class="w-24">
+                    SAS
+                </a>
+            </div>
+
+        </div>
     </div>
     @if ($errors->any())
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded absolute w-96 mb-8 top-10 right-10"
