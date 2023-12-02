@@ -21,51 +21,78 @@
     <livewire:components.sidebar />
     <div class="w-full bg-gray-200">
         <div class="p-4 pb-0 w-full grid-rows-1">
-            <div class="flex justify-end space-x-3 items-center">
+            <div class="flex justify-between space-x-3 items-center">
+                <div class="flex gap-4">
+                    <label class="flex items-center gap-1">
+                        <input type="radio" wire:model.live="colleges" value="0"
+                            class="accent-yellow-500 h-5 w-5">
+                        All Colleges
+                    </label>
+                    <label class="flex items-center gap-1">
+                        <input type="radio" wire:model.live="colleges" value="1"
+                            class="accent-orange-500 h-5 w-5">
+                        CBM
+                    </label>
+                    <label class="flex items-center gap-1">
+                        <input type="radio" wire:model.live="colleges" value="2" class="accent-blue-500 h-5 w-5">
+                        CCJE
+                    </label>
+                    <label class="flex items-center gap-1">
+                        <input type="radio" wire:model.live="colleges" value="3" class="accent-red-500 h-5 w-5">
+                        CCSICT
+                    </label>
+                    <label class="flex items-center gap-1">
+                        <input type="radio" wire:model.live="colleges" value="4"
+                            class="accent-purple-500 h-5 w-5">
+                        CED
+                    </label>
+                    <label class="flex items-center gap-1">
+                        <input type="radio" wire:model.live="colleges" value="5" class="accent-cyan-500 h-5 w-5">
+                        IAT
+                    </label>
+                    <label class="flex items-center gap-1">
+                        <input type="radio" wire:model.live="colleges" value="6" class="accent-gray-500 h-5 w-5">
+                        IAT
+                    </label>
+                    <label class="flex items-center gap-1">
+                        <input type="radio" wire:model.live="colleges" value="7" class="accent-cyan-500 h-5 w-5">
+                        SAS
+                    </label>
+                </div>
                 {{-- <label class="w-10 text-sm font-medium text-gray-900">Year :</label> --}}
                 <input type="number" wire:model.live.debounce.1000ms="year" placeholder="Year"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-[#116736] block p-2 w-56">
-                <button type="submit" class="bg-[#116736] px-4 py-2 text-white rounded-lg">Filter</button>
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-[#116736] block p-2 w-40">
+                {{-- <button type="submit" class="bg-[#116736] px-4 py-2 text-white rounded-lg">Filter</button> --}}
             </div>
         </div>
         <div class="p-4 grid grid-cols-12 gap-2 border">
-            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
-                <p class="bg-[#116736] text-white py-2 rounded-t-lg">Total <br class="xl:hidden "> Research</p>
+            <div class="w-full col-span-3 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg px-6">Total Research</p>
                 <p class="text-3xl p-4">{{ number_format($allResearches) }}</p>
             </div>
-            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
-                <p class="bg-[#116736] text-white py-2 rounded-t-lg">On Going Research</p>
+            <div class="w-full col-span-3 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg px-6">On Going Research</p>
                 <p class="text-3xl p-4">{{ number_format($allOnGoing) }}</p>
             </div>
-            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
-                <p class="bg-[#116736] text-white py-2 rounded-t-lg">Completed Research</p>
+            <div class="w-full col-span-3 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg  px-2">Completed Research</p>
                 <p class="text-3xl p-4">{{ number_format($allCompleted) }}</p>
             </div>
-            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
-                <p class="bg-[#116736] text-white py-2 rounded-t-lg">Presented Research</p>
+            <div class="w-full col-span-3 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg  px-6">Presented Research</p>
                 <p class="text-3xl p-4">{{ number_format($allPresented) }}</p>
             </div>
-            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
-                <p class="bg-[#116736] text-white py-2 rounded-t-lg">Published Research</p>
+            <div class="w-full col-span-4 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg  px-6">Published Research</p>
                 <p class="text-3xl p-4">{{ number_format($allPublished) }}</p>
             </div>
-            <div class="w-full col-span-2 bg-white rounded-lg drop-shadow-md text-center">
-                <p class="bg-[#116736] text-white py-2 rounded-t-lg">Intellectual Properties</p>
+            <div class="w-full col-span-4 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg  px-6">Intellectual Properties</p>
                 <p class="text-3xl p-4">{{ number_format($allIntellectualProperties) }}</p>
             </div>
-        </div>
-        <div class="p-4 pt-0 grid grid-cols-12 gap-2">
-            <div class="w-full col-span-6 bg-white rounded-lg drop-shadow-md flex flex-col justify-center items-center">
-                <p class="bg-[#116736] text-white py-2 rounded-t-lg w-full text-center">All Research</p>
-                <div class="w-72">
-                    <canvas id="allResearch" style="height:1px; width:1px" class="p-4"></canvas>
-                </div>
-            </div>
-            <div class="w-full col-span-6 bg-white rounded-lg drop-shadow-md flex flex-col justify-center items-center">
-                <p class="bg-[#116736] text-white py-2 rounded-t-lg w-full text-center">Male and Female Comparison</p>
-                <div class="w-72 flex justify-center">
-                    <canvas id="male_and_female" style="height:1px; width:1px" class="p-4"></canvas>
-                </div>
+            <div class="w-full col-span-4 bg-white rounded-lg drop-shadow-md text-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg px-6">Archived Research</p>
+                <p class="text-3xl p-4">{{ number_format($allArchived) }}</p>
             </div>
         </div>
         <div class="p-4 pt-0 grid grid-cols-12 gap-2">
@@ -87,7 +114,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="overflow-x-auto rounded-lg drop-shadow bg-white">
+                <div class="overflow-x-auto rounded-lg bg-white">
                     <table class="w-full text-sm text-left text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
@@ -135,6 +162,22 @@
                     <div>
                         {{ $authorsBelow60PercentPaginated->links() }}
                     </div>
+                </div>
+            </div>
+        </div>
+        <div wire:ignore class="p-4 pt-0 grid grid-cols-12 gap-2">
+            <div
+                class="w-full col-span-6 bg-white rounded-lg drop-shadow-md flex flex-col justify-center items-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg w-full text-center">All Research</p>
+                <div class="w-72">
+                    <canvas id="allResearch" style="height:1px; width:1px" class="p-4"></canvas>
+                </div>
+            </div>
+            <div
+                class="w-full col-span-6 bg-white rounded-lg drop-shadow-md flex flex-col justify-center items-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg w-full text-center">Male and Female Comparison</p>
+                <div class="w-72 flex justify-center">
+                    <canvas id="male_and_female" style="height:1px; width:1px" class="p-4"></canvas>
                 </div>
             </div>
         </div>
@@ -377,7 +420,7 @@
         let allPresented = @json($allPresented);
         let allPublished = @json($allPublished);
         let allIntellectualProperties = @json($allIntellectualProperties);
-        let allArchieved = @json($allArchieved);
+        let allArchived = @json($allArchived);
 
         const allData = {
             labels: [
@@ -390,7 +433,7 @@
             ],
             datasets: [{
                 data: [allOnGoing, allCompleted, allPresented, allPublished, allIntellectualProperties,
-                    allArchieved,
+                    allArchived,
                 ],
                 backgroundColor: [
                     'rgba(255, 99, 132)',

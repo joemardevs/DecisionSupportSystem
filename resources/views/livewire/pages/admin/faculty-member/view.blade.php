@@ -52,7 +52,98 @@
     @endif
     <livewire:components.sidebar />
     <div class="w-full bg-gray-200">
-        <section>
+        <div class="grid grid-cols-12 p-4 gap-4">
+            <div class="w-full col-span-6  grid grid-cols-6 gap-2 bg-white p-4 drop-shadow rounded">
+                <h1 class="col-span-6 font-semibold">Personal Information</h1>
+                <hr class="col-span-6">
+                <div class="col-span-6 flex flex-col gap-1">
+                    <label for="name">Name</label>
+                    <input value="{{ $facultyMember->name }}" readonly
+                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                </div>
+                <div class="col-span-6 flex flex-col gap-1">
+                    <label for="name">Department</label>
+                    <input value="{{ $facultyMember->department->name }}" readonly
+                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                </div>
+                <div class="col-span-6 flex flex-col gap-1">
+                    <label for="name">Position</label>
+                    <input value="{{ $facultyMember->position }}" readonly
+                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                </div>
+                <div class="col-span-6 flex flex-col gap-1">
+                    <label for="name">Status</label>
+                    <input value="{{ $facultyMember->status }}" readonly
+                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                </div>
+                <div class="col-span-6 flex flex-col gap-1">
+                    <label for="name">Sex</label>
+                    <input value="{{ $facultyMember->sex }}" readonly
+                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                </div>
+                <div class="col-span-6 flex flex-col gap-1">
+                    <label for="name">Date of Birth</label>
+                    <input value="{{ $facultyMember->date_of_birth->format('M d Y') }}" readonly
+                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                </div>
+                <div class="col-span-6 flex flex-col gap-1">
+                    <label for="name">Date of Original Appointment</label>
+                    <input value="{{ $facultyMember->date_of_original_appointment->format('M d Y') }}" readonly
+                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                </div>
+                <div class="col-span-6 flex flex-col gap-1">
+                    <label for="name">Highest Educational Attaintment</label>
+                    <input value="{{ $facultyMember->highest_educational_attaintment }}" readonly
+                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                </div>
+                <div class="col-span-6 flex flex-col gap-1">
+                    <label for="name">Address</label>
+                    <input value="{{ $facultyMember->address }}" readonly
+                        class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
+                </div>
+            </div>
+            <div class="w-full col-span-6 grid gap-4">
+                <div class="col-span-6 flex flex-col gap-1 bg-white p-4 drop-shadow rounded">
+                    <h1 class="font-semibold">Research</h1>
+                    <ul class="">
+                        @if ($facultyResearches->isEmpty())
+                            <p>No Research</p>
+                        @endif
+                        @foreach ($facultyResearches as $research)
+                            <li> - {{ $research->title }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-span-6 flex flex-col gap-1 bg-white p-4 drop-shadow rounded">
+                    <h1 class="font-semibold">Summary of the research engagement of the faculty member</h1>
+                    <ul>
+                        <li>{{ $allResearch }} total number of research</li>
+                        <li>{{ $completedResearch }} completed</li>
+                        <li>{{ $ongoingResearch }} on going</li>
+                        <li>{{ $publishedResearch }} published</li>
+                        <li>{{ $presentedResearch }} presented</li>
+                        <li>{{ $intellectualResearch }} intellectual properties</li>
+                        <li>{{ $archivedResearch }} archived</li>
+                    </ul>
+                </div>
+                <div class="w-full col-span-6 grid-rows-6 bg-white p-4 drop-shadow rounded flex flex-col">
+                    <p class="font-semibold">Success Rate</p>
+                    <div class="w-full h-fit p-10 flex justify-center">
+                        @if ($facultyResearches->isEmpty())
+                            <p>No Research</p>
+                        @else
+                            @if ($memberCountCompletedResearch || $memberCountArchivedResearch)
+                                <canvas id="authorSuccessRate"></canvas>
+                            @else
+                                <p>No Research</p>
+                            @endif
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <section>
             <div class="w-full p-4">
                 <div class="flex justify-between items-center p-4 bg-white mb-4 drop-shadow rounded">
                     <h1>
@@ -75,7 +166,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
     </div>
 </main>
 <script script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -84,14 +175,14 @@
     let memberCountCompletedResearch = @json($memberCountCompletedResearch);
     const data = {
         labels: [
+            'Archived',
             'Completed',
-            'Archived'
         ],
         datasets: [{
             data: [memberCountArchivedResearch, memberCountCompletedResearch, ],
             backgroundColor: [
-                'green',
                 'gray',
+                'green',
             ],
             hoverOffset: 4
         }]
@@ -100,6 +191,13 @@
         document.getElementById('authorSuccessRate'), {
             type: 'pie',
             data: data,
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                }
+            }
         }
     );
 </script>

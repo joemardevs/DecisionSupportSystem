@@ -56,7 +56,7 @@ class Create extends Component
         } catch (ValidationException $e) {
             // Handle validation errors and redirect to another route
             return redirect()->route('research')
-                ->with('error', 'Input must have value.');
+                ->with('error', 'Fill up the missing data.');
         }
 
         // Attach selected authors to the research using the pivot table 'author_research'

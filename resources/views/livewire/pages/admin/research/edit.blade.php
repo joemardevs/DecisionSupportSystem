@@ -43,7 +43,7 @@
                         Edit {{ $titlePage }}
                     </h1>
                     <div class="flex gap-2">
-                        <a wire:navigate href="{{ route('view.research', ['id' => $research->id]) }}"
+                        <a href="{{ route('view.research', ['id' => $research->id]) }}"
                             class="text-sm text-white bg-gray-500 p-4 py-2 rounded w-16">
                             View
                         </a>

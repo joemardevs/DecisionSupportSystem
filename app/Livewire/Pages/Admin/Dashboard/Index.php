@@ -19,6 +19,7 @@ class Index extends Component
     public Author $selectedAuthor;
     public $note;
     public $year;
+    public $colleges = 0;
     use WithPagination;
     public function showAddNoteModal(Author $author)
     {
@@ -36,10 +37,14 @@ class Index extends Component
                 ->with('success', 'Note added to the author.');
         }
     }
-    public function updatedYear()
-    {
-        $this->dispatch('filter-year');
-    }
+    // public function updatedColleges()
+    // {
+    //     dd($this->colleges);
+    // }
+    // public function updatedYear()
+    // {
+    //     $this->dispatch('filter-year');
+    // }
     // #[On('filter-year')]
     // public function filter()
     // {
@@ -47,8 +52,11 @@ class Index extends Component
     public function render()
     {
         $title = 'Dashboard';
-        $researches = Research::when($this->year, function ($query) {
+        $researches = Research::when($this->colleges  || $this->year, function ($query) {
             $query->where(function ($subquery) {
+                if ($this->colleges !== '' && $this->colleges !== 0) {
+                    $subquery->where('department_id', $this->colleges);
+                }
                 if ($this->year !== '') {
                     $yearAsString = strval($this->year);
                     $subquery->where(function ($query) use ($yearAsString) {
@@ -63,17 +71,125 @@ class Index extends Component
             });
         })->count();
         //all pie chart data
-        $allOnGoing = Research::where('status_id', '=', ResearchStatusesEnum::ON_GOING->value)
+        $allOnGoing = Research::where('status_id', ResearchStatusesEnum::ON_GOING->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
             ->count();
-        $allCompleted = Research::where('status_id', '=', ResearchStatusesEnum::COMPLETED->value)
+        $allCompleted = Research::where('status_id', ResearchStatusesEnum::COMPLETED->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
             ->count();
-        $allPresented = Research::where('status_id', '=', ResearchStatusesEnum::PRESENTED->value)
+        $allPresented = Research::where('status_id', ResearchStatusesEnum::PRESENTED->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
             ->count();
-        $allPublished = Research::where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
+        $allPublished = Research::where('status_id', ResearchStatusesEnum::PUBLISHED->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
             ->count();
-        $allIntellectualProperties = Research::where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
+        $allIntellectualProperties = Research::where('status_id', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
             ->count();
-        $allArchieved = Research::where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)
+        $allArchived = Research::where('status_id', ResearchStatusesEnum::ARCHIVED->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
             ->count();
         //cbm pie chart data
         $cbmOnGoing = Research::where('department_id', DepartmentEnum::CBM->value)
@@ -372,15 +488,27 @@ class Index extends Component
             ->orWhereYear('created_at', '=', 2025)
             ->count();
         // Table data
-        $authors = Author::all();
+        $authors = Author::when($this->colleges || $this->year, function ($query) {
+            $query->where(function ($subquery) {
+                if ($this->colleges !== '' && $this->colleges !== 0) {
+                    $subquery->where('department_id', $this->colleges);
+                }
+                if ($this->year !== '') {
+                    $yearAsString = strval($this->year);
+                    $subquery->where(function ($query) use ($yearAsString) {
+                        $query->whereYear('date_of_birth', 'LIKE', '%' . $yearAsString . '%');
+                    });
+                }
+            });
+        })->get();
 
         $authorsBelow60Percent = [];
 
         foreach ($authors as $author) {
             $authorAllResearch = $author->research()->count();
             $authorAboveCompletedResearch = $author->research()
-                ->where('status_id', '>=', ResearchStatusesEnum::COMPLETED)
-                ->where('status_id', '<=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES)
+                ->where('status_id', '>=', ResearchStatusesEnum::COMPLETED->value)
+                ->where('status_id', '<=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
                 ->count();
 
             // Check if $authorAllResearch is zero to avoid division by zero
@@ -406,7 +534,24 @@ class Index extends Component
             $currentPage,
             ['path' => LengthAwarePaginator::resolveCurrentPath()]
         );
-        $authorsBelow60PercentPaginated = $authorsBelow60PercentPaginated->onEachSide(1); // Set the desired number of links on each side
+        // $authorsBelow60PercentPaginated->when($this->colleges || $this->year, function ($query) {
+        //     $query->where(function ($subquery) {
+        //         if ($this->colleges !== '' && $this->colleges !== 0) {
+        //             $subquery->where('department_id', $this->colleges);
+        //         }
+        //         if ($this->year !== '') {
+        //             $yearAsString = strval($this->year);
+        //             $subquery->where(function ($query) use ($yearAsString) {
+        //                 $query->whereNotNull('date_presented')
+        //                     ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+        //                     ->orWhere(function ($query) use ($yearAsString) {
+        //                         $query->whereNull('date_presented')
+        //                             ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+        //                     });
+        //             });
+        //         }
+        //     });
+        // });
 
 
         // male vs female
@@ -420,7 +565,7 @@ class Index extends Component
             'allPresented' => $allPresented,
             'allPublished' => $allPublished,
             'allIntellectualProperties' => $allIntellectualProperties,
-            'allArchieved' => $allArchieved,
+            'allArchived' => $allArchived,
             //cbm pie chart
             'cbmOnGoing' => $cbmOnGoing,
             'cbmCompleted' => $cbmCompleted,

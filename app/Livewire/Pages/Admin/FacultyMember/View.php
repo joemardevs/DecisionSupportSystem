@@ -9,6 +9,7 @@ use Livewire\Component;
 class View extends Component
 {
     public $facultyMember;
+    public $facultyResearches;
     public function deleteFacultyMember($id)
     {
         $facultyMember = Author::find($id);
@@ -20,6 +21,7 @@ class View extends Component
     {
         $facultyMember = Author::find($id);
         $this->facultyMember = $facultyMember;
+        $this->facultyResearches = $facultyMember->research()->get();
     }
     public function render()
     {
@@ -28,8 +30,8 @@ class View extends Component
         $member = $this->facultyMember;
         $memberAllResearch = $member->research()->count();
         $memberCountCompletedResearch = $member->research()
-            ->where('status_id', '>=', ResearchStatusesEnum::COMPLETED)
-            ->where('status_id', '<=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES)
+            ->where('status_id', '>=', ResearchStatusesEnum::COMPLETED->value)
+            ->where('status_id', '<=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
             ->count();
         $memberCountArchivedResearch = $member->research()->where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)->count();
 
@@ -42,11 +44,38 @@ class View extends Component
             // For example, you can set it to zero or display an error message.
             $memberNotif = 0; // or handle the error as needed
         }
+
+        $allResearch = $member->research()->count();
+        $completedResearch = $member->research()
+            ->where('status_id', '=', ResearchStatusesEnum::COMPLETED->value)
+            ->count();
+        $ongoingResearch = $member->research()
+            ->where('status_id', '=', ResearchStatusesEnum::ON_GOING->value)
+            ->count();
+        $publishedResearch = $member->research()
+            ->where('status_id', '=', ResearchStatusesEnum::PUBLISHED->value)
+            ->count();
+        $presentedResearch = $member->research()
+            ->where('status_id', '=', ResearchStatusesEnum::PRESENTED->value)
+            ->count();
+        $intellectualResearch = $member->research()
+            ->where('status_id', '=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
+            ->count();
+        $archivedResearch = $member->research()
+            ->where('status_id', '=', ResearchStatusesEnum::ARCHIVED->value)
+            ->count();
         return view('livewire.pages.admin.faculty-member.view', [
             'titlePage' => $titlePage,
             'memberCountArchivedResearch' => $memberCountArchivedResearch,
             'memberCountCompletedResearch' => $memberCountCompletedResearch,
             'memberNotif' => $memberNotif,
+            'allResearch' => $allResearch,
+            'completedResearch' => $completedResearch,
+            'ongoingResearch' => $ongoingResearch,
+            'publishedResearch' => $publishedResearch,
+            'presentedResearch' => $presentedResearch,
+            'intellectualResearch' => $intellectualResearch,
+            'archivedResearch' => $archivedResearch,
         ])->layout('livewire.layouts.app');
     }
 }

@@ -44,7 +44,7 @@
                     </h1>
                     <a href="{{ route('create.research') }}">
                         <button type="button"class="text-sm text-white bg-[#116736] p-4 py-2 rounded">
-                            Create research
+                            ADD RESEARCH
                         </button>
                     </a>
                 </div>
@@ -115,8 +115,7 @@
                                             {{ $research->date_completed ? date('d-m-Y', strtotime($research->date_completed)) : $research->created_at->format('m-d-Y') }}
                                         </td>
                                         <td x-data="{ expanded: false }" class="px-4 py-3">
-                                            <a wire:navigate
-                                                href="{{ route('view.research', ['id' => $research->id]) }}"
+                                            <a href="{{ route('view.research', ['id' => $research->id]) }}"
                                                 class="px-1 py-1 text-gray-500 hover:underline underline-offset-2 rounded">
                                                 View
                                             </a>
