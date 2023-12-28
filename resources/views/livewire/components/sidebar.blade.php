@@ -6,7 +6,7 @@
         x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 translate-x-[-1%]">
         <div class="w-full h-20 flex justify-between items-center">
             <img src="{{ asset('logo/ISU.png') }}" alt="ISU LOGO" class="w-16">
-            <p class="text-center">Decision Support System</p>
+            <p class="text-center">Research Management System</p>
         </div>
         <div class="flex flex-col h-screen mt-2" x-data="{ expanded: false }">
             <a href="{{ route('dashboard') }}"

@@ -31,6 +31,9 @@ class Research extends Model
     public function scopeSearch($query, $value)
     {
         $query
-            ->where('title', 'like', "%{$value}%");
+            ->where('title', 'like', "%{$value}%")
+            ->orWhereHas('authors', function ($query) use ($value) {
+                $query->where('name', 'like', "%{$value}%");
+            });
     }
 }

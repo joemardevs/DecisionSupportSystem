@@ -172,7 +172,7 @@
             <div class="w-full bg-white drop-shadow rounded flex items-center justify-center p-4">
                 <a href="{{ route('ccje') }}"
                     class="flex flex-col gap-2 items-center {{ request()->is('cbm') ? 'text-[#116736]' : 'text-[#3a4657] hover:text-[#116736]' }}">
-                    <img src="{{ asset('logo/CCJE.png') }}" alt="ISU LOGO" class="w-18">
+                    <img src="{{ asset('logo/CCJE.png') }}" alt="ISU LOGO" class="w-16">
                     CCJE
                 </a>
             </div>

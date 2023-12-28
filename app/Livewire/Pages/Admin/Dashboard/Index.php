@@ -52,6 +52,8 @@ class Index extends Component
     public function render()
     {
         $title = 'Dashboard';
+        $uniquePositions = Author::pluck('position')->unique()->toArray();
+
         $researches = Research::when($this->colleges  || $this->year, function ($query) {
             $query->where(function ($subquery) {
                 if ($this->colleges !== '' && $this->colleges !== 0) {
@@ -489,9 +491,14 @@ class Index extends Component
             ->count();
 
         // Table data
-        $authors = Author::all();
-        // $authors = Author::when($this->colleges || $this->year, function ($query) {
+        $authors = Author::when($this->position !== '', function ($query) {
+            $query->where('position', '=', $this->position);
+        })->get();
+        // $authors = Author::when($this->colleges || $this->year || $this->position, function ($query) {
         //     $query->where(function ($subquery) {
+        //         if ($this->position !== '') {
+        //             $subquery->where('position', '=', $this->position);
+        //         }
         //         if ($this->colleges !== '' && $this->colleges !== 0) {
         //             $subquery->where('department_id', $this->colleges);
         //         }
@@ -561,6 +568,8 @@ class Index extends Component
         $female = Author::where('sex', 'female')->count();
         return view('livewire.pages.admin.dashboard.index', [
             'title' => $title,
+            'uniquePositions' => $uniquePositions,
+
             //all pie chart
             'allOnGoing' => $allOnGoing,
             'allCompleted' => $allCompleted,

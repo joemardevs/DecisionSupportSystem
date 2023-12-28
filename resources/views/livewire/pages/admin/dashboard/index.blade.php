@@ -23,39 +23,44 @@
         <div class="p-4 pb-0 w-full grid-rows-1">
             <div class="flex justify-between space-x-3 items-center">
                 <div class="flex gap-4">
-                    <label class="flex items-center gap-1">
-                        <input type="radio" wire:model.live="colleges" value="0"
-                            class="accent-yellow-500 h-5 w-5">
+                    <label class="flex items-center gap-1 cursor-pointer">
+                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="0"
+                            class="accent-yellow-500 h-5 w-5 cursor-pointer">
                         All Colleges
                     </label>
-                    <label class="flex items-center gap-1">
-                        <input type="radio" wire:model.live="colleges" value="1"
-                            class="accent-orange-500 h-5 w-5">
+                    <label class="flex items-center gap-1 cursor-pointer">
+                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="1"
+                            class="accent-orange-500 h-5 w-5 cursor-pointer">
                         CBM
                     </label>
-                    <label class="flex items-center gap-1">
-                        <input type="radio" wire:model.live="colleges" value="2" class="accent-blue-500 h-5 w-5">
+                    <label class="flex items-center gap-1 cursor-pointer">
+                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="2"
+                            class="accent-blue-500 h-5 w-5 cursor-pointer">
                         CCJE
                     </label>
-                    <label class="flex items-center gap-1">
-                        <input type="radio" wire:model.live="colleges" value="3" class="accent-red-500 h-5 w-5">
+                    <label class="flex items-center gap-1 cursor-pointer">
+                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="3"
+                            class="accent-red-500 h-5 w-5 cursor-pointer">
                         CCSICT
                     </label>
-                    <label class="flex items-center gap-1">
-                        <input type="radio" wire:model.live="colleges" value="4"
-                            class="accent-purple-500 h-5 w-5">
+                    <label class="flex items-center gap-1 cursor-pointer">
+                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="4"
+                            class="accent-purple-500 h-5 w-5 cursor-pointer">
                         CED
                     </label>
-                    <label class="flex items-center gap-1">
-                        <input type="radio" wire:model.live="colleges" value="5" class="accent-cyan-500 h-5 w-5">
+                    <label class="flex items-center gap-1 cursor-pointer">
+                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="5"
+                            class="accent-cyan-500 h-5 w-5 cursor-pointer">
                         IAT
                     </label>
-                    <label class="flex items-center gap-1">
-                        <input type="radio" wire:model.live="colleges" value="6" class="accent-gray-500 h-5 w-5">
+                    <label class="flex items-center gap-1 cursor-pointer">
+                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="6"
+                            class="accent-gray-500 h-5 w-5 cursor-pointer">
                         IAT
                     </label>
-                    <label class="flex items-center gap-1">
-                        <input type="radio" wire:model.live="colleges" value="7" class="accent-cyan-500 h-5 w-5">
+                    <label class="flex items-center gap-1 cursor-pointer">
+                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="7"
+                            class="accent-cyan-500 h-5 w-5 cursor-pointer">
                         SAS
                     </label>
                 </div>
@@ -107,9 +112,9 @@
                             <select wire:model.live="position"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                                 <option value="">All</option>
-                                <option value="Professor I">Professor I</option>
-                                <option value="Professor II">Professor II</option>
-                                <option value="Professor III">Professor III</option>
+                                @foreach ($uniquePositions as $positions)
+                                    <option value="{{ $positions }}">{{ $positions }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
