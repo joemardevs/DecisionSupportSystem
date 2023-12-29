@@ -21,53 +21,31 @@
     <livewire:components.sidebar />
     <div class="w-full bg-gray-200">
         <div class="p-4 pb-0 w-full grid-rows-1">
-            <div class="flex justify-between space-x-3 items-center">
+            <div class="flex justify-end space-x-3 items-center">
                 <div class="flex gap-4">
-                    <label class="flex items-center gap-1 cursor-pointer">
-                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="0"
-                            class="accent-yellow-500 h-5 w-5 cursor-pointer">
-                        All Colleges
-                    </label>
-                    <label class="flex items-center gap-1 cursor-pointer">
-                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="1"
-                            class="accent-orange-500 h-5 w-5 cursor-pointer">
-                        CBM
-                    </label>
-                    <label class="flex items-center gap-1 cursor-pointer">
-                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="2"
-                            class="accent-blue-500 h-5 w-5 cursor-pointer">
-                        CCJE
-                    </label>
-                    <label class="flex items-center gap-1 cursor-pointer">
-                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="3"
-                            class="accent-red-500 h-5 w-5 cursor-pointer">
-                        CCSICT
-                    </label>
-                    <label class="flex items-center gap-1 cursor-pointer">
-                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="4"
-                            class="accent-purple-500 h-5 w-5 cursor-pointer">
-                        CED
-                    </label>
-                    <label class="flex items-center gap-1 cursor-pointer">
-                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="5"
-                            class="accent-cyan-500 h-5 w-5 cursor-pointer">
-                        IAT
-                    </label>
-                    <label class="flex items-center gap-1 cursor-pointer">
-                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="6"
-                            class="accent-gray-500 h-5 w-5 cursor-pointer">
-                        IAT
-                    </label>
-                    <label class="flex items-center gap-1 cursor-pointer">
-                        <input type="radio" wire:model.live.debounce.500ms="colleges" value="7"
-                            class="accent-cyan-500 h-5 w-5 cursor-pointer">
-                        SAS
-                    </label>
+                    <select name="colleges"wire:model="colleges"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#116736] focus:border-[#116736] block w-40 p-2">
+                        <option value="">All Colleges</option>
+                        @foreach ($allColleges as $college)
+                            <option value="{{ $college->id }}">{{ $college->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
-                {{-- <label class="w-10 text-sm font-medium text-gray-900">Year :</label> --}}
-                <input type="number" wire:model.live.debounce.1000ms="year" placeholder="Year"
+                <input type="number" wire:model="year" placeholder="Year"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-[#116736] block p-2 w-40">
-                {{-- <button type="submit" class="bg-[#116736] px-4 py-2 text-white rounded-lg">Filter</button> --}}
+                <button type="button" wire:click="filter" class="bg-[#116736] px-4 py-2 text-white rounded-lg">
+                    Filter
+                </button>
+                <div wire:loading aria-label="Loading..." role="status">
+                    <svg class="animate-spin w-6 h-6 fill-slate-800" viewBox="3 3 18 18">
+                        <path class="opacity-20"
+                            d="M12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5ZM3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z">
+                        </path>
+                        <path
+                            d="M16.9497 7.05015C14.2161 4.31648 9.78392 4.31648 7.05025 7.05015C6.65973 7.44067 6.02656 7.44067 5.63604 7.05015C5.24551 6.65962 5.24551 6.02646 5.63604 5.63593C9.15076 2.12121 14.8492 2.12121 18.364 5.63593C18.7545 6.02646 18.7545 6.65962 18.364 7.05015C17.9734 7.44067 17.3403 7.44067 16.9497 7.05015Z">
+                        </path>
+                    </svg>
+                </div>
             </div>
         </div>
         <div class="p-4 grid grid-cols-12 gap-2 border">
@@ -98,6 +76,29 @@
             <div class="w-full col-span-4 bg-white rounded-lg drop-shadow-md text-center">
                 <p class="bg-[#116736] text-white py-2 rounded-t-lg px-6">Archived Research</p>
                 <p class="text-3xl p-4">{{ number_format($allArchived) }}</p>
+            </div>
+        </div>
+        <div class="p-4 pt-0 grid grid-cols-12 gap-2">
+            <div class="w-full col-span-6 bg-white rounded-lg drop-shadow-md flex flex-col justify-center items-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg w-full text-center">All Research</p>
+                <div wire:ignore class="w-72">
+                    <canvas id="allResearch" style="height:1px; width:1px" class="p-4"></canvas>
+                </div>
+            </div>
+            <div class="w-full col-span-6 bg-white rounded-lg drop-shadow-md flex flex-col justify-center items-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg w-full text-center">Male and Female Comparison</p>
+                <div wire:ignore class="w-72 flex justify-center">
+                    <canvas id="male_and_female" style="height:1px; width:1px" class="p-4"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 pt-0 grid grid-cols-12 gap-2">
+            <div
+                class="w-full col-span-12 bg-white rounded-lg drop-shadow-md flex flex-col justify-center items-center">
+                <p class="bg-[#116736] text-white py-2 rounded-t-lg w-full text-center">All Research Per School Year</p>
+                <div wire:ignore class="flex justify-center">
+                    <canvas id="allResearchPerSchoolYear" style="height:30vh; padding:1rem;"></canvas>
+                </div>
             </div>
         </div>
         <div class="p-4 pt-0 grid grid-cols-12 gap-2">
@@ -139,6 +140,12 @@
                                     <td class="px-4 py-3">
                                         {{ $author->status }}
                                     </td>
+                                    <td>
+                                        <a href="{{ route('view.author', ['id' => $author->id]) }}"
+                                            class="px-1 py-1 text-gray-500 hover:underline underline-offset-2 rounded">
+                                            View
+                                        </a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
@@ -167,22 +174,6 @@
                     <div>
                         {{ $authorsBelow60PercentPaginated->links() }}
                     </div>
-                </div>
-            </div>
-        </div>
-        <div wire:ignore class="p-4 pt-0 grid grid-cols-12 gap-2">
-            <div
-                class="w-full col-span-6 bg-white rounded-lg drop-shadow-md flex flex-col justify-center items-center">
-                <p class="bg-[#116736] text-white py-2 rounded-t-lg w-full text-center">All Research</p>
-                <div class="w-72">
-                    <canvas id="allResearch" style="height:1px; width:1px" class="p-4"></canvas>
-                </div>
-            </div>
-            <div
-                class="w-full col-span-6 bg-white rounded-lg drop-shadow-md flex flex-col justify-center items-center">
-                <p class="bg-[#116736] text-white py-2 rounded-t-lg w-full text-center">Male and Female Comparison</p>
-                <div class="w-72 flex justify-center">
-                    <canvas id="male_and_female" style="height:1px; width:1px" class="p-4"></canvas>
                 </div>
             </div>
         </div>
@@ -277,82 +268,6 @@
 
         </section>
     </div> --}}
-    {{-- <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden">
-                <div class="flex items-center justify-between d p-4">
-                    <div class="flex">
-                        <h1>Authors</h1>
-                    </div>
-                    <div class="flex space-x-3">
-                        <div class="flex space-x-3 items-center">
-                            <label class="w-48 text-sm font-medium text-gray-900">Position Type :</label>
-                            <select wire:model.live="position"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                                <option value="">All</option>
-                                <option value="Professor I">Professor I</option>
-                                <option value="Professor II">Professor II</option>
-                                <option value="Professor III">Professor III</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="overflow-x-auto rounded-lg drop-shadow bg-white">
-                    <table class="w-full text-sm text-left text-gray-500">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                            <tr>
-                                <th scope="col" class="px-4 py-3">Name</th>
-                                <th scope="col" class="px-4 py-3">Position</th>
-                                <th scope="col" class="px-4 py-3">Note</th>
-                                <th scope="col" class="px-4 py-3">Status</th>
-                                <th scope="col" class="px-4 py-3"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($authorsBelow60Percent as $author)
-                                <tr wire:key="{{ $author->id }}" class="border-b">
-                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
-                                        {{ $author->name }}
-                                    </th>
-                                    <td class="px-4 py-3">{{ $author->position }}</td>
-                                    <td class="px-4 py-3">{{ $author->note ?? 'N/A' }}</td>
-                                    <td class="px-4 py-3">
-                                        {{ $author->status }}
-                                    </td>
-                                    <td class="px-4 py-3 flex items-center justify-start">
-                                        <button wire:na wire:click="showAddNoteModal({{ $author }})"
-                                            type="button"
-                                            class="px-3 py-1 text-[#116736] hover:underline underline-offset-2 rounded">
-                                            Add Note
-                                        </button>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="4" class="px-4 py-3 text-center text-gray-600">
-                                        No found
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                    <div class="py-4 px-3">
-                        <div class="flex justify-between">
-                            <div class="flex space-x-4 items-center mb-3">
-                                <label class="w-32 text-sm font-medium text-gray-900">Per Page</label>
-                                <select wire:model.live="perPage"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-[#116736] block w-full p-2.5 ">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="50">50</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            {{ $authorsBelow60Percent->links() }}
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
     <div class="absolute top-0 left-0 flex items-center justify-center w-full h-full backdrop-blur-sm"
         x-show="openModal" x-on:open-modal.window="openModal = true" x-on:close-modal.window="openModal = false"
         x-cloak x-transition>
@@ -389,6 +304,8 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        let maleAndFemaleComparisionChart = null;
+        var ctx = document.getElementById('male_and_female').getContext('2d');
         //male and female comparison
         let male = @json($male);
         let female = @json($female);
@@ -406,20 +323,22 @@
                 hoverOffset: 4
             }]
         };
-        new Chart(
-            document.getElementById('male_and_female'), {
-                type: 'bar',
-                data: maleAndFemaleComparision,
-                options: {
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                    }
+        maleAndFemaleComparisionChart = new Chart(ctx, {
+            type: 'bar',
+            data: maleAndFemaleComparision,
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
                 }
             }
-        );
+        });
+
         //all piechart
+        let researchStatusChart = null;
+        var researchStatusHtml = document.getElementById('allResearch').getContext('2d');
+
         let allOnGoing = @json($allOnGoing);
         let allCompleted = @json($allCompleted);
         let allPresented = @json($allPresented);
@@ -451,19 +370,99 @@
                 hoverOffset: 4
             }]
         };
-        new Chart(
-            document.getElementById('allResearch'), {
-                type: 'pie',
-                data: allData,
-                options: {
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                    }
+        researchStatusChart = new Chart(researchStatusHtml, {
+            type: 'pie',
+            data: allData,
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
                 }
             }
-        );
+        });
+
+        //all research line chart
+        let allResearchPerSchoolYearChart = null;
+        var allResearchPerSchoolYearHtml = document.getElementById('allResearchPerSchoolYear').getContext('2d');
+
+        let twenty20Totwenty21 = @json($twenty20Totwenty21);
+        let twenty21Totwenty22 = @json($twenty21Totwenty22);
+        let twenty22Totwenty23 = @json($twenty22Totwenty23);
+        let twenty23Totwenty24 = @json($twenty23Totwenty24);
+        let twenty24Totwenty25 = @json($twenty24Totwenty25);
+        const allResearchPerYearData = {
+            labels: [
+                '2020-2021',
+                '2021-2022',
+                '2022-2023',
+                '2023-2024',
+                '2024-2025',
+            ],
+            datasets: [{
+                label: 'All Research Per School Year',
+                data: [twenty20Totwenty21, twenty21Totwenty22, twenty22Totwenty23, twenty23Totwenty24,
+                    twenty24Totwenty25
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
+        allResearchPerSchoolYearChart = new Chart(allResearchPerSchoolYearHtml, {
+            type: 'line',
+            data: allResearchPerYearData,
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                }
+            }
+        }, );
+
+
+        //update charts
+        window.onload = function() {
+            Livewire.on('filter-colleges', (data) => {
+                // console.log('Data:', data);
+                // console.log('Gender:', data.gender);
+                // console.log('Pie Chart Researches:', data.researchesPieChart);
+                // console.log('Line Chart Researches:', data.researchesLineChart);
+
+                researchStatusChart.data.datasets[0].data = [
+                    data.researchesPieChart.OnGoing,
+                    data.researchesPieChart.Completed,
+                    data.researchesPieChart.Presented,
+                    data.researchesPieChart.Published,
+                    data.researchesPieChart.IntellectualProperties,
+                    data.researchesPieChart.Archieved,
+                ]
+                researchStatusChart.update();
+
+                maleAndFemaleComparisionChart.data.datasets[0].data = data.gender
+                maleAndFemaleComparisionChart.update();
+
+                allResearchPerSchoolYearChart.data.datasets[0].data = data.researchesLineChart
+                allResearchPerSchoolYearChart.update();
+            })
+        }
         //cbm piechart
         let cbmOnGoing = @json($cbmOnGoing);
         let cbmCompleted = @json($cbmCompleted);
@@ -783,58 +782,58 @@
             }
         );
         //all research line chart
-        let twenty20Totwenty21 = @json($twenty20Totwenty21);
-        let twenty21Totwenty22 = @json($twenty21Totwenty22);
-        let twenty22Totwenty23 = @json($twenty22Totwenty23);
-        let twenty23Totwenty24 = @json($twenty23Totwenty24);
-        let twenty24Totwenty25 = @json($twenty24Totwenty25);
-        const allResearchPerYearData = {
-            labels: [
-                '2020-2021',
-                '2021-2022',
-                '2022-2023',
-                '2023-2024',
-                '2024-2025',
-            ],
-            datasets: [{
-                label: 'All Research Per School Year',
-                data: [twenty20Totwenty21, twenty21Totwenty22, twenty22Totwenty23, twenty23Totwenty24,
-                    twenty24Totwenty25
-                ],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(201, 203, 207, 0.2)'
-                ],
-                borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)',
-                    'rgb(201, 203, 207)'
-                ],
-                borderWidth: 1
-            }]
-        };
-        new Chart(
-            document.getElementById('researchPerSchoolYear'), {
-                type: 'line',
-                data: allResearchPerYearData,
-                options: {
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                    }
-                }
-            },
-        );
+        // let twenty20Totwenty21 = @json($twenty20Totwenty21);
+        // let twenty21Totwenty22 = @json($twenty21Totwenty22);
+        // let twenty22Totwenty23 = @json($twenty22Totwenty23);
+        // let twenty23Totwenty24 = @json($twenty23Totwenty24);
+        // let twenty24Totwenty25 = @json($twenty24Totwenty25);
+        // const allResearchPerYearData = {
+        //     labels: [
+        //         '2020-2021',
+        //         '2021-2022',
+        //         '2022-2023',
+        //         '2023-2024',
+        //         '2024-2025',
+        //     ],
+        //     datasets: [{
+        //         label: 'All Research Per School Year',
+        //         data: [twenty20Totwenty21, twenty21Totwenty22, twenty22Totwenty23, twenty23Totwenty24,
+        //             twenty24Totwenty25
+        //         ],
+        //         backgroundColor: [
+        //             'rgba(255, 99, 132, 0.2)',
+        //             'rgba(255, 159, 64, 0.2)',
+        //             'rgba(255, 205, 86, 0.2)',
+        //             'rgba(75, 192, 192, 0.2)',
+        //             'rgba(54, 162, 235, 0.2)',
+        //             'rgba(153, 102, 255, 0.2)',
+        //             'rgba(201, 203, 207, 0.2)'
+        //         ],
+        //         borderColor: [
+        //             'rgb(255, 99, 132)',
+        //             'rgb(255, 159, 64)',
+        //             'rgb(255, 205, 86)',
+        //             'rgb(75, 192, 192)',
+        //             'rgb(54, 162, 235)',
+        //             'rgb(153, 102, 255)',
+        //             'rgb(201, 203, 207)'
+        //         ],
+        //         borderWidth: 1
+        //     }]
+        // };
+        // new Chart(
+        //     document.getElementById('researchPerSchoolYear'), {
+        //         type: 'line',
+        //         data: allResearchPerYearData,
+        //         options: {
+        //             plugins: {
+        //                 legend: {
+        //                     display: false
+        //                 },
+        //             }
+        //         }
+        //     },
+        // );
         //cbm research line chart
         let cbmTwenty20Totwenty21 = @json($cbmTwenty20Totwenty21);
         let cbmTwenty21Totwenty22 = @json($cbmTwenty21Totwenty22);

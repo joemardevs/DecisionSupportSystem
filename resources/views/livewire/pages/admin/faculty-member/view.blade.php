@@ -104,17 +104,6 @@
             </div>
             <div class="w-full col-span-6 grid gap-4">
                 <div class="col-span-6 flex flex-col gap-1 bg-white p-4 drop-shadow rounded">
-                    <h1 class="font-semibold">Research</h1>
-                    <ul class="">
-                        @if ($facultyResearches->isEmpty())
-                            <p>No Research</p>
-                        @endif
-                        @foreach ($facultyResearches as $research)
-                            <li> - {{ $research->title }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="col-span-6 flex flex-col gap-1 bg-white p-4 drop-shadow rounded">
                     <h1 class="font-semibold">Summary of the research engagement of the faculty member</h1>
                     <ul>
                         <li>{{ $allResearch }} total number of research</li>

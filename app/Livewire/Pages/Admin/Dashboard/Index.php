@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Admin\Dashboard;
 use App\Enums\DepartmentEnum;
 use App\Enums\ResearchStatusesEnum;
 use App\Models\Author;
+use App\Models\Department;
 use App\Models\Research;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -37,24 +38,216 @@ class Index extends Component
                 ->with('success', 'Note added to the author.');
         }
     }
-    // public function updatedColleges()
-    // {
-    //     dd($this->colleges);
-    // }
-    // public function updatedYear()
-    // {
-    //     $this->dispatch('filter-year');
-    // }
-    // #[On('filter-year')]
-    // public function filter()
-    // {
-    // }
+    public function filter()
+    {
+        // male vs female
+        $male = Author::when($this->colleges || $this->year, function ($query) {
+            $query->where(function ($subquery) {
+                if ($this->colleges !== '' && $this->colleges !== 0) {
+                    $subquery->where('department_id', $this->colleges);
+                }
+                if ($this->year !== '') {
+                    $yearAsString = strval($this->year);
+                    $subquery->whereYear('date_of_birth', 'LIKE', '%' . $yearAsString . '%');
+                }
+            });
+        })->where('sex', 'male')->count();
+        $female = Author::when($this->colleges || $this->year, function ($query) {
+            $query->where(function ($subquery) {
+                if ($this->colleges !== '' && $this->colleges !== 0) {
+                    $subquery->where('department_id', $this->colleges);
+                }
+                if ($this->year !== '') {
+                    $yearAsString = strval($this->year);
+                    $subquery->whereYear('date_of_birth', 'LIKE', '%' . $yearAsString . '%');
+                }
+            });
+        })->where('sex', 'female')->count();
+
+        //pie chart filter
+        $allOnGoing = Research::where('status_id', ResearchStatusesEnum::ON_GOING->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
+            ->count();
+        $allCompleted = Research::where('status_id', ResearchStatusesEnum::COMPLETED->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
+            ->count();
+        $allPresented = Research::where('status_id', ResearchStatusesEnum::PRESENTED->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
+            ->count();
+        $allPublished = Research::where('status_id', ResearchStatusesEnum::PUBLISHED->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
+            ->count();
+        $allIntellectualProperties = Research::where('status_id', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
+            ->count();
+        $allArchived = Research::where('status_id', ResearchStatusesEnum::ARCHIVED->value)
+            ->when($this->colleges  || $this->year, function ($query) {
+                $query->where(function ($subquery) {
+                    if ($this->colleges !== '' && $this->colleges !== 0) {
+                        $subquery->where('department_id', $this->colleges);
+                    }
+                    if ($this->year !== '') {
+                        $yearAsString = strval($this->year);
+                        $subquery->where(function ($query) use ($yearAsString) {
+                            $query->whereNotNull('date_presented')
+                                ->whereYear('date_presented', 'LIKE', '%' . $yearAsString . '%')
+                                ->orWhere(function ($query) use ($yearAsString) {
+                                    $query->whereNull('date_presented')
+                                        ->whereYear('created_at', 'LIKE', '%' . $yearAsString . '%');
+                                });
+                        });
+                    }
+                });
+            })
+            ->count();
+
+        //all research line chart data
+        $twenty20Totwenty21 = Research::when($this->colleges, function ($query) {
+            $query->where('department_id', $this->colleges);
+        })
+            ->whereYear('created_at', '=', 2020)
+            ->orWhereYear('created_at', '=', 2021)
+            ->count();
+        $twenty21Totwenty22 = Research::when($this->colleges, function ($query) {
+            $query->where('department_id', $this->colleges);
+        })
+            ->whereYear('created_at', '=', 2021)
+            ->orWhereYear('created_at', '=', 2022)
+            ->count();
+        $twenty22Totwenty23 = Research::when($this->colleges, function ($query) {
+            $query->where('department_id', $this->colleges);
+        })
+            ->whereYear('created_at', '=', 2022)
+            ->orWhereYear('created_at', '=', 2023)
+            ->count();
+        $twenty23Totwenty24 = Research::when($this->colleges, function ($query) {
+            $query->where('department_id', $this->colleges);
+        })
+            ->whereYear('created_at', '=', 2023)
+            ->orWhereYear('created_at', '=', 2024)
+            ->count();
+        $twenty24Totwenty25 = Research::when($this->colleges, function ($query) {
+            $query->where('department_id', $this->colleges);
+        })
+            ->whereYear('created_at', '=', 2024)
+            ->orWhereYear('created_at', '=', 2025)
+            ->count();
+
+        $this->dispatch(
+            'filter-colleges',
+            gender: [
+                'Male' => $male,
+                'Female' => $female,
+            ],
+            researchesPieChart: [
+                'OnGoing' => $allOnGoing,
+                'Completed' => $allCompleted,
+                'Presented' => $allPresented,
+                'Published' => $allPublished,
+                'IntellectualProperties' => $allIntellectualProperties,
+                'Archieved' => $allArchived,
+            ],
+            researchesLineChart: [
+                '2020-2021' => $twenty20Totwenty21,
+                '2021-2022' => $twenty21Totwenty22,
+                '2022-2023' => $twenty22Totwenty23,
+                '2023-2024' => $twenty23Totwenty24,
+                '2024-2025' => $twenty24Totwenty25,
+            ],
+        );
+    }
     public function render()
     {
         $title = 'Dashboard';
         $uniquePositions = Author::pluck('position')->unique()->toArray();
+        $allColleges = Department::all();
 
-        $researches = Research::when($this->colleges  || $this->year, function ($query) {
+        $allResearches = Research::when($this->colleges  || $this->year, function ($query) {
             $query->where(function ($subquery) {
                 if ($this->colleges !== '' && $this->colleges !== 0) {
                     $subquery->where('department_id', $this->colleges);
@@ -569,6 +762,7 @@ class Index extends Component
         return view('livewire.pages.admin.dashboard.index', [
             'title' => $title,
             'uniquePositions' => $uniquePositions,
+            'allColleges' => $allColleges,
 
             //all pie chart
             'allOnGoing' => $allOnGoing,
@@ -677,7 +871,7 @@ class Index extends Component
             'authorsBelow60PercentPaginated' => $authorsBelow60PercentPaginated,
             'male' => $male,
             'female' => $female,
-            'allResearches' => $researches
+            'allResearches' => $allResearches
         ])->layout('livewire.layouts.app');
     }
 }
