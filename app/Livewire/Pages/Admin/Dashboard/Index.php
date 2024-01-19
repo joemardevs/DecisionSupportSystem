@@ -736,6 +736,39 @@ class Index extends Component
             $currentPage,
             ['path' => LengthAwarePaginator::resolveCurrentPath()]
         );
+
+        $authorsAbove60Percent = [];
+
+        foreach ($authors as $author) {
+            $authorAllResearch = $author->research()->count();
+            $authorAboveCompletedResearch = $author->research()
+                ->where('status_id', '>=', ResearchStatusesEnum::COMPLETED->value)
+                ->where('status_id', '<=', ResearchStatusesEnum::INTELLECTUAL_PROPERTIES->value)
+                ->count();
+
+            // Check if $authorAllResearch is zero to avoid division by zero
+            if ($authorAllResearch > 0) {
+                $authorSuccessRate = ($authorAboveCompletedResearch / $authorAllResearch) * 100;
+
+                if ($authorSuccessRate > 60) {
+                    $authorsAbove60Percent[] = $author;
+                }
+            } else {
+                // Handle the case where $authorAllResearch is zero (division by zero)
+                // Here, we set the success rate to -1 to indicate an error condition.
+                $authorsAbove60Percent[] = $author;
+            }
+        }
+
+        // Paginate the $authorsAbove60Percent array
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $authorsAbove60PercentPaginated = new LengthAwarePaginator(
+            array_slice($authorsAbove60Percent, ($currentPage - 1) * $this->perPage, $this->perPage),
+            count($authorsAbove60Percent),
+            $this->perPage,
+            $currentPage,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
         // $authorsBelow60PercentPaginated->when($this->colleges || $this->year, function ($query) {
         //     $query->where(function ($subquery) {
         //         if ($this->colleges !== '' && $this->colleges !== 0) {
@@ -869,6 +902,7 @@ class Index extends Component
             'sasTwenty23Totwenty24' => $sasTwenty23Totwenty24,
             'sasTwenty24Totwenty25' => $sasTwenty24Totwenty25,
             'authorsBelow60PercentPaginated' => $authorsBelow60PercentPaginated,
+            'authorsAbove60PercentPaginated' => $authorsAbove60PercentPaginated,
             'male' => $male,
             'female' => $female,
             'allResearches' => $allResearches
