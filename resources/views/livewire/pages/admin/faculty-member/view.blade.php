@@ -102,32 +102,33 @@
                         class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                 </div>
             </div>
-            <div class="w-full col-span-6 grid gap-4">
-                <div class="col-span-6 flex flex-col gap-1 bg-white p-4 drop-shadow rounded">
-                    <h1 class="font-semibold">Summary of the research engagement of the faculty member</h1>
-                    <ul>
-                        <li>{{ $allResearch }} total number of research</li>
-                        <li>{{ $completedResearch }} completed</li>
-                        <li>{{ $ongoingResearch }} on going</li>
-                        <li>{{ $publishedResearch }} published</li>
-                        <li>{{ $presentedResearch }} presented</li>
-                        <li>{{ $intellectualResearch }} intellectual properties</li>
-                        <li>{{ $archivedResearch }} archived</li>
-                    </ul>
-                </div>
-                <div class="w-full col-span-6 grid-rows-6 bg-white p-4 drop-shadow rounded flex flex-col">
-                    <p class="font-semibold">Success Rate</p>
-                    <div class="w-full h-fit p-10 flex justify-center">
-                        @if ($facultyResearches->isEmpty())
-                            <p>No Research</p>
-                        @else
-                            @if ($memberCountCompletedResearch || $memberCountArchivedResearch)
-                                <canvas id="authorSuccessRate"></canvas>
-                            @else
+            <div class="col-span-6 bg-white h-fit">
+                <div class="grid grid-cols-6 col-span-3 p-4 drop-shadow rounded">
+                    <div class="col-span-3">
+                        <p class="font-semibold">Success Rate</p>
+                        <div class="w-full h-fit p-10 flex justify-center">
+                            @if ($facultyResearches->isEmpty())
                                 <p>No Research</p>
+                            @else
+                                @if ($memberCountCompletedResearch || $memberCountArchivedResearch)
+                                    <canvas id="authorSuccessRate"></canvas>
+                                @else
+                                    <p>No Research</p>
+                                @endif
                             @endif
-                        @endif
-
+                        </div>
+                    </div>
+                    <div class="col-span-3 flex flex-col drop-shadow rounded">
+                        <h1 class="font-semibold">Summary of the research engagement of the faculty member</h1>
+                        <ul>
+                            <li>{{ $allResearch }} total number of research</li>
+                            <li>{{ $completedResearch }} completed</li>
+                            <li>{{ $ongoingResearch }} on going</li>
+                            <li>{{ $publishedResearch }} published</li>
+                            <li>{{ $presentedResearch }} presented</li>
+                            <li>{{ $intellectualResearch }} intellectual properties</li>
+                            <li>{{ $archivedResearch }} archived</li>
+                        </ul>
                     </div>
                 </div>
             </div>
