@@ -38,9 +38,8 @@ class UpdatePassword extends Component
             return back()->with('error', 'No changes were made.');
         }
         // Update the user's password
-        $user->update([
-            'password' => $this->password,
-        ]);
+        $user->password = Hash::make($this->password);
+        $user->save();
         // Clear the password fields
         $this->emptyInput();
         return back()->with('success', 'Update successful');

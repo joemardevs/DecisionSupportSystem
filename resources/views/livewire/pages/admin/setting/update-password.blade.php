@@ -62,18 +62,18 @@
                     <form wire:submit="updatePassword" class="flex flex-col gap-4 mt-6 w-5/12">
                         <div class="flex flex-col gap-1">
                             <label for="current_password">Current Password</label>
-                            <input wire:model="current_password" type="text" name="current_password"
+                            <input wire:model="current_password" type="password" name="current_password"
                                 id="current_password"
                                 class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                         </div>
                         <div class="flex flex-col gap-1 text-sm">
                             <label for="password">Password</label>
-                            <input wire:model="password" type="text" name="password" id="password"
+                            <input wire:model="password" type="password" name="password" id="password"
                                 class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                         </div>
                         <div class="flex flex-col gap-1 text-sm">
                             <label for="password_confirmation">Confirm New Password</label>
-                            <input wire:model="password_confirmation" type="text" name="password_confirmation"
+                            <input wire:model="password_confirmation" type="password" name="password_confirmation"
                                 id="password_confirmation"
                                 class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                         </div>
