@@ -53,19 +53,22 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <div class="flex flex-col gap-1">
-                                        <label for="title">Title of Research</label>
+                                        <label for="title">Title of Research<span
+                                                class="text-red-500">*</span></label>
                                         <input wire:model="title" type="text" name="title" id="title"
                                             placeholder="Put a title here"
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                     </div>
                                     <div class="flex flex-col gap-1">
-                                        <label for="allocated_budget">Allocated Budget</label>
+                                        <label for="allocated_budget">Allocated Budget<span
+                                                class="text-red-500">*</span></label>
                                         <input wire:model="allocated_budget" type="text" name="allocated_budget"
                                             id="allocated_budget"
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                     </div>
                                     <div class="flex flex-col gap-1">
-                                        <label for="lead_author">Lead Researcher</label>
+                                        <label for="lead_author">Lead Researcher<span
+                                                class="text-red-500">*</span></label>
                                         <select wire:model="lead_author" name="lead_author" id="lead_author"
                                             class="bg-white text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                             <option value=""></option>
@@ -76,7 +79,7 @@
                                         </select>
                                     </div>
                                     <div class="flex flex-col gap-1">
-                                        <label for="selectAuthors">Authors</label>
+                                        <label for="selectAuthors">Authors<span class="text-red-500">*</span></label>
                                         <div class="relative flex w-full">
                                             <select wire:model="selectAuthors" id="selectAuthors" name="selectAuthors"
                                                 multiple autocomplete="off"
@@ -89,7 +92,8 @@
                                             </select>
                                         </div>
                                         <div class="flex flex-col gap-1">
-                                            <label for="created_at">Date Started</label>
+                                            <label for="created_at">Date Started<span
+                                                    class="text-red-500">*</span></label>
                                             <input wire:model="created_at" type="date" name="created_at"
                                                 id="created_at"
                                                 class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
@@ -99,7 +103,8 @@
                                 <div>
                                     <div class="flex flex-col gap-1">
                                         <label for="department_id"
-                                            class="w-40 text-sm font-medium text-gray-900">Department</label>
+                                            class="w-40 text-sm font-medium text-gray-900">Department<span
+                                                class="text-red-500">*</span></label>
                                         <select wire:model="department_id" id="department_id"
                                             class="bg-white text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                             <option value="">Select department</option>
@@ -112,7 +117,7 @@
                                     </div>
                                     <div class="flex flex-col gap-1">
                                         <label for="status">Research
-                                            Status</label>
+                                            Status<span class="text-red-500">*</span></label>
                                         <select wire:model="status_id" id="status"
                                             class="bg-white text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                             <option value="">Select status</option>
@@ -125,7 +130,8 @@
                                     </div>
                                     <div>
                                         <div class="flex flex-col gap-1">
-                                            <label for="expected_date_of_completion">Expected Date of Completion</label>
+                                            <label for="expected_date_of_completion">Expected Date of Completion<span
+                                                    class="text-red-500">*</span></label>
                                             <input wire:model="expected_date_of_completion" type="date"
                                                 name="expected_date_of_completion" id="expected_date_of_completion"
                                                 class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
@@ -133,14 +139,15 @@
                                     </div>
                                     <div>
                                         <div class="flex flex-col gap-1">
-                                            <label for="duration">Duration</label>
+                                            <label for="duration">Duration<span class="text-red-500">*</span></label>
                                             <input wire:model="duration" type="text" name="duration"
                                                 id="duration"
                                                 class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                         </div>
                                     </div>
                                     <div class="flex flex-col gap-1" id="date_completed">
-                                        <label for="date_completed">Date Completed</label>
+                                        <label for="date_completed">Date Completed<span
+                                                class="text-red-500">*</span></label>
                                         <input wire:model="date_completed" type="date" name="date_completed"
                                             class="text-md border focus:outline-none focus:border-[#116736] px-4 py-1 rounded-md">
                                     </div>
