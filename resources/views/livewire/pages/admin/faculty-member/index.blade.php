@@ -116,7 +116,7 @@
                                             <button type="button"
                                                 wire:click="showDeleteConfirmationModal({{ $facultyMember->id }})"
                                                 class="px-3 py-1 text-red-500 hover:underline underline-offset-2 rounded">
-                                                Delele
+                                                Delete
                                             </button>
                                         </td>
                                     </tr>
