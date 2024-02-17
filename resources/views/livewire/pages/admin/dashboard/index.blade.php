@@ -253,6 +253,236 @@
                 </div>
             </div>
         </div>
+        @php
+            $results = [
+                ['Name' => 'Cindy B. Abarabar', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Lorlyn T. Abe', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Erick R. Abuzo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Liezl S. Abuzo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Sean L. Agbanlog', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Elmer G. Agcaoili', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Romel Q. Agcaoili', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Betchie E. Aguinaldo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Wilson S. Aguinaldo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Harold S. Agustin', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Harvey T. Alejandro', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Irmalyn R. Alejandro', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Bryan Jay J. Ali', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Annaluz A. Aliangan', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Manocher C. Alipour', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Jessa Marie L. Alvarez', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Krisha Camille R. Angoluan', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Charlie T. Anselmo', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Jacqueline S. Antalan', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Mila F. Antalan', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Jonathan Lord R. Aquino', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Pritzy Marie L. Asis', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Shiela Antonette D. Bacud', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Marvin G. Balagulan', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Christine Holly Jane P. Bartolome', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Jojo P. Bautista', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Rosalyn L. Bautista', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Ryan S. Bautista', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Emilia R. Berganio', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Jeduard E. Bernardo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Mary Jane S. Bitanga', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Meilyn A. Blas', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Ronnie Boy V. Blas', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Janeth Marites R. Brillantes', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Ronaldo F. Brillantes', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Marvin. Cabantac', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Freddie R. Cabrera', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Jennilyn M. Cadeliña', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Kristin Bernadette D. Callang', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Romeo L. Canceran', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Genalyn L. Capelo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Christopher R. Che', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Sheryl A. Che', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Jayson Mark G. Colcol', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Reynaldo R. Corpuz', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Christopher A. Cristobal', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Josephine C. Cristobal', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Eric S. Dagman', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Visitacion T. Datul', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Marinel P. Dayawon', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Socrates Q. De Guzman', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Nancy G. De Leon', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Isias C. Dela Peña', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Precila C. Delima', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Jenimar C. Dizon', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Mayrah Rose C. Domingo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Donabel A. Dumelod', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Mark Vincent M. Dy', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Ruby DG. Elumbra', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Arnel C. Fajardo', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Rhenley S. Felipe', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Khrissenda May C. Ferrer', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Marisol S. Foronda', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Narsal Jr M. Foronda', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Christian Philip A. Fortuna', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Angelo C. Galapon', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Klayrol S. Galiza', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Ma Edel Lourdes A. Galiza', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Dionicio D. Gante', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Jane B. Gelindon', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Christian F. Gonzales', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Christopher H. Guiang', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Cherry R. Gumiran', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Joel M. Gumiran', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Geralda P. Hoggang', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Medilyn M. Ines', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Ronald Jr B. Isidro', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'John Vincent S. Jagolino', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Joshua B. Jimenez', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Jerome P. Juan', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Concordia Marie A. Lagasca-Hiloma', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Kenneth B. Lantano', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Arlene R. Lapitan', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Allan R. Leal', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Jesus M. Lindo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Jayson S. Liquigan', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Maria Cristy Felipa L. Lopez', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Gabriel L. Luna', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Grace H. Lupao', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Manuelito C. Macailao', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Arriane Kris M. Manalastas', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Lilia A. Manangan', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Elizabeth P. Mangoba', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Regine M. Manzanillo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Joy Marie A. Mara', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Karla Jastine C. Maramag', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Ryan G. Maramag', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Armald C. Marcos', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Amante Jr B. Mariano', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Alfredo Jr G. Mateo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Eduardo D. Mateo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Mildred V. Matulin', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Alvin V. Modales', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Teresita C. Molano', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Aimee D. Molato', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Jehoana M. Mones', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Catherine C. Mujer', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Marvee Cheska B. Natividad', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Mary Rose A. Natividad', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Sherwin T. Natividad', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Paulo Jr V. Opiña', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Lanny-Lee F. Ordoñez', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Crisbel V. Ortega', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Princess Joy Rodessa E. Palattao', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Arnold T. Pascua', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Arnold T. Pascua', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Benjie A. Pascua', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'James M. Perez', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Eddie I. Peru', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Joan A. Quilang', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Liezl Joy L. Quilang', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Louie Ray U. Quilang', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Vicente L. Quinto', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Nissan B. Ramirez', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'May SG. Ramones', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Woodrow Carlo B. Reyes', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'May Princeford L. Reyno', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Manuel Jr E. Ruma', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Wayne G. Sabado', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Vicente S. Saddul', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Ryan P. Salviejo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Lorelei C. Tabago', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Fabian R. Tagle', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Paul Angelo A. Tamayo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Loida P. Tapaoan', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Cipriano Jr M. Ticman', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Juliet DC. Ticman', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Dennis Mar V. Toledo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Moana Rhea M. Toledo', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Romeo Jr A. Tomas', 'Predicted_Will_Finish_Research' => 0],
+                ['Name' => 'Sheryl D. Tomas', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Krichelle A. Tungpalan', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'John Michael Vincent A. Umayam', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Rose Mary A. Velasco', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Raiza O. Ventura', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Aquim D. Verzon', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Peter John A. Villaflores', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Liezl P. Villaluz', 'Predicted_Will_Finish_Research' => 1],
+                ['Name' => 'Janine M. Villanueva', 'Predicted_Will_Finish_Research' => 1],
+            ];
+            $authorsWillFinishResearch = array_filter($results, function ($author) {
+                return $author['Predicted_Will_Finish_Research'] === 1;
+            });
+            $authorsWillNotFinishResearch = array_filter($results, function ($author) {
+                return $author['Predicted_Will_Finish_Research'] === 0;
+            });
+        @endphp
+        <div class="row grid grid-cols-12 gap-4 px-4">
+            <div class="pt-0 col-span-6">
+                <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden w-full col-span-12">
+                    <div class="flex items-center justify-between d p-4">
+                        <div class="flex">
+                            <h1>Researchers who are most likely to finish their research</h1>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto rounded-lg bg-white">
+                        <table class="w-full text-sm text-left text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-4 py-3">Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($authorsWillFinishResearch as $author)
+                                    <tr wire:key="{{ $author['Name'] }}" class="border-b">
+                                        <th scope="row"
+                                            class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
+                                            {{ $author['Name'] }}
+                                        </th>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="px-4 py-3 text-center text-gray-600">
+                                            No found
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-0 grid col-span-6 gap-2 h-fit">
+                <div class="bg-white relative drop-shadow sm:rounded-lg overflow-hidden w-full col-span-12">
+                    <div class="flex items-center justify-between d p-4">
+                        <div class="flex">
+                            <h1>Researchers who are less likely to finish their research</h1>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto rounded-lg bg-white">
+                        <table class="w-full text-sm text-left text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-4 py-3">Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($authorsWillNotFinishResearch as $author)
+                                    <tr wire:key="{{ $author['Name'] }}" class="border-b">
+                                        <th scope="row"
+                                            class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
+                                            {{ $author['Name'] }}
+                                        </th>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="px-4 py-3 text-center text-gray-600">
+                                            No found
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     {{-- <div class="w-full bg-gray-200">
